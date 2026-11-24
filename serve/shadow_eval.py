@@ -41,6 +41,7 @@ def main():
     ap.add_argument("run"); ap.add_argument("stops"); ap.add_argument("dist")
     ap.add_argument("--since", type=float, default=0)
     ap.add_argument("--max-gap", type=int, default=600)
+    ap.add_argument("--partial", action="store_true", help="score fixes < 30 min before the end too (only arrivals seen by then: fair between methods, biased to short horizons)")
     a = ap.parse_args()
     run = Path(a.run)
     R = tm.Routes(a.stops, a.dist)
@@ -85,7 +86,7 @@ def main():
                     r = json.loads(ln)
                 except ValueError:
                     continue
-                if r["fix"] < a.since or r["fix"] > t_end - 1800:     # need 30 min of truth after the fix
+                if r["fix"] < a.since or (not a.partial and r["fix"] > t_end - 1800):     # need 30 min of truth after the fix
                     continue
                 if r.get("s"):
                     fl = r.get("shown") or []
@@ -103,7 +104,7 @@ def main():
             if k not in st:
                 continue
             y = st[k] - fix
-            if not 60 <= y < 1800:
+            if not 60 <= y < 1800 or st[k] > t_end - 60:
                 continue
             E["v4"].append(dt - y); E["nowcast"].append(nc - y)
             cov["in80"] += lo <= y <= hi; cov["n"] += 1; cov["w"] += hi - lo
