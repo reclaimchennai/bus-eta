@@ -5,17 +5,17 @@
 
 ---
 
-## 1. Main 5-City Head-to-Head Scoreboard (`1–30 min` Stop-Arrival Horizons)
+## 1. Main 5-City Head-to-Head Scoreboard (`1–30 min` Stop-Arrival Horizons, 3.12M Held-Out Queries)
 
-One single unified multi-city **v2 DeeprETA Residual LightGBM (Huber + P10/P90) + UncertBAT Horizon-Grouped Mondrian CQR + Shared-Corridor Live Probes + Headway + `pol.reclaimchennai.city` Weather** model trained on 4.26M queries (59 features) and evaluated on **3.12M held-out stop-arrival queries** across all 5 Indian cities:
+**Best Model (`v4 Clean Stacked Ensemble`):** `0.40 LightGBM Huber + 0.50 XGBoost Pseudo-Huber + 0.10 CatBoost MAE` (74 leak-free features: shared-corridor multi-route live probes, Overpass OSM flyovers/signals/rail/roundabouts, verified 2025–2026 Indian holidays, ConSTGAT path geometry, headway, `pol.reclaimchennai.city` weather) + **Online AgACI (Zaffran et al. 2022)** on **UncertBAT Mondrian CQR (Song et al. 2026)**:
 
-| City (Held-Out Test Day) | Queries | `nowcast.py` MAE | **v2 DeeprETA+CQR MAE** | **MAE Reduction** | `nowcast` → **v2 MAPE** | P90 Error (`nowcast` → **v2**) | **CQR 80% Coverage** | CPU Latency |
+| City (Held-Out Test Day) | Queries | `nowcast.py` MAE | `v2` LGB MAE | **`v4` Stacked MAE** | **MAE Reduction** | `nowcast` → **`v4` MAPE** | P90 Error (`nowcast` → **`v4`**) | **AgACI 80% Cov** |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Delhi DTC** (`2026-11-23`) | 1,500,008 | 152.5s | **97.7s** | **-35.9%** | 22.84% → **14.87%** | 373.2s → **222.6s** | **80.0%** | 10.2 µs/q |
-| **Bengaluru BMTC** (`2026-11-23`) | 361,784 | 144.1s | **92.7s** | **-35.7%** | 22.11% → **15.19%** | 341.6s → **214.8s** | **80.2%** | 10.5 µs/q |
-| **Chennai MTC** (`2026-11-23`) | 1,167,999 | 143.4s | **100.7s** | **-29.8%** | 20.17% → **14.03%** | 312.4s → **232.7s** | **83.5%** | 10.5 µs/q |
-| **Mumbai BEST** (`2026-11-17`) | 82,761 | 116.4s | **82.4s** | **-29.2%** | 24.53% → **17.66%** | 274.2s → **192.5s** | **81.4%** | ~10 µs/q |
-| **Gurugram NCR** (`2026-11-17`, Cold-Start) | 6,063 | 277.7s | **125.4s** | **-54.8%** | 43.04% → **24.48%** | 691.1s → **282.4s** | **80.9%** | 12.9 µs/q |
+| **Chennai MTC** (`2026-11-23`) | 1,167,999 | 143.4s | 100.7s | **94.8s** | **-33.9%** | 20.17% → **14.02%** | 312.4s → **211.8s** | **79.8%** |
+| **Delhi DTC** (`2026-11-23`) | 1,500,008 | 152.5s | 97.7s | **97.7s** | **-35.9%** | 22.84% → **14.69%** | 373.2s → **222.4s** | **79.8%** |
+| **Bengaluru BMTC** (`2026-11-23`) | 361,784 | 144.1s | 92.7s | **93.0s** | **-35.5%** | 22.11% → **15.21%** | 341.6s → **215.9s** | **79.6%** |
+| **Mumbai BEST** (`2026-11-17`) | 82,761 | 116.4s | 82.4s | **79.8s** | **-31.4%** | 24.53% → **17.12%** | 274.2s → **186.8s** | **80.0%** |
+| **Gurugram NCR** (`2026-11-17`, Cold-Start) | 6,063 | 277.7s | 125.4s | **125.8s** | **-54.7%** | 43.04% → **24.95%** | 691.1s → **274.4s** | **78.4%** |
 
 ---
 
