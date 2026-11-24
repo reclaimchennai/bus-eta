@@ -50,7 +50,7 @@ model)
      "$SERVE"/rtc_adapt.py "$SERVE"/rtc_model.sh "$SERVE"/rtc_push.sh "$T/eta-ml/serve-rtc/"
   for s in tricity tgsrtc apsrtc; do
     mkdir -p "$T/eta-ml/rtc/net/$s"
-    cp "$ETA/data/meta/$s/route_stops.json" "$ETA/data/meta/$s/stop_dist.json" "$T/eta-ml/rtc/net/$s/"
+    cp "$ETA/data/meta/$s/route_stops.json" "$ETA/data/meta/$s/stop_dist.json" "$ETA/data/meta/$s/route_names.json" "$T/eta-ml/rtc/net/$s/"
     cp "$ETA/data/audit/model_${s}_until_2026-11-23.json" "$T/eta-ml/rtc/net/$s/model.json"
     cp "$ETA/data/osm/${s}_osm_infra.json" "$T/eta-ml/osm/"
   done
@@ -93,9 +93,9 @@ json.dump(j, open(p + \".tmp\", \"w\"), indent=1)' && mv cities.rtc.json.tmp cit
   ssh $SVRH "mkdir -p /data/rtc/backups/$ts-eta-ml-$SYS && cd $DIR && for f in $FILES; do [ -f \$f ] && cp -p --parents \$f /data/rtc/backups/$ts-eta-ml-$SYS/ || true; done"
   for f in $FILES; do git -C "$REPO" show "HEAD:$f" | ssh $SVRH "cat > $DIR/$f.new && mv $DIR/$f.new $DIR/$f"; done
   ssh $SVRH "set -e; cd $DIR && python3 -m py_compile $FILES
-    until [ -f /data/rtc/eta-ml/net/$SYS/route_stops.json ]; do echo 'waiting for eta-ml-push to send the network'; sleep 20; done
+    until [ -f /data/rtc/eta-ml/net/$SYS/route_names.json ]; do echo 'waiting for eta-ml-push to send the network'; sleep 20; done
     mkdir -p ~/.config/systemd/user/$UNIT.d
-    printf '[Service]\nEnvironment=ETA_ML=/data/rtc/eta-ml/out/$SYS.json ETA_ML_STOPS=/data/rtc/eta-ml/net/$SYS/route_stops.json ETA_ML_MODE=all\n' > ~/.config/systemd/user/$UNIT.d/60-eta-ml.conf
+    printf '[Service]\nEnvironment=ETA_ML=/data/rtc/eta-ml/out/$SYS.json ETA_ML_STOPS=/data/rtc/eta-ml/net/$SYS/route_names.json ETA_ML_MODE=all\n' > ~/.config/systemd/user/$UNIT.d/60-eta-ml.conf
     systemctl --user daemon-reload && systemctl --user restart $UNIT && sleep 90 && systemctl --user --no-pager status $UNIT | head -4
     echo backups: /data/rtc/backups/$ts-eta-ml-$SYS"
   echo "check: curl -s https://maps.reclaim.city/$SYS/live/etas.json | python3 -c 'import json,sys; print(json.load(sys.stdin).get(\"eta\"))'"

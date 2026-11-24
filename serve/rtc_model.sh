@@ -6,7 +6,7 @@
 #     7 days, fix gaps up to 30 min read as one movement (RTC fixes are 30 s .. 5 min apart). Until a system has
 #     8 days of feed archive it keeps the seed model.json deploy_rtc.sh shipped (built on the laptop from the
 #     collectors' own archives, days before deploy only).
-# eta-ml-rtc reloads a network whose file changed; eta-ml-push sends route_stops.json on to SVR for the collectors.
+# eta-ml-rtc reloads a network whose file changed; eta-ml-push sends route_names.json on to SVR for the collectors.
 set -u
 cd ~/projects/eta-ml
 BASE=http://RTC_SERVER_LAN:8091

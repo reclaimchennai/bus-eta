@@ -17,6 +17,7 @@ A row keeps the collector's own times (nowcast, or the operator's) when:
 """
 import json
 import os
+import sys
 import time
 
 SKIP = set("upgo")
@@ -159,17 +160,19 @@ class MergeRTC(Merge):
     (when given and the names agree) or by its name / stop id. `fixes` = {busId: fix t} from the same snapshot.
 
     The model's working must be the row's rid, or (TGSRTC, whose rid is the route number) start with "rid~".
-    route_stops: the same route_stops.json the service reads (stop names and ids per working)."""
+    route_stops: the service's route_stops.json, or its slim copy route_names.json (stop ids and names per working)."""
 
     def __init__(self, path, route_stops, mode="all", keep=25, range_out=None):
         super().__init__(path, mode, keep, range_out)
-        self.rs_path, self.rs_mtime, self.names, self.raw_names = route_stops, 0.0, {}, {}
+        self.rs_path, self.rs_mtime, self.w, self.nn, self.ni, self.nr = route_stops, 0.0, {}, [], [], []
 
     @staticmethod
     def norm(s):
         return "".join(ch for ch in str(s or "").lower() if ch.isalnum())
 
     def stops(self, code):
+        """(normalised names, normalised stop ids) of a working's stops, or None. The network is held as tables of
+        unique names / ids and one tuple of indices per working (TGSRTC: 21k workings in ~10 MB, not ~100)."""
         try:
             m = os.path.getmtime(self.rs_path)
         except OSError:
@@ -178,13 +181,35 @@ class MergeRTC(Merge):
             try:
                 with open(self.rs_path) as fh:
                     rs = json.load(fh)
-                self.names = {c: ([self.norm(p[1]) for p in v["d"][0]["s"]], [self.norm(p[0]) for p in v["d"][0]["s"]])
-                              for c, v in rs.items() if v.get("d")}
-                self.raw_names = {c: [p[1] for p in v["d"][0]["s"]] for c, v in rs.items() if v.get("d")}
+                if "w" not in rs:                     # route_stops.json: to the same tables
+                    nix, iix, w = {}, {}, {}
+                    for c, v in rs.items():
+                        if v.get("d"):
+                            st = v["d"][0]["s"]
+                            w[c] = (",".join(str(nix.setdefault(p[1], len(nix))) for p in st) + "|"
+                                    + ",".join(str(iix.setdefault(str(p[0]), len(iix))) for p in st))
+                    rs = {"n": list(nix), "i": list(iix), "w": w}
+                self.nr = rs["n"]
+                self.nn = [self.norm(x) for x in rs["n"]]
+                self.ni = [self.norm(x) for x in rs["i"]]
+                self.w = rs["w"]
                 self.rs_mtime = m
-            except (OSError, ValueError, KeyError, IndexError):
+                del rs
+            except (OSError, ValueError, KeyError, IndexError, TypeError):
                 pass
-        return self.names.get(code)
+        ix = self._ix(code)
+        return ([self.nn[i] for i in ix[0]], [self.ni[i] for i in ix[1]]) if ix else None
+
+    def _ix(self, code):
+        v = self.w.get(code)
+        if not v:
+            return None
+        a, _, b = v.partition("|")
+        return [int(x) for x in a.split(",")], [int(x) for x in b.split(",")]
+
+    def raw_names(self, code):
+        ix = self._ix(code)
+        return [self.nr[i] for i in ix[0]] if ix else []
 
     def apply_rtc(self, etas, fixes, now=None):
         if not self.path or self.mode == "off":
@@ -279,7 +304,7 @@ class MergeRTC(Merge):
             sn = self.stops(code) if v else None
             if not v or not sn:
                 continue
-            rs_names = self.raw_names.get(code) or []
+            rs_names = self.raw_names(code)
             ks = [k for k in sorted(v) if k < len(rs_names)][:self.keep]
             if not ks:
                 continue

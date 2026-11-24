@@ -43,9 +43,18 @@ UA = "reclaim-bus-maps-eta/1.0"
 
 
 def save_net(out_dir, rs, sd):
-    """route_stops.json + stop_dist.json, each replaced atomically (eta-ml reloads them when they change)."""
+    """route_stops.json + stop_dist.json, each replaced atomically (eta-ml reloads them when they change), and
+    route_names.json, each working's stop names and ids only, indexed ({"n": [names], "i": [stop ids], "w": {working:
+    "name index,name index,...|id index,id index,..."}}): what the collectors' merge reads (TGSRTC's 21k workings
+    in a few MB of memory)."""
     os.makedirs(out_dir, exist_ok=True)
-    for f, obj in (("stop_dist.json", sd), ("route_stops.json", rs)):
+    nix, iix, w = {}, {}, {}
+    for c, v in rs.items():
+        if v.get("d"):
+            st = v["d"][0]["s"]
+            w[c] = ",".join(str(nix.setdefault(p[1], len(nix))) for p in st) + "|" + ",".join(str(iix.setdefault(str(p[0]), len(iix))) for p in st)
+    names = {"n": list(nix), "i": list(iix), "w": w}
+    for f, obj in (("stop_dist.json", sd), ("route_stops.json", rs), ("route_names.json", names)):
         tmp = os.path.join(out_dir, f + ".tmp")
         with open(tmp, "w") as fh:
             json.dump(obj, fh, separators=(",", ":"))
@@ -461,10 +470,7 @@ def cmd_tg_extend(a):
         sd[w["code"]] = [round(x) for x in d]
         n += 1
     if n:
-        for f, obj in (("route_stops.json", rs), ("stop_dist.json", sd)):
-            tmp = os.path.join(a.net_dir, f + ".tmp")
-            json.dump(obj, open(tmp, "w"), separators=(",", ":"))
-            os.replace(tmp, os.path.join(a.net_dir, f))
+        save_net(a.net_dir, rs, sd)
     print(f"{n} new TGSRTC workings added ({len(rs)} in all)", flush=True)
 
 
