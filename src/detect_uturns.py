@@ -328,8 +328,8 @@ def build_interactive_map(all_features: list[dict], out_html: Path):
 const DATA = {json.dumps({"type": "FeatureCollection", "features": all_features})};
 const CENTERS = {json.dumps(city_centers)};
 const map = L.map('map').setView([13.06, 80.23], 12);
-L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png', {{
-  attribution: '&copy; OpenStreetMap &copy; CARTO | Reclaim City ETA', maxZoom: 19
+L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Reclaim City ETA', maxZoom: 19
 }}).addTo(map);
 
 function colorFor(s) {{ return s >= 80 ? '#ef4444' : (s >= 45 ? '#f59e0b' : '#22c55e'); }}
