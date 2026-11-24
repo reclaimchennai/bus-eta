@@ -1,7 +1,7 @@
 #!/bin/bash
 # Point ONE city's collector at eta-ml (one system at a time). Run from the Mac after deploy_raw.sh --start:
 #
-#   serve/deploy/collectors.sh mtc   [all|ours|off]    (default: ours for mtc and bmtc, all for delhi)
+#   serve/deploy/collectors.sh mtc   [all|ours|off]    (default: all = v4 also replaces the operator's own ETAs; shadow 24 Nov: MTC 72 vs 129 s, BMTC 77 vs 335 s)
 #   serve/deploy/collectors.sh bmtc  [all|ours|off]
 #   serve/deploy/collectors.sh delhi [all|ours|off]
 #   serve/deploy/collectors.sh CITY remove            drop the drop-in: the collector's own times again
@@ -16,8 +16,8 @@ CITY=${1:?city}; MODE=${2:-}
 RAWH=${RAWH:-"-J user@jump-host user@map-server"}
 P=~/projects
 case $CITY in
-  mtc)   REPO=$P/chennai_one; SUB=v36;    DIR=projects/mtc-live;   UNIT=mtc-its.service;   MAIN=mtcits_collector.py; DEF=ours ;;
-  bmtc)  REPO=$P/bengaluru_bus; SUB=server; DIR=projects/bmtc-live; UNIT=bmtc-live.service; MAIN=bmtc_collector.py;   DEF=ours ;;
+  mtc)   REPO=$P/chennai_one; SUB=v36;    DIR=projects/mtc-live;   UNIT=mtc-its.service;   MAIN=mtcits_collector.py; DEF=all ;;
+  bmtc)  REPO=$P/bengaluru_bus; SUB=server; DIR=projects/bmtc-live; UNIT=bmtc-live.service; MAIN=bmtc_collector.py;   DEF=all ;;
   delhi) REPO=$P/delhi_bus; SUB=server;   DIR=projects/delhi-live; UNIT=delhi-live.service; MAIN=delhi_collector.py;  DEF=all ;;
   *) echo "unknown city $CITY"; exit 1 ;;
 esac
