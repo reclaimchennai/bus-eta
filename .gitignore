@@ -1,0 +1,25 @@
+# Raw data & large archives (copied from raw / SVR)
+data/raw/
+data/processed/
+*.jsonl
+*.jsonl.gz
+*.parquet
+*.db
+*.sqlite
+*.zip
+
+# Models & checkpoints
+models/
+*.pt
+*.pth
+*.onnx
+*.lgb
+*.cbm
+*.pkl
+
+# Python / OS
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+*.log
