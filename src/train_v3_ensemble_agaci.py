@@ -32,8 +32,10 @@ sys.path.insert(0, str(BASE_DIR / "ETA" / "reference" / "mumbai"))
 import eval_eta  # type: ignore
 import extract_dataset as ed  # type: ignore
 import nowcast  # type: ignore
+import osm_infra_fetch as osm  # type: ignore
 import train_v2_deepreta_cqr as v2  # type: ignore
 import travel_model as tm  # type: ignore
+from concurrent.futures import ProcessPoolExecutor
 
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
 
@@ -43,6 +45,16 @@ V3_EXTRA_FEATURES = [
     "path_max_sinuosity",
     "path_turn_rad_sum",
     "path_turn_rad_per_km",
+    # Overpass OSM road infrastructure (signals, NEW flyovers, rail crossings, roundabouts)
+    "path_osm_signals",
+    "path_osm_flyovers",
+    "path_osm_rail_crossings",
+    "path_osm_roundabouts",
+    "path_osm_signals_per_km",
+    "path_osm_flyovers_per_km",
+    # Verified Indian National & State Holiday / Rain-Holiday Calendar (2025-2026)
+    "is_major_holiday",
+    "is_festival_or_procession",
     # DiDi WDR / HetETA (2018, 2020) Empirical-Bayes route & weekday/weekend residual priors
     "route_bias_prior",
     "route_wknd_bias_prior",
@@ -85,6 +97,34 @@ def precompute_route_turns(routes_ed: ed.Routes) -> dict[str, list[float]]:
     return out
 
 
+def precompute_route_osm(routes_ed: ed.Routes, osm_path: Path) -> dict[str, tuple[list[int], list[int], list[int], list[int]]]:
+    """Precompute cumulative (signals, flyovers, rail_crossings, roundabouts) along each route using Overpass KD-Tree."""
+    idx = osm.CityOSMIndex(osm_path) if osm_path.exists() else None
+    out = {}
+    for code, ll in routes_ed.ll.items():
+        n = len(ll)
+        cs, cf, cr, crb = [0] * n, [0] * n, [0] * n, [0] * n
+        if idx is not None:
+            as_ = af = ar = arb = 0
+            for i in range(n - 1):
+                s_, f_, r_, rb_ = idx.count_near_segment(ll[i][0], ll[i][1], ll[i + 1][0], ll[i + 1][1], radius_m=65.0)
+                as_ += s_; af += f_; ar += r_; arb += rb_
+                cs[i + 1] = as_; cf[i + 1] = af; cr[i + 1] = ar; crb[i + 1] = arb
+        out[code] = (cs, cf, cr, crb)
+    return out
+
+
+def holiday_flags(day_str: str, city: str, holidays: dict) -> tuple[float, float]:
+    info = holidays.get(day_str)
+    if not info:
+        return 0.0, 0.0
+    scopes = info.get("scope", [])
+    if "all" not in scopes and city not in scopes:
+        return 0.0, 0.0
+    imp = str(info.get("impact", ""))
+    return (1.0 if imp == "major_holiday" else 0.0, 1.0 if imp in ("festival_eve", "procession_peak", "restricted_holiday") else 0.0)
+
+
 def build_v3_day(
     city: str,
     city_idx: int,
@@ -93,6 +133,8 @@ def build_v3_day(
     routes_tm: tm.Routes,
     routes_ed: ed.Routes,
     route_turns: dict[str, list[float]],
+    route_osm: dict[str, tuple[list[int], list[int], list[int], list[int]]],
+    holidays: dict,
     model_json_path: Path | None,
     wx_map: dict[int, dict],
     class_map: dict[str, int],
@@ -100,8 +142,14 @@ def build_v3_day(
     max_gap: int,
     fix_stride: int = 3,
     max_queries: int = 450_000,
+    cache_dir: Path | None = None,
 ):
-    """Build v3 queries returning (X_base_59, extra_geom_4, route_keys, hour_wknd_keys, y_true, y_base)."""
+    if cache_dir is not None:
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        cp = cache_dir / f"v3_{city}_{day}_{int(sample_rate*1000)}_{fix_stride}_{max_queries}.npz"
+        if cp.exists():
+            z = np.load(cp, allow_pickle=False)
+            return z["X"], z["rids"].tolist(), z["y"], z["b"]
     # Reuse v2's exact causal replay by augmenting with route_id & turning geometry
     raw_dir = data_root / "raw" / city
     M = nowcast.Model(str(model_json_path)) if (model_json_path and model_json_path.exists()) else nowcast.Model(None)
@@ -275,6 +323,9 @@ def build_v3_day(
         ]
 
         turn_now = turns[cur_i]
+        osm_s, osm_f, osm_r, osm_rb = route_osm[code]
+        os_now, of_now, or_now, orb_now = osm_s[cur_i], osm_f[cur_i], osm_r[cur_i], osm_rb[cur_i]
+        h_maj, h_fest = holiday_flags(day, city, holidays)
         for k, true_eta in valid_targets:
             if k not in etas_nc or k not in cum_hist:
                 continue
@@ -285,7 +336,12 @@ def build_v3_day(
             dist_km = max(0.05, dist_ahead / 1000.0)
             n_ahead = k - next_k + 1
             path_v = dist_ahead / b_c
-            turn_sum = max(0.0, turns[min(k, len(turns) - 1)] - turn_now)
+            kk = min(k, len(turns) - 1)
+            turn_sum = max(0.0, turns[kk] - turn_now)
+            n_sig = max(0, osm_s[kk] - os_now)
+            n_fly = max(0, osm_f[kk] - of_now)
+            n_rail = max(0, osm_r[kk] - or_now)
+            n_rb = max(0, osm_rb[kk] - orb_now)
             live_ratio = b_c / b_h
 
             # Placeholders [0.0, 0.0, 0.0] for the 3 train-fit route/weekend residual priors
@@ -304,6 +360,9 @@ def build_v3_day(
                 cum_max_sinu[k],
                 turn_sum,
                 turn_sum / dist_km,
+                n_sig, n_fly, n_rail, n_rb,
+                n_sig / dist_km, n_fly / dist_km,
+                h_maj, h_fest,
                 0.0, 0.0, 0.0,  # filled after train-split Empirical-Bayes prior fitting
                 precip_3h * is_peak,
                 (st[0] - 1.0) * math.exp(-b_nc / 300.0),
@@ -314,12 +373,13 @@ def build_v3_day(
             y_true.append(true_eta)
             y_base.append(b_nc)
 
-    return (
-        np.asarray(X_rows, dtype=np.float32),
-        route_ids,
-        np.asarray(y_true, dtype=np.float64),
-        np.asarray(y_base, dtype=np.float64),
-    )
+    X_arr = np.asarray(X_rows, dtype=np.float32)
+    y_arr = np.asarray(y_true, dtype=np.float64)
+    b_arr = np.asarray(y_base, dtype=np.float64)
+    if cache_dir is not None and len(X_arr):
+        cp = cache_dir / f"v3_{city}_{day}_{int(sample_rate*1000)}_{fix_stride}_{max_queries}.npz"
+        np.savez(cp, X=X_arr, rids=np.asarray(route_ids), y=y_arr, b=b_arr)
+    return X_arr, route_ids, y_arr, b_arr
 
 
 def agaci_calibrate_online(
@@ -351,6 +411,44 @@ def agaci_calibrate_online(
     return out_lo, out_hi
 
 
+def _build_city_bundle(args):
+    city, city_idx, tr_days, va_day, te_day, tr_sr, te_sr, data_root_s, class_map = args
+    data_root = Path(data_root_s)
+    meta_dir = data_root / "meta" / city
+    cache_dir = data_root / "v3_cache"
+    hol_path = data_root / "holidays_india_2025_2026.json"
+    holidays = json.loads(hol_path.read_text()) if hol_path.exists() else {}
+    routes_tm = tm.Routes(str(meta_dir / "route_stops.json"), str(meta_dir / "stop_dist.json"))
+    routes_ed = ed.Routes(meta_dir / "route_stops.json", meta_dir / "stop_dist.json")
+    r_turns = precompute_route_turns(routes_ed)
+    r_osm = precompute_route_osm(routes_ed, data_root / "osm" / f"{city}_osm_infra.json")
+    m_json = meta_dir / "model.json"
+    wx_map = v2.load_weather_map(data_root, city)
+    max_gap = 600 if city in ("mtc", "mumbai") else 180
+
+    tr_out, va_out, te_out = [], [], None
+    for d in tr_days:
+        if not list(tm.day_files(str(data_root / "raw" / city), "obs", 1, d)):
+            continue
+        X, rids, yt, yb = build_v3_day(city, city_idx, d, data_root, routes_tm, routes_ed, r_turns, r_osm, holidays, m_json, wx_map, class_map, tr_sr, max_gap, fix_stride=4, max_queries=220_000, cache_dir=cache_dir)
+        if len(X):
+            tr_out.append((X, rids, yt, yb))
+            print(f"  [v3 train:{city}] {d}: {len(X):,} queries", flush=True)
+
+    if list(tm.day_files(str(data_root / "raw" / city), "obs", 1, va_day)):
+        X, rids, yt, yb = build_v3_day(city, city_idx, va_day, data_root, routes_tm, routes_ed, r_turns, r_osm, holidays, m_json, wx_map, class_map, te_sr, max_gap, fix_stride=3, max_queries=260_000, cache_dir=cache_dir)
+        if len(X):
+            va_out.append((X, rids, yt, yb))
+            print(f"  [v3 val:{city}]   {va_day}: {len(X):,} queries", flush=True)
+
+    if list(tm.day_files(str(data_root / "raw" / city), "obs", 1, te_day)):
+        X, rids, yt, yb = build_v3_day(city, city_idx, te_day, data_root, routes_tm, routes_ed, r_turns, r_osm, holidays, m_json, wx_map, class_map, te_sr, max_gap, fix_stride=3, max_queries=1_500_000, cache_dir=cache_dir)
+        if len(X):
+            te_out = (te_day, X, rids, yt, yb)
+            print(f"  [v3 test:{city}]  {te_day}: {len(X):,} queries", flush=True)
+    return city, tr_out, va_out, te_out
+
+
 def run_v3(data_root: Path, model_dir: Path, cities: list[str], gdrive_out: Path | None):
     t0 = time.time()
     city_map = {c: i for i, c in enumerate(cities)}
@@ -362,44 +460,25 @@ def run_v3(data_root: Path, model_dir: Path, cities: list[str], gdrive_out: Path
         "bmtc":   (["2026-11-17", "2026-11-18", "2026-11-19", "2026-11-20", "2026-11-21"], "2026-11-22", "2026-11-23", 0.35, 0.35),
         "mumbai": (["2026-11-08", "2026-11-09", "2026-11-10", "2026-11-11", "2026-11-12", "2026-11-13", "2026-11-14", "2026-11-15"], "2026-11-16", "2026-11-17", 0.50, 0.50),
         "ncr":    (["2026-11-13", "2026-11-14", "2026-11-15", "2026-11-16"], "2026-11-16", "2026-11-17", 1.00, 0.50),
-        "delhi":  (["2026-11-16", "2026-11-17", "2026-11-18", "2026-11-19", "2026-11-20", "2026-11-21"], "2026-11-22", "2026-11-23", 0.035, 0.10),
+        "delhi":  (["2026-11-18", "2026-11-19", "2026-11-20", "2026-11-21"], "2026-11-22", "2026-11-23", 0.04, 0.10),
     }
 
+    jobs = [
+        (c, city_map[c], *day_plan[c], str(data_root), class_map)
+        for c in cities if c in day_plan
+    ]
     X_tr_l, r_tr_ids, y_tr_l, b_tr_l = [], [], [], []
     X_va_l, r_va_ids, y_va_l, b_va_l = [], [], [], []
     test_data = {}
 
-    for city in cities:
-        if city not in day_plan:
-            continue
-        tr_days, va_day, te_day, tr_sr, te_sr = day_plan[city]
-        meta_dir = data_root / "meta" / city
-        routes_tm = tm.Routes(str(meta_dir / "route_stops.json"), str(meta_dir / "stop_dist.json"))
-        routes_ed = ed.Routes(meta_dir / "route_stops.json", meta_dir / "stop_dist.json")
-        r_turns = precompute_route_turns(routes_ed)
-        m_json = meta_dir / "model.json"
-        wx_map = v2.load_weather_map(data_root, city)
-        max_gap = 600 if city in ("mtc", "mumbai") else 180
-
-        for d in tr_days:
-            if not list(tm.day_files(str(data_root / "raw" / city), "obs", 1, d)):
-                continue
-            X, rids, yt, yb = build_v3_day(city, city_map[city], d, data_root, routes_tm, routes_ed, r_turns, m_json, wx_map, class_map, tr_sr, max_gap, fix_stride=4, max_queries=220_000)
-            if len(X):
+    with ProcessPoolExecutor(max_workers=min(5, len(jobs))) as ex:
+        for city, tr_out, va_out, te_out in ex.map(_build_city_bundle, jobs):
+            for X, rids, yt, yb in tr_out:
                 X_tr_l.append(X); r_tr_ids.extend(rids); y_tr_l.append(yt); b_tr_l.append(yb)
-                print(f"  [v3 train:{city}] {d}: {len(X):,} queries", flush=True)
-
-        if list(tm.day_files(str(data_root / "raw" / city), "obs", 1, va_day)):
-            X, rids, yt, yb = build_v3_day(city, city_map[city], va_day, data_root, routes_tm, routes_ed, r_turns, m_json, wx_map, class_map, te_sr, max_gap, fix_stride=3, max_queries=260_000)
-            if len(X):
+            for X, rids, yt, yb in va_out:
                 X_va_l.append(X); r_va_ids.extend(rids); y_va_l.append(yt); b_va_l.append(yb)
-                print(f"  [v3 val:{city}]   {va_day}: {len(X):,} queries", flush=True)
-
-        if list(tm.day_files(str(data_root / "raw" / city), "obs", 1, te_day)):
-            X, rids, yt, yb = build_v3_day(city, city_map[city], te_day, data_root, routes_tm, routes_ed, r_turns, m_json, wx_map, class_map, te_sr, max_gap, fix_stride=3, max_queries=1_500_000)
-            if len(X):
-                test_data[city] = (te_day, X, rids, yt, yb)
-                print(f"  [v3 test:{city}]  {te_day}: {len(X):,} queries", flush=True)
+            if te_out is not None:
+                test_data[city] = te_out
 
     X_tr = np.vstack(X_tr_l); y_tr = np.concatenate(y_tr_l); b_tr = np.concatenate(b_tr_l)
     X_va = np.vstack(X_va_l); y_va = np.concatenate(y_va_l); b_va = np.concatenate(b_va_l)
@@ -426,13 +505,12 @@ def run_v3(data_root: Path, model_dir: Path, cities: list[str], gdrive_out: Path
         .agg((pl.col("res").sum() / (pl.len() + 30.0)).alias("b"))
         .iter_rows()
     )
-    p_rw = dict(
-        tr_prior_df.group_by(["rid", "wknd"])
+    p_rw = {
+        (str(r), int(w)): float(b)
+        for r, w, b in tr_prior_df.group_by(["rid", "wknd"])
         .agg((pl.col("res").sum() / (pl.len() + 30.0)).alias("b"))
-        .select([pl.struct(["rid", "wknd"]).alias("k"), "b"])
         .iter_rows()
-    )
-    p_rw = {(k["rid"], k["wknd"]): v for k, v in p_rw.items()}
+    }
     p_chw = {
         (int(c), int(h), int(w)): float(b)
         for c, h, w, b in tr_prior_df.group_by(["city", "hour", "wknd"])
