@@ -1,0 +1,15 @@
+[Unit]
+Description=eta-ml-push: eta-ml-rtc's output to SVR (/data/rtc/eta-ml/out), where the RTC collectors merge it; rsync -z over one kept-open ssh every 15 s
+After=eta-ml-rtc.service
+
+[Service]
+ExecStart=/bin/bash %h/projects/eta-ml/serve-rtc/rtc_push.sh
+Restart=always
+RestartSec=30
+Nice=5
+MemoryMax=100M
+StandardOutput=append:%h/projects/eta-ml/logs/eta-ml-push.log
+StandardError=append:%h/projects/eta-ml/logs/eta-ml-push.log
+
+[Install]
+WantedBy=default.target

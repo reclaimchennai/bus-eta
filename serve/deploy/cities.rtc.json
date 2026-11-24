@@ -1,0 +1,90 @@
+{
+ "_note": "eta-ml-rtc on raw: the RTC maps (feeds on SVR via eta-rtc-feed). city_idx 3 = borrows Gurugram's index (the models never saw these systems; the index barely matters: Tricity 22 Nov 141.3-142.1 s across 0-4). enabled:false = audited and not better than what the map shows, or not enough history yet. deploy_rtc.sh SYSTEM flips one on.",
+ "cities": [
+  {
+   "city": "apsrtc",
+   "enabled": false,
+   "city_idx": 3,
+   "coords": [
+    16.5062,
+    80.648
+   ],
+   "archive": "/home/user/projects/eta-ml/rtc/apsrtc",
+   "route_stops": "/home/user/projects/eta-ml/rtc/net/apsrtc/route_stops.json",
+   "stop_dist": "/home/user/projects/eta-ml/rtc/net/apsrtc/stop_dist.json",
+   "model_json": "/home/user/projects/eta-ml/rtc/net/apsrtc/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/apsrtc_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/rtc/apsrtc.json",
+   "max_gap": 600,
+   "log_share": 0.01
+  },
+  {
+   "city": "tgsrtc",
+   "enabled": false,
+   "city_idx": 3,
+   "coords": [
+    17.385,
+    78.4867
+   ],
+   "archive": "/home/user/projects/eta-ml/rtc/tgsrtc",
+   "route_stops": "/home/user/projects/eta-ml/rtc/net/tgsrtc/route_stops.json",
+   "stop_dist": "/home/user/projects/eta-ml/rtc/net/tgsrtc/stop_dist.json",
+   "model_json": "/home/user/projects/eta-ml/rtc/net/tgsrtc/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/tgsrtc_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/rtc/tgsrtc.json",
+   "max_gap": 600,
+   "log_share": 0.01
+  },
+  {
+   "city": "tricity",
+   "enabled": false,
+   "city_idx": 3,
+   "coords": [
+    30.7333,
+    76.7794
+   ],
+   "archive": "/home/user/projects/eta-ml/rtc/tricity",
+   "route_stops": "/home/user/projects/eta-ml/rtc/net/tricity/route_stops.json",
+   "stop_dist": "/home/user/projects/eta-ml/rtc/net/tricity/stop_dist.json",
+   "model_json": "/home/user/projects/eta-ml/rtc/net/tricity/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/tricity_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/rtc/tricity.json",
+   "max_gap": 180,
+   "log_share": 0.1
+  },
+  {
+   "city": "amts",
+   "enabled": false,
+   "city_idx": 3,
+   "coords": [
+    23.0225,
+    72.5714
+   ],
+   "archive": "/home/user/projects/eta-ml/rtc/amts",
+   "route_stops": "/home/user/projects/eta-ml/rtc/net/amts/route_stops.json",
+   "stop_dist": "/home/user/projects/eta-ml/rtc/net/amts/stop_dist.json",
+   "model_json": "/home/user/projects/eta-ml/rtc/net/amts/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/amts_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/rtc/amts.json",
+   "max_gap": 300,
+   "log_share": 0.05
+  },
+  {
+   "city": "up",
+   "enabled": false,
+   "city_idx": 3,
+   "coords": [
+    26.8467,
+    80.9462
+   ],
+   "archive": "/home/user/projects/eta-ml/rtc/up",
+   "route_stops": "/home/user/projects/eta-ml/rtc/net/up/route_stops.json",
+   "stop_dist": "/home/user/projects/eta-ml/rtc/net/up/stop_dist.json",
+   "model_json": "/home/user/projects/eta-ml/rtc/net/up/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/up_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/rtc/up.json",
+   "max_gap": 600,
+   "log_share": 0.01
+  }
+ ]
+}

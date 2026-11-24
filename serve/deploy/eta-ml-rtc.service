@@ -1,0 +1,19 @@
+[Unit]
+Description=eta-ml-rtc: v4 arrival times for the RTC maps (APSRTC, TGSRTC, Tricity, AMTS), reads eta-rtc-feed's archives -> ~/projects/eta-ml/out/rtc/<system>.json
+After=network-online.target eta-rtc-feed.service
+
+[Service]
+WorkingDirectory=%h/projects/eta-ml
+Environment=OMP_NUM_THREADS=2 PYTHONUNBUFFERED=1
+ExecStart=%h/projects/eta-ml/.venv/bin/python serve-rtc/eta_ml_service.py --config cities.rtc.json --models models --holidays holidays_india_2025_2026.json --tick 10 --threads 2
+Restart=always
+RestartSec=30
+Nice=5
+MemoryMax=1200M
+MemorySwapMax=0
+CPUQuota=150%
+StandardOutput=append:%h/projects/eta-ml/logs/eta-ml-rtc.log
+StandardError=append:%h/projects/eta-ml/logs/eta-ml-rtc.log
+
+[Install]
+WantedBy=default.target

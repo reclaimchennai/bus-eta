@@ -279,7 +279,7 @@ class City:
         self.cfg, self.name = cfg, cfg["city"]
         t0 = time.time()
         R = E.Routes(cfg["route_stops"], cfg["stop_dist"], cfg.get("osm"))
-        self.S = E.CityStream(self.name, R, cfg.get("model_json"), hol, weather, cfg.get("max_gap"))
+        self.S = E.CityStream(self.name, R, cfg.get("model_json"), hol, weather, cfg.get("max_gap"), cfg.get("city_idx"))
         self.S.cal = E.AgACI(cfg.get("cqr") or ens_cqr)
         self.tail = Tail(cfg["archive"]) if not cfg.get("source_cmd") else Pipe(cfg["source_cmd"], cfg.get("tee"))
         self.out = cfg["out"]
@@ -402,6 +402,9 @@ def main():
     cfg = json.load(open(a.config))
     hol = json.load(open(a.holidays)) if os.path.exists(a.holidays) else {}
     names = [c["city"] for c in cfg["cities"] if c.get("enabled", True) is not False]
+    for c in cfg["cities"]:
+        if c.get("coords"):                       # systems beyond the trained five: where to ask Open-Meteo
+            COORDS[c["city"]] = tuple(c["coords"])
     weather = Weather(names)
     ens = E.Ensemble(a.models, threads=a.threads, use=tuple(a.use.split(",")))
     log(f"models {sorted(ens.m)} weights {ens.w}")

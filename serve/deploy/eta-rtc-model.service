@@ -1,0 +1,12 @@
+[Unit]
+Description=eta-rtc-model: historical speeds (model.json, 7 days, travel_model as the other maps) for each enabled RTC system
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/projects/eta-ml
+Environment=TZ=Asia/Kolkata
+Nice=10
+MemoryMax=800M
+ExecStart=/bin/bash %h/projects/eta-ml/serve-rtc/rtc_model.sh
+StandardOutput=append:%h/projects/eta-ml/logs/eta-rtc-model.log
+StandardError=append:%h/projects/eta-ml/logs/eta-rtc-model.log

@@ -1,0 +1,34 @@
+{
+ "_note": "eta-rtc-feed on raw: reads the RTC maps' own vehicles.json from SVR's feed server (read-only) -> ~/projects/eta-ml/rtc/<system>/obs-<IST day>.jsonl. upsrtc is collected only (no history with route workings yet; enable after 7 days).",
+ "base": "http://RTC_SERVER_LAN:8091",
+ "out": "/home/user/projects/eta-ml/rtc",
+ "systems": [
+  {
+   "name": "apsrtc",
+   "mode": "ap",
+   "every": 30
+  },
+  {
+   "name": "tgsrtc",
+   "mode": "tg",
+   "every": 20,
+   "trip_rate": 4,
+   "net": "/home/user/projects/eta-ml/rtc/net/tgsrtc/stop_dist.json"
+  },
+  {
+   "name": "tricity",
+   "mode": "rid",
+   "every": 15
+  },
+  {
+   "name": "amts",
+   "mode": "rid",
+   "every": 10
+  },
+  {
+   "name": "up",
+   "mode": "rid",
+   "every": 30
+  }
+ ]
+}

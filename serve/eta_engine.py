@@ -283,8 +283,10 @@ def wx_vector(wx):
 class CityStream:
     """One city's live state. ingest() in archive order; predict() for the buses with new fixes."""
 
-    def __init__(self, city, routes, model_json=None, holidays=None, weather=None, max_gap=None):
-        self.city, self.ci = city, CITIES.index(city) if city in CITIES else 0
+    def __init__(self, city, routes, model_json=None, holidays=None, weather=None, max_gap=None, city_idx=None):
+        # a system the models never saw borrows a trained city's index (city_idx, chosen on a validation day)
+        self.city = city
+        self.ci = city_idx if city_idx is not None else (CITIES.index(city) if city in CITIES else 0)
         self.R = routes
         self.M = nowcast.Model(model_json) if model_json and os.path.exists(model_json) else nowcast.Model(None)
         self.pace = nowcast.Pace()

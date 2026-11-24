@@ -1,0 +1,9 @@
+[Unit]
+Description=eta-rtc-model every 3 h (as mtc-/delhi-model)
+
+[Timer]
+OnCalendar=*-*-* 00/3:34:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
