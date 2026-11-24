@@ -4,6 +4,7 @@
 #   serve/deploy/collectors.sh mtc   [all|ours|off]    (default: all = v4 also replaces the operator's own ETAs; shadow 24 Nov: MTC 72 vs 129 s, BMTC 77 vs 335 s)
 #   serve/deploy/collectors.sh bmtc  [all|ours|off]
 #   serve/deploy/collectors.sh delhi [all|ours|off]
+#   serve/deploy/collectors.sh mumbai | ncr          (Gurugram; its ranges go to delhi/live/ncr_eta_range.json)
 #   serve/deploy/collectors.sh CITY remove            drop the drop-in: the collector's own times again
 #
 # 1. copies the collector's three changed files (committed in its own repo) to raw, old copies to
@@ -19,6 +20,9 @@ case $CITY in
   mtc)   REPO=$P/chennai_one; SUB=v36;    DIR=projects/mtc-live;   UNIT=mtc-its.service;   MAIN=mtcits_collector.py; DEF=all ;;
   bmtc)  REPO=$P/bengaluru_bus; SUB=server; DIR=projects/bmtc-live; UNIT=bmtc-live.service; MAIN=bmtc_collector.py;   DEF=all ;;
   delhi) REPO=$P/delhi_bus; SUB=server;   DIR=projects/delhi-live; UNIT=delhi-live.service; MAIN=delhi_collector.py;  DEF=all ;;
+  # Mumbai and Gurugram: only live_collector.py's writer reads ETA_ML; their *_collector.py (hot-fixed on raw) is not sent
+  mumbai) REPO=$P/mumbai_bus; SUB=server; DIR=projects/mumbai-live; UNIT=mumbai-live.service; MAIN=; DEF=all ;;
+  ncr)   REPO=$P/ncr_bus; SUB=server;     DIR=projects/ncr-live;   UNIT=ncr-live.service;   MAIN=;  DEF=all ;;
   *) echo "unknown city $CITY"; exit 1 ;;
 esac
 MODE=${MODE:-$DEF}
@@ -26,7 +30,7 @@ if [ "$MODE" = remove ]; then
   ssh $RAWH "rm -f ~/.config/systemd/user/$UNIT.d/60-eta-ml.conf && systemctl --user daemon-reload && systemctl --user restart $UNIT && echo '$UNIT: eta-ml removed, restarted'"
   exit 0
 fi
-FILES="live_collector.py eta_ml_merge.py $MAIN"
+FILES="live_collector.py eta_ml_merge.py${MAIN:+ $MAIN}"
 # the live copies must be what this repo had before the eta-ml commit (HEAD~1 of each file's history)
 for f in $FILES; do
   want=$(git -C "$REPO" log -n 2 --format=%H -- "$SUB/$f" | tail -1)

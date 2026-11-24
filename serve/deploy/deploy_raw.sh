@@ -4,7 +4,7 @@
 #   serve/deploy/deploy_raw.sh            ship code + models + config, venv, install the unit (not started)
 #   serve/deploy/deploy_raw.sh --start    ... and (re)start it
 #   serve/deploy/deploy_raw.sh --no-push --start   files already on raw: only venv, unit, start
-#   serve/deploy/deploy_raw.sh --code --start      only serve/*.py (one small piece), then restart
+#   serve/deploy/deploy_raw.sh --code --start      only serve/*.py and cities.json (one small piece), then restart
 #
 # The venv is Python 3.12 made by uv (~/.local/bin/uv): the models were saved by xgboost 3.4.1, which needs
 # Python >= 3.12, and raw's system python is 3.11 (newest xgboost there: 3.2.0).
@@ -30,7 +30,7 @@ cp "$ETA"/data/holidays_india_2025_2026.json "$T/eta-ml/"
 cp "$ETA"/data/osm/*_osm_infra.json "$T/eta-ml/osm/"
 cp "$HERE"/cities.raw.json "$T/eta-ml/cities.json"
 cp "$HERE"/requirements.txt "$HERE"/eta-ml.service "$T/eta-ml/"
-if [ $CODE = 1 ]; then COPYFILE_DISABLE=1 tar -C "$T" -cf "$T/eta-ml.tar" eta-ml/serve
+if [ $CODE = 1 ]; then COPYFILE_DISABLE=1 tar -C "$T" -cf "$T/eta-ml.tar" eta-ml/serve eta-ml/cities.json
 else COPYFILE_DISABLE=1 tar -C "$T" -cf "$T/eta-ml.tar" eta-ml; fi
 RAWH="$RAWH" "$PUSH" "$T/eta-ml.tar" eta-ml-deploy.tar
 ssh $RAWH 'set -e
