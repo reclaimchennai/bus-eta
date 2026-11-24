@@ -32,6 +32,8 @@ class Merge:
     def __init__(self, path, mode="all", keep=25, range_out=None):
         self.path, self.mode, self.keep, self.range_out = path, mode, keep, range_out
         self.b, self.mtime, self.t = {}, 0.0, 0
+        # ETA_ML_HMAX: use the model only for arrivals up to this many seconds ahead (the collector's own beyond)
+        self.hmax = float(os.environ.get("ETA_ML_HMAX") or 1e9)
 
     def load(self):
         if self.path.startswith("http"):
@@ -87,7 +89,7 @@ class Merge:
             return None
         q = m[2]
         out = {q[j]: (m[1] + q[j + 1], m[1] + q[j + 2], m[1] + q[j + 3]) for j in range(0, len(q) - 3, 4)
-               if m[1] + q[j + 1] >= now - 120}
+               if now - 120 <= m[1] + q[j + 1] <= now + self.hmax}
         return out or None
 
     def write_ranges(self, snap_t, ranges):
@@ -244,7 +246,7 @@ class MergeRTC(Merge):
                     c = [i for i, x in enumerate(names) if x == nm] or [i for i, x in enumerate(ids) if x == nm]
                     k = c[0] if len(c) == 1 else None
                 q = v4.get(k) if k is not None else None
-                if not q or m[1] + q[0] < now - 120:
+                if not q or m[1] + q[0] < now - 120 or m[1] + q[0] > now + self.hmax:
                     if len(rng) < 1 + 2 * RANGE_N:
                         rng += [None, None]               # the sidecar follows the list's order: no range here
                     continue

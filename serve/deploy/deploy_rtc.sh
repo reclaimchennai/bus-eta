@@ -23,7 +23,7 @@ ETA=$P/ETA
 RAWH=${RAWH:-"-J user@jump-host user@map-server"}
 SVRH=${SVRH:-"-J user@map-server user@RTC_SERVER_IP"}
 PUSH=$P/transit-density/tools/push.sh
-STEP=${1:?feed|model|on|off}; SYS=${2:-}
+STEP=${1:?feed|model|on|off}; SYS=${2:-}; EXTRA=
 T=$(mktemp -d); trap 'rm -rf "$T"' EXIT
 
 ship() {   # $1 = tar of files under eta-ml/
@@ -69,7 +69,8 @@ model)
 on|off)
   case $SYS in
     tricity) REPO=$P/chandigarh_bus; DIR=/data/rtc/tricity; UNIT=tricity-live.service; FILES="server/live.py server/eta_ml_merge.py" ;;
-    tgsrtc)  REPO=$P/tsrtc;          DIR=/data/rtc/tsrtc;   UNIT=tsrtc-eta.service;    FILES="server/eta.py server/eta_ml_merge.py" ;;
+    tgsrtc)  REPO=$P/tsrtc;          DIR=/data/rtc/tsrtc;   UNIT=tsrtc-eta.service;    FILES="server/eta.py server/eta_ml_merge.py"
+             EXTRA=" ETA_ML_HMAX=1200" ;;   # shadow 24 Nov: v4 better to 20 min ahead, tsrtc-eta's timetable blend better beyond (n=74)
     apsrtc)  REPO=$P/apsrtc;         DIR=/data/rtc/apsrtc;  UNIT=apsrtc-live.service;  FILES="live.py eta_ml_merge.py" ;;
     *) echo "SYSTEM: tricity | tgsrtc | apsrtc"; exit 1 ;;
   esac
@@ -95,7 +96,7 @@ json.dump(j, open(p + \".tmp\", \"w\"), indent=1)' && mv cities.rtc.json.tmp cit
   ssh $SVRH "set -e; cd $DIR && python3 -m py_compile $FILES
     until [ -f /data/rtc/eta-ml/net/$SYS/route_names.json ]; do echo 'waiting for eta-ml-push to send the network'; sleep 20; done
     mkdir -p ~/.config/systemd/user/$UNIT.d
-    printf '[Service]\nEnvironment=ETA_ML=/data/rtc/eta-ml/out/$SYS.json ETA_ML_STOPS=/data/rtc/eta-ml/net/$SYS/route_names.json ETA_ML_MODE=all\n' > ~/.config/systemd/user/$UNIT.d/60-eta-ml.conf
+    printf '[Service]\nEnvironment=ETA_ML=/data/rtc/eta-ml/out/$SYS.json ETA_ML_STOPS=/data/rtc/eta-ml/net/$SYS/route_names.json ETA_ML_MODE=all${EXTRA:-}\n' > ~/.config/systemd/user/$UNIT.d/60-eta-ml.conf
     systemctl --user daemon-reload && systemctl --user restart $UNIT && sleep 90 && systemctl --user --no-pager status $UNIT | head -4
     echo backups: /data/rtc/backups/$ts-eta-ml-$SYS"
   echo "check: curl -s https://maps.reclaim.city/$SYS/live/etas.json | python3 -c 'import json,sys; print(json.load(sys.stdin).get(\"eta\"))'"
