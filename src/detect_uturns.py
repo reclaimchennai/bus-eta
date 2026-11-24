@@ -328,9 +328,16 @@ def build_interactive_map(all_features: list[dict], out_html: Path):
 const DATA = {json.dumps({"type": "FeatureCollection", "features": all_features})};
 const CENTERS = {json.dumps(city_centers)};
 const map = L.map('map').setView([13.06, 80.23], 12);
-L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Reclaim City ETA', maxZoom: 19
+const esriStreets = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
+  attribution: 'Tiles &copy; Esri | Reclaim City ETA', maxZoom: 19
 }}).addTo(map);
+const esriSat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
+  attribution: 'Tiles &copy; Esri World Imagery', maxZoom: 19
+}});
+const esriGray = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
+  attribution: 'Tiles &copy; Esri Gray Canvas', maxZoom: 16
+}});
+L.control.layers({{'Esri Streets': esriStreets, 'Esri Satellite': esriSat, 'Esri Light Gray': esriGray}}, null, {{position: 'topright'}}).addTo(map);
 
 function colorFor(s) {{ return s >= 80 ? '#ef4444' : (s >= 45 ? '#f59e0b' : '#22c55e'); }}
 
