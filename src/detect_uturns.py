@@ -91,6 +91,77 @@ def detect_city_uturns(args) -> tuple[str, list[dict]]:
     else:
         dlat_t = dlon_t = 0.0025
 
+    # Support TGSRTC CSV archives (id,lat,lon,heading,speedKph,gpsTime,status) for Hyderabad metro!
+    csv_files = sorted(raw_dir.glob("*.csv.gz"))[-max_days:]
+    if city == "hyderabad" and csv_files:
+        import csv
+        grid_m = 60.0
+        dlat_g = grid_m / K
+        dlon_g = grid_m / (K * math.cos(math.radians(17.42)))
+        cells = collections.defaultdict(list)
+        for path in csv_files:
+            state = {}
+            with gzip.open(path, "rt", encoding="utf-8", errors="replace") as fh:
+                reader = csv.DictReader(fh)
+                for row in reader:
+                    try:
+                        la = float(row["lat"])
+                        lo = float(row["lon"])
+                        if not (17.22 <= la <= 17.58 and 78.22 <= lo <= 78.68):
+                            continue
+                        reg = row["id"]
+                        t = float(row["gpsTime"])
+                        spd = float(row.get("speedKph") or 0.0)
+                    except (ValueError, KeyError, TypeError):
+                        continue
+                    prev = state.get(reg)
+                    if prev is None:
+                        state[reg] = (t, la, lo, -1.0, -1.0, la, lo)
+                        continue
+                    pt, pla, plo, lvt, lvb, lvla, lvlo = prev
+                    dt_ = t - pt
+                    if dt_ <= 0 or dt_ > 120.0:
+                        state[reg] = (t, la, lo, -1.0, -1.0, la, lo)
+                        continue
+                    dist = haversine_m(pla, plo, la, lo)
+                    if dist < 25.0:
+                        continue
+                    if dist / dt_ > 23.0:
+                        state[reg] = (t, la, lo, -1.0, -1.0, la, lo)
+                        continue
+                    b = bearing_deg(pla, plo, la, lo)
+                    if lvt > 0 and (t - lvt) <= 210.0:
+                        adiff = angle_diff_deg(lvb, b)
+                        if adiff >= 145.0 and haversine_m(lvla, lvlo, la, lo) <= 350.0:
+                            apex_la = 0.5 * (lvla + pla)
+                            apex_lo = 0.5 * (lvlo + plo)
+                            gc = (int(round(apex_la / dlat_g)), int(round(apex_lo / dlon_g)))
+                            cells[gc].append((apex_la, apex_lo, min(210.0, t - lvt), reg, "TGSRTC", adiff))
+                            state[reg] = (t, la, lo, -1.0, -1.0, la, lo)
+                            continue
+                    state[reg] = (t, la, lo, t, b, la, lo)
+        features = []
+        for gc, evs in cells.items():
+            buses = {e[3] for e in evs}
+            if len(evs) < 6 or len(buses) < 3:
+                continue
+            durs = [e[2] for e in evs]
+            features.append({
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [round(float(np.median([e[1] for e in evs])), 6), round(float(np.median([e[0] for e in evs])), 6)]},
+                "properties": {
+                    "city": "hyderabad", "n_uturns": len(evs), "n_buses": len(buses), "n_routes": 1,
+                    "top_routes": ["TGSRTC-City"], "median_dur_s": round(float(np.median(durs)), 1),
+                    "p90_dur_s": round(float(np.percentile(durs, 90)), 1), "mean_angle_deg": round(float(np.mean([e[5] for e in evs])), 1),
+                },
+            })
+        features.sort(key=lambda f: f["properties"]["n_uturns"], reverse=True)
+        out_dir = root / "uturns"
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "hyderabad_uturns.geojson").write_text(json.dumps({"type": "FeatureCollection", "features": features}, indent=2))
+        print(f"[uturns:hyderabad] {len(csv_files)}d -> {len(features):,} recurring U-turn hotspots in {time.time() - t0:.1f}s", flush=True)
+        return "hyderabad", features
+
     day_re = re.compile(r"^obs-(\d{4}-\d{2}-\d{2})\.jsonl(\.gz)?$")
     by_day: dict[str, Path] = {}
     for p in sorted(raw_dir.glob("obs-*.jsonl*")):
@@ -211,6 +282,7 @@ def build_interactive_map(all_features: list[dict], out_html: Path):
     """Generate a self-contained Leaflet interactive map of all discovered Indian bus U-turns."""
     out_html.parent.mkdir(parents=True, exist_ok=True)
     city_centers = {
+        "hyderabad": [17.42, 78.45, 12],
         "mtc": [13.06, 80.23, 12],
         "bmtc": [12.97, 77.59, 12],
         "delhi": [28.63, 77.21, 11],

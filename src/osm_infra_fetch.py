@@ -32,8 +32,9 @@ CITY_BBOX = {
     "mtc":    (12.78, 79.95, 13.30, 80.36),  # Greater Chennai (incl. new flyovers on OMR/GST/Mount Rd/Maduravoyal)
     "bmtc":   (12.75, 77.38, 13.20, 77.82),  # Bengaluru
     "mumbai": (18.88, 72.76, 19.32, 73.06),  # Greater Mumbai + Thane
-    "delhi":  (28.42, 76.85, 28.88, 77.36),  # Delhi NCT
-    "ncr":    (28.35, 76.90, 28.56, 77.16),  # Gurugram
+    "delhi":     (28.42, 76.85, 28.88, 77.36),  # Delhi NCT
+    "ncr":       (28.35, 76.90, 28.56, 77.16),  # Gurugram
+    "hyderabad": (17.22, 78.22, 17.58, 78.68),  # Greater Hyderabad (HITEC City / Gachibowli / Cyberabad)
 }
 
 
