@@ -206,18 +206,20 @@ class Tail:
             self.fh.readline()
 
     def read(self):
-        out = []
+        """New archive lines, parsed one at a time (a generator: the warm-up reads ~1 GB of Delhi's archive,
+        which as one list of dicts took the service to its memory cap)."""
         if self.fh is None:
             if not self.open(warm_from=1):          # a new day's file: from its start
-                return out
-        chunk = self.fh.read()
-        if chunk:
-            data = self.buf + chunk
-            lines = data.split(b"\n")
+                return
+        while True:
+            chunk = self.fh.read(8 << 20)
+            if not chunk:
+                break
+            lines = (self.buf + chunk).split(b"\n")
             self.buf = lines.pop()
             for ln in lines:
                 try:
-                    out.append(json.loads(ln))
+                    yield json.loads(ln)
                 except ValueError:
                     pass
         today = ist_day()
@@ -225,7 +227,17 @@ class Tail:
             self.fh.close()
             self.day, self.fh, self.buf = today, None, b""
             self.open(warm_from=1)
-        return out
+
+
+def trim():
+    """Give freed heap back to the OS after a big burst (glibc keeps it otherwise)."""
+    import gc
+    gc.collect()
+    try:
+        import ctypes
+        ctypes.CDLL("libc.so.6").malloc_trim(0)
+    except (OSError, AttributeError):
+        pass
 
 
 class Pipe:
@@ -288,6 +300,7 @@ class City:
             for r in self.tail.read():
                 self.S.ingest(r); n += 1
             self.S.take_dirty()
+            trim()
             log(f"[{self.name}] warmed on {n:,} archive lines")
 
     def logged(self, reg):
@@ -415,6 +428,7 @@ def main():
         if t0 - last_maint > 300:
             for c in cities:
                 c.maintain(t0)
+            trim()
             last_maint = t0
         if t0 - last_stat > 60:
             log(" | ".join(f"{c.name}: {c.stats['lines']} fixes, {c.stats['scored']} scored, {len(c.cur)} buses, "
