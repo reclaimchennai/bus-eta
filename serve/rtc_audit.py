@@ -21,8 +21,10 @@ import argparse
 import collections
 import datetime as dt
 import json
+import os
 import subprocess
 import sys
+import tempfile
 import time
 import urllib.request
 from pathlib import Path
@@ -51,6 +53,7 @@ SYSTEMS = {
     "up": {"c": (26.8467, 80.9462), "bbox": (26.70, 80.80, 27.00, 81.10), "max_gap": 600},
     "tgsrtc": {"c": (17.3850, 78.4867), "bbox": (17.22, 78.22, 17.58, 78.68), "max_gap": 600},
     "apsrtc": {"c": (16.5062, 80.6480), "bbox": (16.40, 80.50, 16.62, 80.75), "max_gap": 600},
+    "apsrtc2": {"c": (16.5062, 80.6480), "bbox": (16.40, 80.50, 16.62, 80.75), "max_gap": 600},   # the cumulative network (25 Nov)
     "kerala": {"c": (9.9312, 76.2673), "bbox": (9.85, 76.20, 10.10, 76.40), "max_gap": 900},
     "hr": {"c": (29.0588, 76.0856), "bbox": (28.40, 76.80, 28.50, 76.90), "max_gap": 900},
     "gsrtc": {"c": (23.2156, 72.6369), "bbox": (23.15, 72.55, 23.30, 72.72), "max_gap": 300},
@@ -110,17 +113,45 @@ def osm_path(system):
     return p
 
 
+def has_alias(meta):
+    rs = json.loads((meta / "route_stops.json").read_text())
+    return any("a" in v for v in rs.values())
+
+
 def causal_model_json(system, day, max_gap):
     until = (dt.date.fromisoformat(day) - dt.timedelta(days=1)).isoformat()
     meta = DATA / "meta" / system
     out = DATA / "audit" / f"model_{system}_until_{until}.json"
     if not out.exists():
         out.parent.mkdir(parents=True, exist_ok=True)
-        subprocess.run([sys.executable, str(TRAVEL_MODEL), "--stops", str(meta / "route_stops.json"),
-                        "--stop-dist", str(meta / "stop_dist.json"), "--archive", str(DATA / "raw" / system),
-                        "--out", str(out), "--days", "7", "--until", until, "--max-gap", str(max(1800, max_gap))],
-                       check=True, stdout=subprocess.DEVNULL)
+        stops, dist, arch = meta / "route_stops.json", meta / "stop_dist.json", DATA / "raw" / system
+        with tempfile.TemporaryDirectory(dir=DATA / "audit") as td:
+            if has_alias(meta):                    # travel_model reads full entries only: the canonical view
+                subprocess.run([sys.executable, str(HERE / "rtc_adapt.py"), "canon", str(meta), td, "--archive", str(arch),
+                                "--days", "7", "--until", until], check=True)
+                stops, dist, arch = Path(td) / "route_stops.json", Path(td) / "stop_dist.json", Path(td) / "archive"
+            subprocess.run([sys.executable, str(TRAVEL_MODEL), "--stops", str(stops), "--stop-dist", str(dist),
+                            "--archive", str(arch), "--out", str(out), "--days", "7", "--until", until,
+                            "--max-gap", str(max(1800, max_gap))], check=True, stdout=subprocess.DEVNULL)
     return out
+
+
+def tm_routes(meta):
+    """travel_model.Routes, with aliases ({"a": chain}) sharing their chain's lists (it reads full entries only)."""
+    rs = json.loads((meta / "route_stops.json").read_text())
+    alias = {c: v["a"] for c, v in rs.items() if "a" in v}
+    if not alias:
+        return tm.Routes(str(meta / "route_stops.json"), str(meta / "stop_dist.json"))
+    with tempfile.NamedTemporaryFile("w", suffix=".json", dir=DATA / "audit", delete=False) as fh:
+        json.dump({c: v for c, v in rs.items() if "a" not in v}, fh)
+    try:
+        R = tm.Routes(fh.name, str(meta / "stop_dist.json"))
+    finally:
+        os.unlink(fh.name)
+    for c, a in alias.items():
+        if a in R.ll:
+            R.ll[c], R.ds[c], R.ids[c] = R.ll[a], R.ds[a], R.ids[a]
+    return R
 
 
 def bucket(h):
@@ -156,7 +187,7 @@ def main():
     S = E.CityStream(a.system, R, str(mj) if mj else None, hol, (lambda c, h: wxm.get(h)), max_gap, a.city_idx)
     ens = E.Ensemble(str(MODELS), threads=8)
 
-    routes_tm = tm.Routes(str(meta / "route_stops.json"), str(meta / "stop_dist.json"))
+    routes_tm = tm_routes(meta)
     tracks = eval_eta.load_day_tracks(routes_tm, DATA / "raw" / a.system, a.day)
     gt = eval_eta.extract_ground_truth_stop_times(tracks, routes_tm, max_gap=max(max_gap, 300))
     del tracks

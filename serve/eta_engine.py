@@ -149,6 +149,11 @@ class Routes:
                     run[j] += n[j]
                     cum[j][i + 1] = run[j]
             self.osm[c] = cum
+        for c, r in rs.items():                   # an alias ({"a": chain code}: APSRTC's service keys) shares its chain
+            a = r.get("a")
+            if a in self.ll and c not in self.ll:
+                for t in (self.ll, self.ds, self.ids, self.phys, self.sinu, self.turns, self.osm):
+                    t[c] = t[a]
 
     def project(self, code, lat, lon, near=None):
         ll, ds = self.ll.get(code), self.ds.get(code)

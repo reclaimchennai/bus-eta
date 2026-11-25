@@ -57,7 +57,8 @@ def main():
     # what the map showed: (bus, fix t) -> {k: epoch}, from the first etas.json that carried that fix
     names = {c: [norm(x) for x in R.ids[c]] for c in R.ids}
     rs = json.loads((meta / "route_stops.json").read_text())
-    stop_names = {c: [norm(p[1]) for p in v["d"][0]["s"]] for c, v in rs.items()}
+    stop_names = {c: [norm(p[1]) for p in v["d"][0]["s"]] for c, v in rs.items() if v.get("d")}
+    stop_names.update({c: stop_names[v["a"]] for c, v in rs.items() if v.get("a") in stop_names})
     raw_shown, n_snap = {}, 0                       # (bus, fix t) -> (rid, eta list), the first etas.json with that fix
     for p in sorted(run.glob(f"shown-{a.day}.jsonl.gz")):
         for ln in gzip.open(p, "rt"):
@@ -92,7 +93,7 @@ def main():
 
     print(f"{n_snap} etas.json snapshots, {len(raw_shown):,} (bus, fix) with shown times", flush=True)
 
-    routes_tm = tm.Routes(str(meta / "route_stops.json"), str(meta / "stop_dist.json"))
+    routes_tm = RA.tm_routes(meta)
     tracks = eval_eta.load_day_tracks(routes_tm, run, a.day)
     gt = eval_eta.extract_ground_truth_stop_times(tracks, routes_tm, max_gap=max(max_gap, 300))
     del tracks

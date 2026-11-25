@@ -33,6 +33,7 @@ import io
 import json
 import math
 import os
+import shutil
 import sys
 import time
 import urllib.request
@@ -53,6 +54,9 @@ def save_net(out_dir, rs, sd):
         if v.get("d"):
             st = v["d"][0]["s"]
             w[c] = ",".join(str(nix.setdefault(p[1], len(nix))) for p in st) + "|" + ",".join(str(iix.setdefault(str(p[0]), len(iix))) for p in st)
+    for c, v in rs.items():                       # an alias ({"a": chain code}) reads as its chain
+        if "a" in v and v["a"] in w:
+            w[c] = w[v["a"]]
     names = {"n": list(nix), "i": list(iix), "w": w}
     for f, obj in (("stop_dist.json", sd), ("route_stops.json", rs), ("route_names.json", names)):
         tmp = os.path.join(out_dir, f + ".tmp")
@@ -393,26 +397,128 @@ def ap_key(doc):
     return doc.split("_", 1)[1] if doc and "_" in doc and doc[:8].isdigit() else doc
 
 
+def ap_sources(paths):
+    """(service key, [[name, lat, lon, ...], ...]) from trips.json-shaped files ({"trips": {key: chain}}, .gz or not)
+    and from eta-rtc-feed's new_workings.jsonl ({"code", "stops"} per line)."""
+    for p in paths:
+        op = gzip.open if p.endswith(".gz") else open
+        try:
+            if ".jsonl" in p:
+                with op(p, "rt") as fh:
+                    for ln in fh:
+                        try:
+                            w = json.loads(ln)
+                        except ValueError:
+                            continue
+                        yield w.get("code"), w.get("stops") or []
+            else:
+                with op(p, "rt") as fh:
+                    j = json.load(fh)
+                yield from (j.get("trips") or j).items()
+        except (OSError, ValueError, EOFError) as e:          # a missing or half-written trips.json: skipped
+            print(f"ap-net: {p}: {e}", file=sys.stderr)
+
+
+def ap_stop_id(name, la, lo):
+    """A physical stop: its name at its place (11 m grid). Services passing the same stops share segment speeds."""
+    return f"{name}@{la:.4f},{lo:.4f}"
+
+
 def cmd_ap_net(a):
-    tj = json.load(open(a.trips_json))
-    trips = tj.get("trips") or tj
-    rs, sd = {}, {}
-    for key, chain in trips.items():
-        pts = [p for p in chain if isinstance(p, list) and len(p) >= 3 and p[1] and p[2]]
+    """APSRTC network, cumulative. Every service key ever met (trips.json lists only the services running at that
+    moment) is kept in OUT/ap_chains.json.gz, newest stop list winning. The ~76k service keys share ~15k distinct
+    stop chains: each chain is written once (code c<crc32>), each service key as {"a": chain code}, an alias
+    eta_engine.Routes and save_net's route_names.json resolve (travel_model does not: see `canon`)."""
+    import zlib
+    state = os.path.join(a.out_dir, "ap_chains.json.gz")
+    chains = {}
+    if not a.fresh and os.path.exists(state):
+        with gzip.open(state, "rt") as fh:
+            chains = json.load(fh)
+    n0, n_chg = len(chains), 0
+    for key, chain in ap_sources(a.src):
+        if not key:
+            continue
+        pts = []
+        for p in chain:
+            try:
+                if isinstance(p, list) and len(p) >= 3 and p[1] not in (None, "") and p[2] not in (None, ""):
+                    pts.append([str(p[0]), round(float(p[1]), 5), round(float(p[2]), 5)])
+            except (TypeError, ValueError):
+                pass
         if len(pts) < a.min_stops:
             continue
-        d = [0.0]
-        for x, y in zip(pts, pts[1:]):
-            d.append(d[-1] + max(1.0, hav(x[1], x[2], y[1], y[2]) * 1.25))
-        rs[key] = {"d": [{"o": pts[0][0], "e": pts[-1][0], "s": [[f"{key}:{i}", p[0], p[1], p[2]] for i, p in enumerate(pts)]}]}
-        sd[key] = [round(x) for x in d]
+        old = chains.get(key)
+        if old != pts:
+            n_chg += old is not None
+            chains[key] = pts
+    os.makedirs(a.out_dir, exist_ok=True)
+    with gzip.open(state + ".tmp", "wt", compresslevel=6) as fh:
+        json.dump(chains, fh, separators=(",", ":"))
+    os.replace(state + ".tmp", state)
+    canon, rs, sd = {}, {}, {}
+    for key in sorted(chains):
+        pts = chains[key]
+        sig = json.dumps(pts, separators=(",", ":"))
+        c = canon.get(sig)
+        if c is None:
+            c, n = "c%08x" % zlib.crc32(sig.encode()), 0
+            while c in rs:                                     # crc collision: a suffix
+                n += 1
+                c = "c%08x_%d" % (zlib.crc32(sig.encode()), n)
+            canon[sig] = c
+            d = [0.0]
+            for x, y in zip(pts, pts[1:]):
+                d.append(d[-1] + max(1.0, hav(x[1], x[2], y[1], y[2]) * 1.25))
+            rs[c] = {"d": [{"o": pts[0][0], "e": pts[-1][0], "s": [[ap_stop_id(*p), p[0], p[1], p[2]] for p in pts]}]}
+            sd[c] = [round(x) for x in d]
+        rs[key] = {"a": c}
     save_net(a.out_dir, rs, sd)
     gaps = sorted(v[-1] / max(1, len(v) - 1) for v in sd.values())
-    print(f"{len(rs)} APSRTC workings; median stop spacing {gaps[len(gaps)//2]:.0f} m (crow-fly x 1.25)", flush=True)
+    print(f"APSRTC: {len(chains)} services ({len(chains) - n0} new, {n_chg} changed) on {len(sd)} stop chains; "
+          f"median stop spacing {gaps[len(gaps) // 2]:.0f} m (crow-fly x 1.25)", flush=True)
+
+
+def cmd_canon(a):
+    """For travel_model, which reads only full route entries: the network's chains alone (OUT/route_stops.json,
+    stop_dist.json) and, with --archive, the archive days it would read with each fix's working mapped to its chain
+    (OUT/archive/obs-<day>.jsonl.gz; fixes on workings the network lacks dropped)."""
+    rs = json.load(open(os.path.join(a.net_dir, "route_stops.json")))
+    alias = {c: v["a"] for c, v in rs.items() if "a" in v}
+    full = {c: v for c, v in rs.items() if "a" not in v}
+    os.makedirs(a.out_dir, exist_ok=True)
+    with open(os.path.join(a.out_dir, "route_stops.json"), "w") as fh:
+        json.dump(full, fh, separators=(",", ":"))
+    shutil.copyfile(os.path.join(a.net_dir, "stop_dist.json"), os.path.join(a.out_dir, "stop_dist.json"))
+    if not a.archive:
+        return
+    until = a.until or ist_day(time.time())
+    days = sorted(f for f in os.listdir(a.archive) if f.startswith("obs-") and f[4:14] <= until
+                  and (f.endswith(".jsonl") or f.endswith(".jsonl.gz")))
+    days = days[-(a.days + 1):]
+    os.makedirs(os.path.join(a.out_dir, "archive"), exist_ok=True)
+    n_in = n_out = 0
+    for f in days:
+        op = gzip.open if f.endswith(".gz") else open
+        dst = os.path.join(a.out_dir, "archive", f[:14] + ".jsonl.gz")
+        with op(os.path.join(a.archive, f), "rt") as src, gzip.open(dst, "wt", compresslevel=1) as out:
+            for ln in src:
+                n_in += 1
+                try:
+                    r = json.loads(ln)
+                except ValueError:
+                    continue
+                c = alias.get(r.get("r"), r.get("r") if r.get("r") in full else None)
+                if c is None:
+                    continue
+                r["r"] = c
+                out.write(json.dumps(r, separators=(",", ":")) + "\n")
+                n_out += 1
+    print(f"canon: {len(full)} chains, {len(alias)} aliases; {len(days)} archive days, {n_in:,} fixes -> {n_out:,}", flush=True)
 
 
 def cmd_ap_hist(a):
-    valid = set(json.load(open(os.path.join(a.net, "stop_dist.json"))))
+    valid = set(json.load(open(os.path.join(a.net, "route_stops.json"))))   # chains and their service-key aliases
     link = json.load(open(a.routelink)) if a.routelink else {}
     link = link.get("buses", link) if isinstance(link.get("buses"), dict) else link
     types = {}
@@ -487,12 +593,15 @@ def main():
     p = sub.add_parser("tg-hist"); p.add_argument("idx_dir"); p.add_argument("live_dir"); p.add_argument("archive")
     p.add_argument("--net", required=True); p.add_argument("--vehicles", required=True); p.add_argument("--lastseen", required=True)
     p.add_argument("--from", dest="frm"); p.add_argument("--to")
-    p = sub.add_parser("ap-net"); p.add_argument("trips_json"); p.add_argument("out_dir"); p.add_argument("--min-stops", type=int, default=3)
+    p = sub.add_parser("ap-net"); p.add_argument("out_dir"); p.add_argument("src", nargs="+", help="trips.json(.gz) / new_workings.jsonl")
+    p.add_argument("--min-stops", type=int, default=3); p.add_argument("--fresh", action="store_true", help="ignore OUT/ap_chains.json.gz")
+    p = sub.add_parser("canon"); p.add_argument("net_dir"); p.add_argument("out_dir"); p.add_argument("--archive")
+    p.add_argument("--days", type=int, default=7); p.add_argument("--until")
     p = sub.add_parser("ap-hist"); p.add_argument("live_dir"); p.add_argument("archive"); p.add_argument("--net", required=True)
     p.add_argument("--routelink"); p.add_argument("--from", dest="frm"); p.add_argument("--to")
     p = sub.add_parser("tg-extend"); p.add_argument("net_dir"); p.add_argument("jsonl")
     a = ap.parse_args()
-    {"tg-extend": cmd_tg_extend, "ap-net": cmd_ap_net, "ap-hist": cmd_ap_hist, "net": cmd_net, "hist": cmd_hist, "live": cmd_live, "tg-net": cmd_tg_net, "tg-hist": cmd_tg_hist}[a.cmd](a)
+    {"tg-extend": cmd_tg_extend, "ap-net": cmd_ap_net, "canon": cmd_canon, "ap-hist": cmd_ap_hist, "net": cmd_net, "hist": cmd_hist, "live": cmd_live, "tg-net": cmd_tg_net, "tg-hist": cmd_tg_hist}[a.cmd](a)
 
 
 if __name__ == "__main__":

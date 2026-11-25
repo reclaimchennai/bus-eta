@@ -6,6 +6,11 @@
 #   serve/deploy/deploy_rtc.sh model            2. raw: code to serve-rtc/, networks + seed model.json + OSM, cities.rtc.json
 #                                                  (all systems off), units eta-ml-rtc, eta-ml-push, eta-rtc-model.timer
 #                                                  installed; eta-ml-rtc + push started (scores nothing until step 3)
+#   serve/deploy/deploy_rtc.sh apnet            APSRTC's cumulative network (25 Nov: ~73k services on ~15k stop chains, every
+#                                                  service ever met, not only those running at the last rebuild) + its seed
+#                                                  model.json (stop ids are now places, so the old one no longer applies) + the
+#                                                  code that reads it (engine aliases, feed, rtc_model.sh); eta-ml-rtc and the
+#                                                  feed restarted, eta-rtc-model run once. The SVR collector needs nothing.
 #   serve/deploy/deploy_rtc.sh on SYSTEM        3. one system: on in cities.rtc.json (eta-ml-rtc restarted), then its SVR
 #                                                  collector gets the merge (files checked against git first, old copies to
 #                                                  /data/rtc/backups/<ts>-eta-ml-<system>/) + a drop-in with ETA_ML, restarted
@@ -66,6 +71,31 @@ model)
     systemctl --user enable --now eta-ml-rtc.service && sleep 30
     systemctl --user --no-pager status eta-ml-rtc.service eta-ml-push.service | grep -E "Active|Memory"; tail -3 logs/eta-ml-rtc.log'
   ;;
+apnet)
+  M=$ETA/data/meta/apsrtc2
+  SEED=$ETA/data/audit/model_apsrtc2_until_2026-11-24.json
+  [ -f "$SEED" ] || { echo "no $SEED (build it first: see RTC_AUDIT.md)"; exit 1; }
+  for f in eta_engine.py eta_ml_service.py rtc_feed.py rtc_adapt.py rtc_model.sh; do   # never over a hot patch on raw
+    known=$(for c in $(git -C "$SERVE" log --format=%H -- "$f"); do git -C "$SERVE" rev-parse "$c:serve/$f" 2>/dev/null; done)
+    live=$(ssh $RAWH "cd ~/projects/eta-ml/serve-rtc && if [ -f $f ]; then git hash-object $f; else echo none; fi")
+    if [ "$live" != none ] && ! grep -qx "$live" <<<"$known"; then echo "SKIP: raw serve-rtc/$f is not a committed version (hot patch?); nothing sent"; exit 1; fi
+  done
+  mkdir -p "$T/eta-ml/serve-rtc" "$T/eta-ml/rtc/net/apsrtc.new"
+  cp "$SERVE"/eta_engine.py "$SERVE"/eta_ml_service.py "$SERVE"/rtc_feed.py "$SERVE"/rtc_adapt.py "$SERVE"/rtc_model.sh "$T/eta-ml/serve-rtc/"
+  cp "$M"/route_stops.json "$M"/stop_dist.json "$M"/route_names.json "$T/eta-ml/rtc/net/apsrtc.new/"
+  cp "$M"/ap_chains.json.gz "$T/eta-ml/rtc/net/apsrtc.new/ap_chains.seed.json.gz"
+  cp "$SEED" "$T/eta-ml/rtc/net/apsrtc.new/model.json"
+  COPYFILE_DISABLE=1 tar -C "$T" -cf "$T/x.tar" eta-ml && ship "$T/x.tar"
+  ssh $RAWH 'set -e; cd ~/projects/eta-ml; .venv/bin/python -m py_compile serve-rtc/*.py
+    ts=$(date +%Y%m%d-%H%M%S); mkdir -p ~/backups/deploy/$ts-apnet && cp -p rtc/net/apsrtc/* ~/backups/deploy/$ts-apnet/
+    for f in route_stops.json stop_dist.json route_names.json model.json; do mv rtc/net/apsrtc.new/$f rtc/net/apsrtc/$f.new; done
+    mv rtc/net/apsrtc.new/ap_chains.seed.json.gz rtc/net/apsrtc/ && rmdir rtc/net/apsrtc.new
+    for f in model.json stop_dist.json route_stops.json route_names.json; do mv rtc/net/apsrtc/$f.new rtc/net/apsrtc/$f; done
+    systemctl --user restart eta-rtc-feed.service eta-ml-rtc.service && systemctl --user start eta-rtc-model.service
+    sleep 90; tail -3 logs/eta-ml-rtc.log; tail -4 logs/eta-rtc-model.log
+    echo "old network: ~/backups/deploy/$ts-apnet"'
+  echo "check: curl -s https://maps.reclaim.city/apsrtc/live/etas.json | python3 -c 'import json,sys; print(json.load(sys.stdin).get(\"eta\"))'"
+  ;;
 on|off)
   case $SYS in
     tricity) REPO=$P/chandigarh_bus; DIR=/data/rtc/tricity; UNIT=tricity-live.service; FILES="server/live.py server/eta_ml_merge.py" ;;
@@ -100,5 +130,5 @@ json.dump(j, open(p + \".tmp\", \"w\"), indent=1)' && mv cities.rtc.json.tmp cit
     echo backups: /data/rtc/backups/$ts-eta-ml-$SYS"
   echo "check: curl -s https://maps.reclaim.city/$SYS/live/etas.json | python3 -c 'import json,sys; print(json.load(sys.stdin).get(\"eta\"))'"
   ;;
-*) echo "feed | model | on SYSTEM | off SYSTEM"; exit 1 ;;
+*) echo "feed | model | apnet | on SYSTEM | off SYSTEM"; exit 1 ;;
 esac

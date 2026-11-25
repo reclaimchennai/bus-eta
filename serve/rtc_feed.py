@@ -4,7 +4,9 @@
 For each configured system it reads the map's own vehicles.json (on SVR's feed server, read-only) every `every` s and
 appends each bus's new fixes to <out>/<system>/obs-<IST day>.jsonl as {t, reg, r, la, lo, f}, r = the route working:
   mode "rid"  the vehicles.json rid column (a services.json key: /tricity, /amts, /upsrtc, ...)
-  mode "ap"   APSRTC: the bus id is the serviceDocId DDMMYYYY_<dcp>_<trip>_<depot>; the working is what follows the date
+  mode "ap"   APSRTC: the bus id is the serviceDocId DDMMYYYY_<dcp>_<trip>_<depot>; the working is what follows the date.
+              Every `net_every` s (300) live/trips.json (stop lists of the services running now) is read and each
+              service not met before, or whose stop list changed, appended to new_workings.jsonl for rtc_adapt ap-net
   mode "tg"   TGSRTC: routelink.json says which trip each bus runs; live/trip/<bus>.json gives that trip's station
               chain (live/trip/<serviceId>.json), fetched once per new trip (at most `trip_rate` a second); working = route no. + station sequence
 At the first fix of a new IST day the previous day's file is gzipped (travel_model and eta-ml read either form).
@@ -23,6 +25,7 @@ import shutil
 import threading
 import time
 import urllib.request
+import zlib
 
 import rtc_adapt as A
 
@@ -62,7 +65,31 @@ class Feed:
                         self.tg_known |= {json.loads(ln)["code"] for ln in open(p)}
                 except (OSError, ValueError, KeyError):
                     pass
+        self.ap_seen, self.ap_next = {}, 0.0                     # APSRTC: service key -> crc of its stop list
+        self.net_every = float(cfg.get("net_every", 300))
+        if self.mode == "ap":
+            try:
+                for ln in open(os.path.join(self.dir, "new_workings.jsonl")):
+                    w = json.loads(ln)
+                    self.ap_seen[w["code"]] = zlib.crc32(json.dumps(w["stops"]).encode())
+            except (OSError, ValueError, KeyError):
+                pass
         self.n = 0
+
+    def ap_workings(self):
+        """APSRTC: the services in trips.json not met before (or with a new stop list) to new_workings.jsonl."""
+        tj = get(self.url + "trips.json", timeout=60)
+        new = []
+        for key, chain in (tj.get("trips") or {}).items():
+            stops = [[p[0], p[1], p[2]] for p in chain if isinstance(p, list) and len(p) >= 3]
+            h = zlib.crc32(json.dumps(stops).encode())
+            if self.ap_seen.get(key) != h:
+                self.ap_seen[key] = h
+                new.append(json.dumps({"code": key, "stops": stops}, separators=(",", ":")))
+        if new:
+            with open(os.path.join(self.dir, "new_workings.jsonl"), "a") as fh:
+                fh.write("\n".join(new) + "\n")
+            log(f"[{self.name}] {len(new)} new services' stop lists ({len(self.ap_seen)} known)")
 
     def rotate(self, day):
         if self.fh:
@@ -142,6 +169,12 @@ class Feed:
     def loop(self):
         while True:
             t0 = time.time()
+            if self.mode == "ap" and t0 >= self.ap_next:
+                self.ap_next = t0 + self.net_every
+                try:
+                    self.ap_workings()
+                except Exception as e:  # noqa: BLE001
+                    log(f"[{self.name}] trips.json: {e}")
             try:
                 self.step()
             except Exception as e:  # noqa: BLE001
