@@ -16,6 +16,7 @@ The delays are priors, not yet calibrated (too few incidents overlap the archive
   delay = BASE[type] x (0.5 + severity), at most CAP_ONE s per incident and CAP_BUS s per bus; it eases to 30% over
   the last 40% of the incident's window (most are cleared before their stated or default end).
 The file is ignored when its "generated" is older than STALE s (the feed stopped: Mac asleep, WhatsApp unlinked).
+Standing advisories (kind "standing": a one-way system, long works) add nothing: the buses' observed speeds carry them.
 """
 import json
 import math
@@ -52,10 +53,14 @@ class Incidents:
                 for f in j.get('features') or []:
                     p, g = f.get('properties') or {}, f.get('geometry') or {}
                     c = g.get('coordinates')
+                    if p.get('kind') == 'standing':     # a one-way system or long works: already in the observed speeds
+                        continue
                     if g.get('type') == 'Point' and c:
                         pts, line = [tuple(c[:2])], False
                     elif g.get('type') == 'LineString' and c:
                         pts, line = [tuple(x[:2]) for x in c], True
+                    elif g.get('type') == 'MultiLineString' and c:
+                        pts, line = [tuple(x[:2]) for part in c for x in part], True
                     else:
                         continue
                     sev = min(1.0, max(0.0, float(p.get('severity') or 0.5)))
