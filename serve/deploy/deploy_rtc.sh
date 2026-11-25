@@ -69,7 +69,7 @@ model)
 on|off)
   case $SYS in
     tricity) REPO=$P/chandigarh_bus; DIR=/data/rtc/tricity; UNIT=tricity-live.service; FILES="server/live.py server/eta_ml_merge.py" ;;
-    tgsrtc)  REPO=$P/tsrtc;          DIR=/data/rtc/tsrtc;   UNIT=tsrtc-eta.service;    FILES="server/eta.py server/eta_ml_merge.py"
+    tgsrtc)  REPO=$P/tsrtc;          DIR=/data/rtc/tsrtc;   UNIT=tsrtc-eta.service;    FILES="server/eta.py server/eta_ml_merge.py server/incident_penalty.py"
              EXTRA=" ETA_ML_HMAX=1200" ;;   # shadow 24 Nov: v4 better to 20 min ahead, tsrtc-eta's timetable blend better beyond (n=74)
     apsrtc)  REPO=$P/apsrtc;         DIR=/data/rtc/apsrtc;  UNIT=apsrtc-live.service;  FILES="live.py eta_ml_merge.py" ;;
     *) echo "SYSTEM: tricity | tgsrtc | apsrtc"; exit 1 ;;
@@ -83,12 +83,11 @@ json.dump(j, open(p + \".tmp\", \"w\"), indent=1)' && mv cities.rtc.json.tmp cit
     flip False; exit 0
   fi
   flip True
-  # the live copies must be the committed version before the eta-ml commit (or HEAD already): never over a hot patch
+  # the live copies must be a committed version of the file (or absent, for a file new to the collector): never over a hot patch
   for f in $FILES; do
-    head=$(git -C "$REPO" rev-parse "HEAD:$f")
-    prev=$(git -C "$REPO" log -n 2 --format=%H -- "$f" | tail -1); prev=$([ "${f##*/}" = eta_ml_merge.py ] && echo none || git -C "$REPO" rev-parse "$prev:$f")
+    known=$(for c in $(git -C "$REPO" log --format=%H -- "$f"); do git -C "$REPO" rev-parse "$c:$f" 2>/dev/null; done)
     live=$(ssh $SVRH "cd $DIR && if [ -f $f ]; then git hash-object $f; else echo none; fi")
-    if [ "$live" != "$prev" ] && [ "$live" != "$head" ]; then echo "SKIP: SVR $DIR/$f is neither the committed old version nor HEAD (hot patch?); not touching it"; exit 1; fi
+    if [ "$live" != none ] && ! grep -qx "$live" <<<"$known"; then echo "SKIP: SVR $DIR/$f is not a committed version (hot patch?); not touching it"; exit 1; fi
   done
   ts=$(date +%Y%m%d-%H%M%S)
   ssh $SVRH "mkdir -p /data/rtc/backups/$ts-eta-ml-$SYS && cd $DIR && for f in $FILES; do [ -f \$f ] && cp -p --parents \$f /data/rtc/backups/$ts-eta-ml-$SYS/ || true; done"
