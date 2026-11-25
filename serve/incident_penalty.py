@@ -65,8 +65,14 @@ class Incidents:
                         continue
                     sev = min(1.0, max(0.0, float(p.get('severity') or 0.5)))
                     d = min(CAP_ONE, BASE.get(p.get('type'), BASE['other']) * (0.5 + sev))
+                    # its box, widened by how near a trip must pass: ahead() looks closer only at the trip's
+                    # stop-to-stop chords whose own box meets it (a march's line has hundreds of points)
+                    lim = (NEAR_LINE if line else NEAR_PT) * 1.2
+                    la0, la1 = min(y for _, y in pts), max(y for _, y in pts)
+                    dlon = lim / (K * max(0.2, math.cos(math.radians(max(abs(la0), abs(la1))))))
+                    box = (min(x for x, _ in pts) - dlon, la0 - lim / K, max(x for x, _ in pts) + dlon, la1 + lim / K)
                     items.append((str(p.get('id') or '').split(':line')[0], p.get('type') or 'other', d,
-                                  int(p.get('start') or 0), int(p.get('end') or 0), pts, line))
+                                  int(p.get('start') or 0), int(p.get('end') or 0), pts, line, box))
                 self.items, self.gen, self.mtime = items, int(j.get('generated') or 0), m
             except (OSError, ValueError, TypeError):
                 pass
@@ -88,14 +94,16 @@ class Incidents:
         if not act or len(ll) < 2:
             return []
         best = {}
-        for iid, typ, d0, st, en, pts, line in act:
+        for iid, typ, d0, st, en, pts, line, (x0, y0, x1, y1) in act:
             lim = NEAR_LINE if line else NEAR_PT
-            for lon, lat in pts:
-                cx = math.cos(math.radians(lat)) * K
-                for i in range(len(ll) - 1):
-                    if ds[i + 1] < s - PASSED:
-                        continue
-                    (ax, ay), (bx, by) = ll[i], ll[i + 1]
+            for i in range(len(ll) - 1):
+                if ds[i + 1] < s - PASSED:
+                    continue
+                (ax, ay), (bx, by) = ll[i], ll[i + 1]
+                if max(ax, bx) < x0 or min(ax, bx) > x1 or max(ay, by) < y0 or min(ay, by) > y1:
+                    continue
+                for lon, lat in pts:
+                    cx = math.cos(math.radians(lat)) * K
                     vx, vy = (bx - ax) * cx, (by - ay) * K
                     px, py = (lon - ax) * cx, (lat - ay) * K
                     L2 = vx * vx + vy * vy
