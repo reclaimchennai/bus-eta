@@ -5,7 +5,7 @@ After=network-online.target eta-rtc-feed.service
 [Service]
 WorkingDirectory=%h/projects/eta-ml
 Environment=OMP_NUM_THREADS=2 PYTHONUNBUFFERED=1
-ExecStart=%h/projects/eta-ml/.venv/bin/python serve-rtc/eta_ml_service.py --config cities.rtc.json --models models --holidays holidays_india_2025_2026.json --tick 10 --threads 2
+ExecStart=%h/projects/eta-ml/.venv/bin/python serve-rtc/eta_ml_service.py --config cities.rtc.json --models models-rtc --holidays holidays_india_2025_2026.json --tick 10 --threads 2
 Restart=always
 RestartSec=30
 Nice=5
