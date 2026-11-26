@@ -1,0 +1,380 @@
+{
+ "tag": "data-v1",
+ "built": "2026-11-26",
+ "note": "concatenate an asset's parts in order and untar (gzip) into data/<into>",
+ "assets": [
+  {
+   "name": "raw-amts",
+   "into": "raw/amts",
+   "files": [
+    {
+     "asset": "raw-amts.tar.gz",
+     "bytes": 4087241,
+     "sha256": "52b6cdf166bfc7708ea879b47d45f39bcb66444a2b6ebe5b4ac6f60808038104"
+    }
+   ]
+  },
+  {
+   "name": "raw-apsrtc",
+   "into": "raw/apsrtc",
+   "files": [
+    {
+     "asset": "raw-apsrtc.tar.gz",
+     "bytes": 184734229,
+     "sha256": "2e01e1d34b5ec8e214bfdd3aa74fa4585e879d98b8369fd806685c3a523d1865"
+    }
+   ]
+  },
+  {
+   "name": "raw-apsrtc2",
+   "into": "raw/apsrtc2",
+   "files": [
+    {
+     "asset": "raw-apsrtc2.tar.gz",
+     "bytes": 1043202391,
+     "sha256": "22ddda567e5c9cca25c7705b68eec08547a0748dfc0497b1528959465766d208"
+    }
+   ]
+  },
+  {
+   "name": "raw-bmtc",
+   "into": "raw/bmtc",
+   "files": [
+    {
+     "asset": "raw-bmtc.tar.gz",
+     "bytes": 108573018,
+     "sha256": "3ebb210dca161ad585bd2f4a619f0c5f230bf66ed51a55ca2abe78ae964e38a4"
+    }
+   ]
+  },
+  {
+   "name": "raw-delhi",
+   "into": "raw/delhi",
+   "files": [
+    {
+     "asset": "raw-delhi.tar.gz.part00",
+     "bytes": 1992294400,
+     "sha256": "a3ef58b9322945e3a15310e2dc0d6ea2af3f7aded61ace3c0a8954fcebba93a2"
+    },
+    {
+     "asset": "raw-delhi.tar.gz.part01",
+     "bytes": 1764170605,
+     "sha256": "97c923e5d037a89f31aa5be3bde19c8d74ba6e0f4105d1f5ebc4d56cc57d7fe1"
+    }
+   ]
+  },
+  {
+   "name": "raw-hr",
+   "into": "raw/hr",
+   "files": [
+    {
+     "asset": "raw-hr.tar.gz",
+     "bytes": 1310304,
+     "sha256": "815c9ce61f1bb9b4feef2f6bb99c485924c32ed84e3b7fba96ad76ebbb5b416e"
+    }
+   ]
+  },
+  {
+   "name": "raw-hyderabad",
+   "into": "raw/hyderabad",
+   "files": [
+    {
+     "asset": "raw-hyderabad.tar.gz",
+     "bytes": 205203424,
+     "sha256": "48aad5b924f197bddf68d42ee3a5a60773425164e54bc1a4cada3f971a3f38d5"
+    }
+   ]
+  },
+  {
+   "name": "raw-kerala",
+   "into": "raw/kerala",
+   "files": [
+    {
+     "asset": "raw-kerala.tar.gz",
+     "bytes": 4574790,
+     "sha256": "8fe48232de86003615c37ceb39edfb49de3992228b1fcc89ebb20c2595c2045c"
+    }
+   ]
+  },
+  {
+   "name": "raw-mtc",
+   "into": "raw/mtc",
+   "files": [
+    {
+     "asset": "raw-mtc.tar.gz",
+     "bytes": 284711997,
+     "sha256": "0378f75fcfcf6fcaf105bd8d4272ccd61a00443e017b4b138f60fe2670cba728"
+    }
+   ]
+  },
+  {
+   "name": "raw-mumbai",
+   "into": "raw/mumbai",
+   "files": [
+    {
+     "asset": "raw-mumbai.tar.gz",
+     "bytes": 38684192,
+     "sha256": "c15e333f51a50f932711d40dcc73e03e82185ebed9a52d9c625c24bafde3e2f9"
+    }
+   ]
+  },
+  {
+   "name": "raw-ncr",
+   "into": "raw/ncr",
+   "files": [
+    {
+     "asset": "raw-ncr.tar.gz",
+     "bytes": 764963,
+     "sha256": "900349dec27c2003c09c6488045029c3c1f94a5d55d2d8c2851b8637bd5b376b"
+    }
+   ]
+  },
+  {
+   "name": "raw-osrtc",
+   "into": "raw/osrtc",
+   "files": [
+    {
+     "asset": "raw-osrtc.tar.gz",
+     "bytes": 6296173,
+     "sha256": "9f0b36d1bc64b4f0ac84a9028bcef70a6364eb4cd8bbbefad6b572bfb5a3940e"
+    }
+   ]
+  },
+  {
+   "name": "raw-tgsrtc",
+   "into": "raw/tgsrtc",
+   "files": [
+    {
+     "asset": "raw-tgsrtc.tar.gz",
+     "bytes": 225710186,
+     "sha256": "14ef0cf0cba51d18f9d245cc15d213581f87d19753e9945898db85390c70f77c"
+    }
+   ]
+  },
+  {
+   "name": "raw-tricity",
+   "into": "raw/tricity",
+   "files": [
+    {
+     "asset": "raw-tricity.tar.gz",
+     "bytes": 10379130,
+     "sha256": "9efb5e0bcfc4212757bdc84a7060fda988afee8f2d5a52a2641aff6a0be0a0ba"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-amts",
+   "into": "rtc_src/amts",
+   "files": [
+    {
+     "asset": "rtc_src-amts.tar.gz",
+     "bytes": 155462253,
+     "sha256": "7b6b8b6ec9e1e1293e10b3bf8f34a3a47f2d08c83b6ea4ae47f9eb3629b81b14"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-apsrtc",
+   "into": "rtc_src/apsrtc",
+   "files": [
+    {
+     "asset": "rtc_src-apsrtc.tar.gz",
+     "bytes": 1843960105,
+     "sha256": "ff22d9a308760a8ccfd5aa6e581e3ee59e694f4ed492645cd2e0bf9736ffb0b1"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-gsrtc",
+   "into": "rtc_src/gsrtc",
+   "files": [
+    {
+     "asset": "rtc_src-gsrtc.tar.gz",
+     "bytes": 61427,
+     "sha256": "cf8a779d69c0ac83983b1891054abdcf85e7b84859c55ea17e2007d5b4195e22"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-hr",
+   "into": "rtc_src/hr",
+   "files": [
+    {
+     "asset": "rtc_src-hr.tar.gz",
+     "bytes": 12834592,
+     "sha256": "8f01a69de758078addb985107756b140624386e6833bd9cd012a79933bdbaa0b"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-kerala",
+   "into": "rtc_src/kerala",
+   "files": [
+    {
+     "asset": "rtc_src-kerala.tar.gz",
+     "bytes": 29517424,
+     "sha256": "c4d2bc21fba176b4ed7b37f42cfcae6cdd354eae9291dc8b1e08197ddc2498da"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-mprtc",
+   "into": "rtc_src/mprtc",
+   "files": [
+    {
+     "asset": "rtc_src-mprtc.tar.gz",
+     "bytes": 725,
+     "sha256": "d0c1604eac8ad157598a34b39619bbebe3c1edffb742f920c211a10c95c15978"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-osrtc",
+   "into": "rtc_src/osrtc",
+   "files": [
+    {
+     "asset": "rtc_src-osrtc.tar.gz",
+     "bytes": 21005439,
+     "sha256": "e6d812e4b06edfbf00a1876821d64e763a0c15e1cad0f57a6c2bdddad91bf06c"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-rjrtc",
+   "into": "rtc_src/rjrtc",
+   "files": [
+    {
+     "asset": "rtc_src-rjrtc.tar.gz",
+     "bytes": 1467819,
+     "sha256": "82b0ee67df07b63d32cfde866d71e256ef68c63c45fc62a93ff62b1bcea4f58c"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-tgsrtc",
+   "into": "rtc_src/tgsrtc",
+   "files": [
+    {
+     "asset": "rtc_src-tgsrtc.tar.gz",
+     "bytes": 659933922,
+     "sha256": "d93aec97fdea200b7d8e48dfdbefe0cdc03a707b2981d8c7069f83df2958c947"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-tricity",
+   "into": "rtc_src/tricity",
+   "files": [
+    {
+     "asset": "rtc_src-tricity.tar.gz",
+     "bytes": 63905400,
+     "sha256": "d703c29f8390a9d1ba4e59b77b5ca547992d7b2ca56f4be061d091f587b94531"
+    }
+   ]
+  },
+  {
+   "name": "rtc_src-up",
+   "into": "rtc_src/up",
+   "files": [
+    {
+     "asset": "rtc_src-up.tar.gz",
+     "bytes": 5919396,
+     "sha256": "18f663810a131829dffc2d60d559b0530c07f36ce3202d48ccf4fea67d958c97"
+    }
+   ]
+  },
+  {
+   "name": "processed",
+   "into": "processed",
+   "files": [
+    {
+     "asset": "processed.tar.gz.part00",
+     "bytes": 1992294400,
+     "sha256": "ad4be3ffedc00a5d613592c64332c3bb50e89e4fdaece843b8e36f3a7dafaae6"
+    },
+    {
+     "asset": "processed.tar.gz.part01",
+     "bytes": 494911081,
+     "sha256": "6076687b74e3f33e311ecd81ecb0e2c28a4971103d13698775a35a2b1c59c388"
+    }
+   ]
+  },
+  {
+   "name": "v3_cache",
+   "into": "v3_cache",
+   "files": [
+    {
+     "asset": "v3_cache.tar.gz",
+     "bytes": 703487042,
+     "sha256": "483001da5860d188e0e23ea324fa168106e4126d6599a4ebd95cf1594fcd07f4"
+    }
+   ]
+  },
+  {
+   "name": "rtc_cache",
+   "into": "rtc_cache",
+   "files": [
+    {
+     "asset": "rtc_cache.tar.gz",
+     "bytes": 516659839,
+     "sha256": "519efd0d2919d6a3308b5d996e8d1b79b01493ef75952f43a3aa11ebea64f06a"
+    }
+   ]
+  },
+  {
+   "name": "meta",
+   "into": "meta",
+   "files": [
+    {
+     "asset": "meta.tar.gz",
+     "bytes": 66357132,
+     "sha256": "3d6c3e152a67926b0e75f63be4cb0dc8bcd2a59898fe2f714c528315a3bf1e35"
+    }
+   ]
+  },
+  {
+   "name": "audit",
+   "into": "audit",
+   "files": [
+    {
+     "asset": "audit.tar.gz",
+     "bytes": 751250696,
+     "sha256": "dd69db22aa3471f651663334827f176c917d720b25da4fd9fca2e7a23a299a4b"
+    }
+   ]
+  },
+  {
+   "name": "shadow",
+   "into": "shadow",
+   "files": [
+    {
+     "asset": "shadow.tar.gz",
+     "bytes": 70675409,
+     "sha256": "0c088ad84f03c10954f617e4498687405e9dcc9f28060e3a18aa9cb2da8734e0"
+    }
+   ]
+  },
+  {
+   "name": "shadow_rtc",
+   "into": "shadow_rtc",
+   "files": [
+    {
+     "asset": "shadow_rtc.tar.gz",
+     "bytes": 59916094,
+     "sha256": "3980045525059ae997b21d69d9d5e5904c210d1818ed33cc5dcad21384e22378"
+    }
+   ]
+  },
+  {
+   "name": "btp",
+   "into": "btp",
+   "files": [
+    {
+     "asset": "btp.tar.gz",
+     "bytes": 2204844,
+     "sha256": "4153ec43b55d0767c20e59127a4a7a02baf8f222c6ed863b03e3e1a692cf18d7"
+    }
+   ]
+  }
+ ]
+}
