@@ -11,6 +11,10 @@
 #                                                  model.json (stop ids are now places, so the old one no longer applies) + the
 #                                                  code that reads it (engine aliases, feed, rtc_model.sh); eta-ml-rtc and the
 #                                                  feed restarted, eta-rtc-model run once. The SVR collector needs nothing.
+#   serve/deploy/deploy_rtc.sh v4r              the RTC-trained models (v4r: v4's recipe + 5 days each of Tricity, TGSRTC and
+#                                                  APSRTC, 26 Nov; held-out 24 Nov 143/109/155 -> 121/93/104 s) to models-rtc/,
+#                                                  read only by eta-ml-rtc (the city maps' eta-ml keeps models/); their own
+#                                                  city_idx (5/6/7) in cities.rtc.json; eta-ml-rtc restarted. Old config kept.
 #   serve/deploy/deploy_rtc.sh on SYSTEM        3. one system: on in cities.rtc.json (eta-ml-rtc restarted), then its SVR
 #                                                  collector gets the merge (files checked against git first, old copies to
 #                                                  /data/rtc/backups/<ts>-eta-ml-<system>/) + a drop-in with ETA_ML, restarted
@@ -95,6 +99,26 @@ apnet)
     sleep 90; tail -3 logs/eta-ml-rtc.log; tail -4 logs/eta-rtc-model.log
     echo "old network: ~/backups/deploy/$ts-apnet"'
   echo "check: curl -s https://maps.reclaim.city/apsrtc/live/etas.json | python3 -c 'import json,sys; print(json.load(sys.stdin).get(\"eta\"))'"
+  ;;
+v4r)
+  M=$ETA/models/v4r_rtc
+  [ -f "$M/v4_report.json" ] || { echo "no $M (src/train_v4_rtc.py builds it)"; exit 1; }
+  mkdir -p "$T/eta-ml/models-rtc"
+  cp "$M"/v4_lgb_huber.txt "$M"/v4_xgb_huber.json "$M"/v4_cat_mae.cbm "$M"/v4_lgb_q10.txt "$M"/v4_lgb_q90.txt "$M"/v4_report.json "$T/eta-ml/models-rtc/"
+  cp "$HERE"/eta-ml-rtc.service "$T/eta-ml/eta-ml-rtc.service.new"
+  COPYFILE_DISABLE=1 tar -C "$T" -cf "$T/x.tar" eta-ml && ship "$T/x.tar"
+  ssh $RAWH 'set -e; cd ~/projects/eta-ml
+    ts=$(date +%Y%m%d-%H%M%S); B=~/backups/deploy/$ts-v4r; mkdir -p $B
+    cp -p cities.rtc.json ~/.config/systemd/user/eta-ml-rtc.service $B/
+    python3 -c "import json; p=\"cities.rtc.json\"; j=json.load(open(p))
+for c in j[\"cities\"]:
+    c[\"city_idx\"] = {\"tricity\": 5, \"tgsrtc\": 6, \"apsrtc\": 7}.get(c[\"city\"], c[\"city_idx\"])
+json.dump(j, open(p + \".tmp\", \"w\"), indent=1)" && mv cities.rtc.json.tmp cities.rtc.json
+    install -m 644 eta-ml-rtc.service.new ~/.config/systemd/user/eta-ml-rtc.service && rm -f eta-ml-rtc.service.new
+    systemctl --user daemon-reload && systemctl --user restart eta-ml-rtc.service && sleep 90
+    grep -m1 -E "models " <(tail -50 logs/eta-ml-rtc.log) || true; tail -1 logs/eta-ml-rtc.log
+    systemctl --user show -p MemoryCurrent eta-ml-rtc.service
+    echo "rollback: cp -p $B/cities.rtc.json ~/projects/eta-ml/ && cp -p $B/eta-ml-rtc.service ~/.config/systemd/user/ && systemctl --user daemon-reload && systemctl --user restart eta-ml-rtc"'
   ;;
 on|off)
   case $SYS in

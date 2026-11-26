@@ -175,6 +175,8 @@ def main():
     ap.add_argument("--every", type=int, default=2)
     ap.add_argument("--no-model-json", action="store_true")
     ap.add_argument("--tag", default="")
+    ap.add_argument("--models", default=str(MODELS), help="v4 model dir to score with")
+    ap.add_argument("--dump", default="", help="write the scored rows (X, y, b) here as .npz: a training day")
     a = ap.parse_args()
     t0 = time.time()
     cfg = SYSTEMS[a.system]
@@ -185,7 +187,8 @@ def main():
     wxm = weather_map(a.system)
     hol = json.loads((DATA / "holidays_india_2025_2026.json").read_text())
     S = E.CityStream(a.system, R, str(mj) if mj else None, hol, (lambda c, h: wxm.get(h)), max_gap, a.city_idx)
-    ens = E.Ensemble(str(MODELS), threads=8)
+    ens = E.Ensemble(a.models, threads=8)
+    dump_X, dump_y, dump_b = [], [], []
 
     routes_tm = tm_routes(meta)
     tracks = eval_eta.load_day_tracks(routes_tm, DATA / "raw" / a.system, a.day)
@@ -208,7 +211,18 @@ def main():
     dbg = collections.Counter()
 
     def flush():
-        res = E.score(S, ens, batch)
+        cap = [] if a.dump else None
+        res = E.score(S, ens, batch, capture=cap)
+        if cap:
+            for reg, k, b_, row in cap:
+                code_t = res.get(reg)
+                if not code_t:
+                    continue
+                j = next((tr for tr in gt.get(reg, ()) if tr["code"] == code_t[0] and tr["fixes"][0][0] <= code_t[1] <= tr["fixes"][-1][0]), None)
+                if j and k in j["stop_times"]:
+                    y_ = j["stop_times"][k] - code_t[1]
+                    if 60.0 <= y_ < 1800.0:
+                        dump_X.append(row); dump_y.append(y_); dump_b.append(max(5.0, b_))
         dbg["batches"] += 1; dbg["scored"] += len(res)
         for reg, (code, t, lst, _n) in res.items():
             j = next((tr for tr in gt.get(reg, ()) if tr["code"] == code and tr["fixes"][0][0] <= t <= tr["fixes"][-1][0]), None)
@@ -239,6 +253,10 @@ def main():
             flush()
             last_flush = clock
     flush()
+    if a.dump:
+        np.savez_compressed(a.dump, X=np.asarray(dump_X, dtype=np.float32), y=np.asarray(dump_y, dtype=np.float32),
+                            b=np.asarray(dump_b, dtype=np.float32))
+        print(f"dump: {len(dump_y):,} rows -> {a.dump}")
     A = np.asarray(rows, dtype=float).reshape(-1, 6)
     y, b, p, lo, hi = A[:, 1], A[:, 2], A[:, 3], A[:, 4], A[:, 5]
     out = {"system": a.system, "day": a.day, "city_idx": a.city_idx, "max_gap": max_gap, "scoring": dict(dbg),

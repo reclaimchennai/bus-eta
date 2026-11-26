@@ -1,10 +1,10 @@
 {
- "_note": "eta-ml-rtc on raw: the RTC maps (feeds on SVR via eta-rtc-feed). city_idx 3 = borrows Gurugram's index (the models never saw these systems; the index barely matters: Tricity 22 Nov 141.3-142.1 s across 0-4). enabled:false = audited and not better than what the map shows, or not enough history yet. deploy_rtc.sh SYSTEM flips one on.",
+ "_note": "eta-ml-rtc on raw: the RTC maps (feeds on SVR via eta-rtc-feed). city_idx: tricity 5, tgsrtc 6, apsrtc 7 = their own in the RTC-trained models (models-rtc, v4r, 26 Nov); 3 = borrows Gurugram's index (the models never saw these systems; the index barely matters: Tricity 22 Nov 141.3-142.1 s across 0-4). enabled:false = audited and not better than what the map shows, or not enough history yet. deploy_rtc.sh SYSTEM flips one on.",
  "cities": [
   {
    "city": "apsrtc",
    "enabled": false,
-   "city_idx": 3,
+   "city_idx": 7,
    "coords": [
     16.5062,
     80.648
@@ -21,7 +21,7 @@
   {
    "city": "tgsrtc",
    "enabled": false,
-   "city_idx": 3,
+   "city_idx": 6,
    "coords": [
     17.385,
     78.4867
@@ -38,7 +38,7 @@
   {
    "city": "tricity",
    "enabled": false,
-   "city_idx": 3,
+   "city_idx": 5,
    "coords": [
     30.7333,
     76.7794

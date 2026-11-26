@@ -56,6 +56,30 @@ Two checks, MAE in seconds on stops 1–30 min ahead:
   travel_model peaks at 352 MB and ap-net at 495 MB, under eta-rtc-model's 800M cap.
 - **Deploy:** `deploy_rtc.sh apnet`.
 
+## v4r: retrained with the RTC systems, 26 Nov
+
+- **Data.** `rtc_audit.py --dump` writes the rows the live engine scored, with their truth, for each day. Each day's
+  model.json is causal (built from the 7 days before it only).
+  - Days 18–24 Nov for Tricity (all buses), TGSRTC (40% of buses) and APSRTC (15% of buses).
+  - Rows: Tricity 1.1M, TGSRTC 2.5M, APSRTC 1.4M (`ETA/data/rtc_cache/`).
+- **Training.** `src/train_v4_rtc.py` is v4's recipe unchanged, on the five city caches plus these rows.
+  - Each RTC system gets its own city_idx: Tricity 5, TGSRTC 6, APSRTC 7.
+  - The RTC days are split: 18–22 Nov train, 23 Nov validation, 24 Nov held out.
+- **Held-out day.** 24 Nov, live-engine replay (`rtc_audit.py --models v4r_rtc --city-idx N`), MAE in seconds:
+
+| system | nowcast | v4 (ci 3) | v4r | 20–30 min v4 → v4r | 80% band | bias v4 → v4r |
+|---|---|---|---|---|---|---|
+| Tricity | 340 | 143 | **121** | 269 → 187 | 73 → 74% | −21 → +3 |
+| TGSRTC | 193 | 109 | **93** | 195 → 129 | 83 → 81% | −16 → +15 |
+| APSRTC | 344 | 155 | **104** | 308 → 158 | 78 → 81% | −46 → −1 |
+
+- **The five city systems**, on their own test days with identical rows: MTC 94.8 → 95.0, BMTC 93.0 → 92.6,
+  Mumbai 79.8 → 81.2, NCR 125.8 → 119.9, Delhi 97.7 → 96.9. Mumbai is 1.4 s worse.
+  - So v4r is served only to the RTC maps: `models-rtc/`, read by eta-ml-rtc. The city maps' eta-ml keeps `models/`.
+- **Deploy:** `deploy_rtc.sh v4r`.
+  - TGSRTC keeps ETA_ML_HMAX=1200 until a fresh shown-vs-v4 check. v4r's 20–30 min error, 129 s, is now below
+    what tsrtc-eta showed in that bucket on 24 Nov (208 s, n=74).
+
 ## How it runs
 
 ```

@@ -569,7 +569,7 @@ class AgACI:
             self.ex[bk][gi] = min(0.45, max(-0.15, m + g * ((1.0 if miss else 0.0) - 0.2)))
 
 
-def score(stream, ens, regs):
+def score(stream, ens, regs, capture=None):
     """Arrival predictions for these buses at their newest fixes:
     reg -> (code, fix_t, [[k, t_eta, t_lo, t_hi, t_nowcast], ...], n_scored) with absolute epoch seconds.
     Stops the models were not trained for (more than 30 min ahead by nowcast, or the terminus) carry the
@@ -586,6 +586,8 @@ def score(stream, ens, regs):
         for row, k, b in zip(rows, ks, bases):
             if b <= HORIZON_MAX and k < len(stream.R.ds[code]) - 1:
                 X.append(row); owner.append((reg, k, b))
+                if capture is not None:                  # training export (rtc_audit --dump): the rows as scored
+                    capture.append((reg, k, b, row))
     if X:
         p, lo, hi, q10, q90, hb = ens.predict(np.asarray(X, dtype=np.float32), np.asarray([o[2] for o in owner]),
                                               stream.cal.margins() if stream.cal else None)
