@@ -1,5 +1,11 @@
 # Indian Multi-City Bus ETA — Head-to-Head Benchmark Results
 
+> **Superseded numbers — read this first.** The scores in this file were the first write-up. They used a historical
+> speed model (`data/meta/<city>/model.json`) built after the test day, so the history already contained it. The causal
+> re-scoring (`src/audit_v4.py`, history from the 7 days before the scored day only) is in the main README §1: MTC
+> 135.5 → 92.3 s, BMTC 147.3 → 95.3 s, Delhi 153.1 → 98.8 s, Mumbai 90.0 → 84.9 s (not −31%).
+
+
 > Evaluated: 2026-11-24 | Repo: `~/projects/ETA`  
 > Protocol: Strict chronological whole-fleet replay on held-out test days (zero leakage); all live probes, shared-corridor speeds, headways, and vehicle pace ratios updated strictly causally.
 
