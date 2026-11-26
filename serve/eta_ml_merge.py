@@ -239,6 +239,8 @@ class MergeRTC(Merge):
             first0 = row[4][0][1] if isinstance(row[4][0], list) and len(row[4][0]) > 1 else None
             for e in row[4]:
                 if not isinstance(e, list) or len(e) < 2 or not isinstance(e[1], (int, float)) or e[1] <= 0:
+                    if len(rng) < 1 + 2 * RANGE_N:
+                        rng += [None, None]               # keep the sidecar aligned with the list
                     continue
                 nm = self.norm(e[0])
                 k = e[2] if len(e) > 2 and isinstance(e[2], int) and 0 <= e[2] < len(names) and nm in (names[e[2]], ids[e[2]]) else None
