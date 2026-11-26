@@ -1,0 +1,622 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "reclaim.city traffic API",
+        "version": "1.0",
+        "description": "Police traffic alerts, observed bus speeds and official congestion spots, city by city. No key, CORS open, read-only. Docs: https://api.reclaim.city/docs/#traffic"
+    },
+    "servers": [
+        {
+            "url": "https://api.reclaim.city/traffic/v1"
+        }
+    ],
+    "paths": {
+        "/cities": {
+            "get": {
+                "summary": "Cities and which datasets each has",
+                "responses": {
+                    "200": {
+                        "description": "JSON"
+                    }
+                }
+            }
+        },
+        "/{city}": {
+            "get": {
+                "summary": "What a city has, with counts and freshness",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "required": true,
+                        "description": "City id from /cities",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "hyderabad",
+                                "bengaluru",
+                                "chennai",
+                                "delhi",
+                                "mumbai",
+                                "andhra-pradesh",
+                                "chandigarh",
+                                "ahmedabad"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON"
+                    }
+                }
+            }
+        },
+        "/{city}/alerts": {
+            "get": {
+                "summary": "Police traffic alerts (GeoJSON)",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "required": true,
+                        "description": "City id from /cities",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "hyderabad",
+                                "bengaluru",
+                                "chennai",
+                                "delhi",
+                                "mumbai",
+                                "andhra-pradesh",
+                                "chandigarh",
+                                "ahmedabad"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "state",
+                        "in": "query",
+                        "required": false,
+                        "description": "active (default), upcoming or all",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "active",
+                                "upcoming",
+                                "all"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": false,
+                        "description": "Comma-separated types, e.g. breakdown,diversion,congestion",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "route",
+                        "in": "query",
+                        "required": false,
+                        "description": "Only alerts on this bus route number",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bbox",
+                        "in": "query",
+                        "required": false,
+                        "description": "min_lon,min_lat,max_lon,max_lat",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "required": false,
+                        "description": "Latitude (with lon and radius)",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "required": false,
+                        "description": "Longitude",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "radius",
+                        "in": "query",
+                        "required": false,
+                        "description": "Metres around lat/lon",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "description": "Maximum features",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GeoJSON FeatureCollection"
+                    }
+                }
+            }
+        },
+        "/{city}/alerts/history": {
+            "get": {
+                "summary": "Every placed past alert, newest first (GeoJSON, paged)",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "required": true,
+                        "description": "City id from /cities",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "hyderabad",
+                                "bengaluru",
+                                "chennai",
+                                "delhi",
+                                "mumbai",
+                                "andhra-pradesh",
+                                "chandigarh",
+                                "ahmedabad"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "since",
+                        "in": "query",
+                        "required": false,
+                        "description": "Unix time or YYYY-MM-DD (IST)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "until",
+                        "in": "query",
+                        "required": false,
+                        "description": "Unix time or YYYY-MM-DD (IST), that day included",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "required": false,
+                        "description": "Comma-separated types",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "agency",
+                        "in": "query",
+                        "required": false,
+                        "description": "Part of the agency name, e.g. Cyberabad",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "route",
+                        "in": "query",
+                        "required": false,
+                        "description": "Bus route number",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bbox",
+                        "in": "query",
+                        "required": false,
+                        "description": "min_lon,min_lat,max_lon,max_lat",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "required": false,
+                        "description": "Latitude (with lon and radius)",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "required": false,
+                        "description": "Longitude",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "radius",
+                        "in": "query",
+                        "required": false,
+                        "description": "Metres around lat/lon",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "required": false,
+                        "description": "Paging offset",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "description": "Page size, up to 5000 (default 500)",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GeoJSON FeatureCollection with total and next_offset"
+                    }
+                }
+            }
+        },
+        "/{city}/speeds": {
+            "get": {
+                "summary": "Observed bus speed per stop-to-stop road (GeoJSON)",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "required": true,
+                        "description": "City id from /cities",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "hyderabad",
+                                "bengaluru",
+                                "chennai",
+                                "delhi",
+                                "mumbai",
+                                "andhra-pradesh",
+                                "chandigarh",
+                                "ahmedabad"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "when",
+                        "in": "query",
+                        "required": false,
+                        "description": "now (last hour, default) or typical (median at hour over the window)",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "now",
+                                "typical"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "hour",
+                        "in": "query",
+                        "required": false,
+                        "description": "Hour of day 0-23 IST for typical (default: now)",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "required": false,
+                        "description": "slowest or congested",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "slowest",
+                                "congested"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "min_kmph",
+                        "in": "query",
+                        "required": false,
+                        "description": "Lowest speed to include",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "max_kmph",
+                        "in": "query",
+                        "required": false,
+                        "description": "Highest speed to include",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "min_buses",
+                        "in": "query",
+                        "required": false,
+                        "description": "Fewest buses in the last hour",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "profile",
+                        "in": "query",
+                        "required": false,
+                        "description": "1 adds the 24-hour typical profile per road",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "bbox",
+                        "in": "query",
+                        "required": false,
+                        "description": "min_lon,min_lat,max_lon,max_lat",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "required": false,
+                        "description": "Latitude (with lon and radius)",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "required": false,
+                        "description": "Longitude",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "radius",
+                        "in": "query",
+                        "required": false,
+                        "description": "Metres around lat/lon",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "description": "Maximum features",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GeoJSON FeatureCollection"
+                    }
+                }
+            }
+        },
+        "/{city}/speeds/city": {
+            "get": {
+                "summary": "City-wide median bus speed now and by hour",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "required": true,
+                        "description": "City id from /cities",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "hyderabad",
+                                "bengaluru",
+                                "chennai",
+                                "delhi",
+                                "mumbai",
+                                "andhra-pradesh",
+                                "chandigarh",
+                                "ahmedabad"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON"
+                    }
+                }
+            }
+        },
+        "/{city}/hotspots": {
+            "get": {
+                "summary": "Official congestion places (GeoJSON)",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "required": true,
+                        "description": "City id from /cities",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "hyderabad",
+                                "bengaluru",
+                                "chennai",
+                                "delhi",
+                                "mumbai",
+                                "andhra-pradesh",
+                                "chandigarh",
+                                "ahmedabad"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "day",
+                        "in": "query",
+                        "required": false,
+                        "description": "mon..sun or 0-6 (Bengaluru; default today IST)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hour",
+                        "in": "query",
+                        "required": false,
+                        "description": "0-23 IST (Bengaluru; default now)",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "min_pct",
+                        "in": "query",
+                        "required": false,
+                        "description": "Bengaluru: only places jammed in at least this % of checks",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "profile",
+                        "in": "query",
+                        "required": false,
+                        "description": "1 adds the 168-hour profile (Bengaluru)",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "1"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "bbox",
+                        "in": "query",
+                        "required": false,
+                        "description": "min_lon,min_lat,max_lon,max_lat",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GeoJSON FeatureCollection"
+                    }
+                }
+            }
+        },
+        "/near": {
+            "get": {
+                "summary": "Everything near a point: alerts, official spots, bus speeds",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "required": true,
+                        "description": "Latitude",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lon",
+                        "in": "query",
+                        "required": true,
+                        "description": "Longitude",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "radius",
+                        "in": "query",
+                        "required": false,
+                        "description": "Metres around lat/lon",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "city",
+                        "in": "query",
+                        "required": false,
+                        "description": "Force a city (default: from the point)",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "hyderabad",
+                                "bengaluru",
+                                "chennai",
+                                "delhi",
+                                "mumbai",
+                                "andhra-pradesh",
+                                "chandigarh",
+                                "ahmedabad"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "JSON"
+                    }
+                }
+            }
+        },
+        "/health": {
+            "get": {
+                "summary": "Cache state per source",
+                "responses": {
+                    "200": {
+                        "description": "JSON"
+                    }
+                }
+            }
+        }
+    }
+}

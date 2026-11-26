@@ -59,6 +59,7 @@ def main():
         x_if_new(force=nitter_mtime() is None)
         run("pipeline.chennai")
         run("pipeline.bengaluru")
+        run("pipeline.publish_history")      # alert history for the traffic API, hourly at most
         try: age = time.time() - LIVE.stat().st_mtime
         except OSError: age = 1e9
         if age > 240:                        # nothing rewrote the layer this pass: refresh expiries and "generated"

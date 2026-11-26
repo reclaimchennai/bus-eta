@@ -262,7 +262,8 @@ serve/          the live service: streaming engine, collector merge, replay/shad
 models/         trained weights for every version (v4_clean_ensemble is live), with reports
 reference/      the original nowcast / travel_model / backtest scripts the maps ran before v4 (Delhi, Mumbai)
 traffic/        scrapers for traffic-police alerts and advisories (X via Sorsa/Nitter, WhatsApp channel, e-challan
-                site, BTP dashboard, Delhi Traffic Police) and the geocoding pipeline
+                site, BTP dashboard, Delhi Traffic Police) and the geocoding pipeline; traffic/api/ is the public
+                traffic API (api.reclaim.city/traffic/v1, docs/TRAFFIC_API.md)
 traffic_eval/   the evaluation of traffic alerts against GPS (section 4)
 video/          the manim explainer: script, data prep, rendered mp4
 docs/           benchmark write-ups, research notes and references (REFERENCES.bib), traffic docs, images

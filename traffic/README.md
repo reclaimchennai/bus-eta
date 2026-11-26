@@ -44,6 +44,7 @@ cannot give, is in [`../docs/TRAFFIC_SOURCES.md`](../docs/TRAFFIC_SOURCES.md).
 | `pipeline/btp_powerbi.py` | Bengaluru Traffic Police's public Power BI congestion report, dumped through the same calls the embedded page makes. Needs `BTP_POWERBI_KEY` (the public embed key on the page). |
 | `pipeline/btp_congestion.py` | Hour-of-week congestion profile per BTP grid cell, per BMTC stop (200 m), per corridor. |
 | `pipeline/collect.py`, `publish.py`, `refdata.py`, `make_map.py` | The live loop (cron every minute), atomic publishing of the live layer, daily reference data, the history map. |
+| `pipeline/publish_history.py` | Every placed alert per city (Hyderabad, Chennai, Bengaluru) for the traffic API's `alerts/history`, pushed at most hourly when it changed. |
 | `scripts/blr_accounts.py`, `nitter_*.py` | Finding and probing the Bengaluru police accounts, paging a Nitter search for history. |
 | `scripts/mss.crontab`, `mss_push_code.sh`, `publish_live.sh` | How it was deployed (cron on a small Linux box next to Nitter). |
 | `data/` | Hand-made reference only: aliases, curated events, the 67 Bengaluru police accounts, BTP junctions/station areas, Power BI lookups. OSM cuts and caches are rebuilt (`ogr2ogr -spat … -where "name IS NOT NULL"` from the India PBF). |
@@ -68,6 +69,14 @@ with Nitter's own `tools/create_session_*.py`. It is never in git and not includ
 because the site often returns 503. It keeps every post ever seen, parses stated periods, places posts with a
 gazetteer of OSM roads, landmarks and DTC stops, and checks route-dodging detours against the closures. `--x` merges
 the @dtptraffic posts forwarded by `x_live.py`.
+
+## api/: the public traffic API
+
+[`api/`](api/) serves all of this, plus the bus maps' observed bus speeds and the official congestion places, city by
+city at **https://api.reclaim.city/traffic/v1/** (8 cities; no key, CORS open). It is one stdlib Python file that reads the
+files the maps publish. Endpoints: `/cities`, `/{city}`, `/{city}/alerts`, `/{city}/alerts/history`, `/{city}/speeds`,
+`/{city}/speeds/city`, `/{city}/hotspots`, `/near`. Docs: [`../docs/TRAFFIC_API.md`](../docs/TRAFFIC_API.md),
+OpenAPI: [`api/openapi.json`](api/openapi.json).
 
 ## What it yields (see `../data/traffic/`)
 
