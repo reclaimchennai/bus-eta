@@ -1,0 +1,60 @@
+{
+ "_note": "eta-ml on raw (parag). Paths are the collectors' own. Mumbai and Gurugram back 24 Nov (Chalo relay).",
+ "cities": [
+  {
+   "city": "mtc",
+   "archive": "/home/user/projects/mtc-live/archive",
+   "route_stops": "/home/user/projects/maps-site/mapsv2/data/route_stops.json",
+   "stop_dist": "/home/user/projects/maps-site/mapsv2/data/stop_dist.json",
+   "model_json": "/home/user/projects/maps-site/mapsv2/live/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/mtc_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/mtc.json",
+   "max_gap": 600,
+   "log_share": 0.05
+  },
+  {
+   "city": "bmtc",
+   "archive": "/home/user/projects/bmtc-live/archive",
+   "route_stops": "/home/user/projects/bmtc-live/net/route_stops.json",
+   "stop_dist": "/home/user/projects/bmtc-live/net/stop_dist.json",
+   "model_json": "/home/user/projects/maps-site/bengaluru/live/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/bmtc_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/bmtc.json",
+   "max_gap": 180,
+   "log_share": 0.05
+  },
+  {
+   "city": "delhi",
+   "archive": "/home/user/projects/delhi-live/archive",
+   "route_stops": "/home/user/projects/maps-site/delhi/data/route_stops.json",
+   "stop_dist": "/home/user/projects/maps-site/delhi/data/stop_dist.json",
+   "model_json": "/home/user/projects/maps-site/delhi/live/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/delhi_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/delhi.json",
+   "max_gap": 180,
+   "min_gap": 45,
+   "log_share": 0.02
+  },
+  {
+   "city": "mumbai",
+   "archive": "/home/user/projects/mumbai-live/archive",
+   "route_stops": "/home/user/projects/maps-site/mumbai/data/route_stops.json",
+   "stop_dist": "/home/user/projects/maps-site/mumbai/data/stop_dist.json",
+   "model_json": "/home/user/projects/maps-site/mumbai/live/model.json",
+   "osm": "/home/user/projects/eta-ml/osm/mumbai_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/mumbai.json",
+   "max_gap": 600,
+   "log_share": 0.05
+  },
+  {
+   "city": "ncr",
+   "archive": "/home/user/projects/ncr-live/archive",
+   "route_stops": "/home/user/projects/maps-site/delhi/data/ncr/route_stops.json",
+   "stop_dist": "/home/user/projects/ncr-live/stop_dist.json",
+   "osm": "/home/user/projects/eta-ml/osm/ncr_osm_infra.json",
+   "out": "/home/user/projects/eta-ml/out/ncr.json",
+   "max_gap": 180,
+   "log_share": 0.1
+  }
+ ]
+}

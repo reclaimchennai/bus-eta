@@ -1,0 +1,19 @@
+[Unit]
+Description=eta-ml: v4 arrival-time model (LightGBM+XGBoost+CatBoost) for the bus maps, tails the collectors' archives -> ~/projects/eta-ml/out/<city>.json
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/projects/eta-ml
+Environment=OMP_NUM_THREADS=2 PYTHONUNBUFFERED=1
+ExecStart=%h/projects/eta-ml/.venv/bin/python serve/eta_ml_service.py --config cities.json --models models --holidays holidays_india_2025_2026.json --tick 10 --threads 2
+Restart=always
+RestartSec=30
+Nice=5
+MemoryMax=1400M
+MemorySwapMax=0
+CPUQuota=150%
+StandardOutput=append:%h/projects/eta-ml/logs/eta-ml.log
+StandardError=append:%h/projects/eta-ml/logs/eta-ml.log
+
+[Install]
+WantedBy=default.target

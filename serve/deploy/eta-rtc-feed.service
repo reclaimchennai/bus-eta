@@ -1,0 +1,17 @@
+[Unit]
+Description=eta-rtc-feed: the RTC maps' vehicles.json (SVR feed server, read-only) -> ~/projects/eta-ml/rtc/<system>/obs-<IST day>.jsonl for eta-ml-rtc
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/projects/eta-ml/serve-rtc
+Environment=TZ=Asia/Kolkata PYTHONUNBUFFERED=1
+ExecStart=/usr/bin/python3 rtc_feed.py --config %h/projects/eta-ml/rtc_feed.json
+Restart=always
+RestartSec=30
+Nice=5
+MemoryMax=300M
+StandardOutput=append:%h/projects/eta-ml/logs/eta-rtc-feed.log
+StandardError=append:%h/projects/eta-ml/logs/eta-rtc-feed.log
+
+[Install]
+WantedBy=default.target
