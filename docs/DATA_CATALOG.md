@@ -10,6 +10,7 @@
 | Folder | Contents | Format & Scale | Google Drive Mirror |
 | :--- | :--- | :--- | :---: |
 | `data/raw/{mtc,bmtc,mumbai,ncr,delhi}/` | Historical bus GPS fix archives (`obs-YYYY-MM-DD.jsonl.gz`) copied read-only from `user@map-server` | MTC 38d (573 MB), BMTC 8d (378 MB), Mumbai 17d (61 MB), NCR 6d (7.7 MB), Delhi 14d (3.5 GB) | Local only (reproducible via rsync) |
+| `user@map-server:projects/eta-ml/ctx/blr/` (not copied here) | Bengaluru Traffic Police context for BMTC, from twtrx `pipeline/btp_congestion.py`. `stop_congestion_how.json`: per BMTC map stop, % of BTP 15-min congestion checks with a jam within 200 m, per hour of week (1 Aug–7 Oct 2026). `corridor_speed_how.json`: BTP corridor median km/h per direction and hour of week (Sep 2023–Jul 2025). Live alerts: `maps-site/bengaluru/live/incidents.json` | JSON, 430 KB + 62 KB; 1,114 stops, 23 corridors | Local only |
 | `data/meta/{city}/` | `route_stops.json`, `stop_dist.json`, `bus_stops.geojson`, `mtc_routes.geojson`, production `model.json` | 5 cities (~45 MB total) | Local |
 | `data/weather/` | `chennai_pol_hourly.parquet` (**272 stations, 130,765 station-hours** from `pol.reclaimchennai.city`) + `weather_city_hourly.parquet` (all 5 cities + 3h/6h/24h waterlogging lag) | Parquet (~1.2 MB) | `My Drive/ETA/weather/` |
 | `data/osm/` | Fresh Overpass API road infrastructure per city (`{city}_osm_infra.json`): traffic signals, **new flyovers/bridges**, railway crossings, roundabouts, speed bumps | JSON (5 cities: 5,101 flyovers, 5,368 signals, 1,666 rail crossings) | `My Drive/ETA/osm/` |

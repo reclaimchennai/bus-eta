@@ -61,3 +61,38 @@
 - `ETA-wt-features` (`feat/features-and-data`): `src/weather_fetch.py`, `src/extract_dataset.py`
 - `ETA-wt-models` (`feat/ml-models`): `src/train_v2_deepreta_cqr.py`, `src/train_gbdt_cqr.py`, `src/train_dwell_model.py`, `src/eta_rollout_eval.py`, `src/mask_cnn_baseline.py`, `src/llm_disruption_sidecar.py`, `notebooks/colab_a100_deep_eta.ipynb`
 - Trained production-ready models: `~/projects/ETA/models/{v2_deepreta_cqr, gbdt_cqr_v1, dwell_v1}/`
+
+---
+
+## 5. Bengaluru Traffic Police (BTP) congestion profile as v4 features — BMTC (evaluated 2026-11-25)
+
+**Input:** `ctx/blr/stop_congestion_how.json` (twtrx `pipeline/btp_congestion.py`). For each stop, the % of BTP's 15-minute congestion-map checks that found a jam within 200 m, by hour of week. Data from 1 Aug to 7 Oct 2026, 5,752 snapshots, 1,114 BMTC stops. That is 11% of the 10,156 stops on BMTC routes, but 74% of held-out queries have at least one covered stop between the bus and the target stop, and 28% have a covered next stop.
+
+**Features** (`ETA-wt-models/src/btp_features.py`): `btp_p_next` is p at the next stop and `btp_p_max3` is the max p over the next 3 stops. Both use each stop's arrival hour of week, estimated causally as now + nowcast × distance fraction. Two optional extras: `btp_path_mean` and `btp_path_cov`. Non-BMTC rows get NaN.
+
+**Protocol** (`ETA-wt-models/src/train_v4_btp_ab.py`): the full v4 recipe (5 cities, LGB+XGB+CAT blend, q10/q90 + AgACI), trained twice from `v3_cache` with identical seeds: 74 features vs 74 + 2 BTP features. Held-out day: BMTC 2026-11-23 (361,784 queries). The base arm reproduces the published v4 exactly.
+
+| Horizon | N | v4 MAE | **v4+BTP MAE** | v4 P80 | **v4+BTP P80** | v4 Cov80 | v4+BTP Cov80 |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `1–3m` | 44,569 | 26.4s | 26.5s | 39.3s | 39.3s | 78.1% | 77.9% |
+| `3–5m` | 42,803 | 45.3s | 45.4s | 68.9s | 69.1s | 79.6% | 79.5% |
+| `5–10m` | 84,542 | 70.2s | 70.5s | 108.4s | 109.0s | 80.3% | 80.5% |
+| `10–15m` | 65,900 | 103.7s | 103.8s | 161.8s | 161.3s | 79.7% | 79.8% |
+| `15–30m` | 123,970 | 143.2s | 143.3s | 215.8s | 215.6s | 79.6% | 79.5% |
+| **ALL** | 361,784 | **93.0s** | **93.1s** | 146.0s | 146.3s | 79.6% | 79.6% |
+
+- Paired per-query MAE difference (BTP − base): **+0.13 s, 95% bootstrap CI [+0.08, +0.18]**, so slightly worse.
+- On queries whose path has a BTP stop, MAE went 99.7 → 100.0 s. On queries without one, it went 73.8 → 73.5 s. That is the opposite of what a real signal would do.
+- LightGBM gain share: `btp_p_max3` 0.29%, `btp_p_next` 0.09%.
+- Other cities moved through the shared blend: Chennai MTC 94.8 → 95.7 s, because the blend weights shifted from (0.4, 0.5, 0.1) to (0.5, 0.4, 0.1). Delhi went 97.7 → 97.5 s and Mumbai stayed at 79.8 s.
+- **BMTC-only LightGBM check** (3 seeds, BMTC-only test MAE). Base: 92.50 ± 0.06 s. +2 BTP features: 92.21 ± 0.22 s. +2 features shuffled across rows: 92.53 ± 0.13 s. +4 features (one seed): 92.03 s. So there is at most a ~0.3% signal in a single-city model, and it disappears in the production multi-city ensemble.
+
+**Why so little:** v4 already sees recurring congestion directly. It has per-segment, hour-of-day historical speeds (`base_eta_hist_s`) and live shared-corridor speeds from the whole fleet (`path_live_corr_v`, `cur_corr_live_v_*`). BTP's "jam within 200 m" frequency is a coarser, older (Aug–Oct) proxy for the same thing.
+
+**Recommendation:** do **not** add the BTP profile to v4, and do not change `eta_ml_service.py`. Keep it as map context: the "Police congestion (usual)" layer, already live. Revisit only if BTP data covers corridors where BMTC GPS is thin.
+
+**Live BTP alerts** (`maps-site/bengaluru/live/incidents.json`; history in twtrx `data/blr/events.json`):
+- Volume: 67 events since 26 Oct 2026, about 2 per day. 43 of them are `other`; the typed ones are 7 breakdown, 6 diversion, 4 congestion, 2 works, 2 accident, and 1 each of event, waterlogging and tree_fall.
+- Calibrating the per-type delay priors in `serve/incident_penalty.py` needs about 30 geolocated, time-bounded events per main type that overlap archived BMTC GPS. That is about 150–200 typed events: roughly 6–8 months at the current typed rate (~0.8 per day).
+- A learned v4 feature would need 500+ events, because the trees need about 100 rows per leaf from several independent events, not one jam.
+- Until then, the right path is serving-side: feed the Bengaluru incidents file to `incident_penalty.py` for BMTC, using the existing uncalibrated priors, the same way TGSRTC does.
