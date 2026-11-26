@@ -1,0 +1,1581 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.07551,
+          12.86686
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 226,
+        "n_buses": 167,
+        "n_routes": 28,
+        "top_routes": [
+          "627",
+          "4104",
+          "116",
+          "598",
+          "1996",
+          "3983"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 160.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.0754,
+          12.86686
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 213,
+        "n_buses": 160,
+        "n_routes": 30,
+        "top_routes": [
+          "627",
+          "4104",
+          "116",
+          "598",
+          "1996",
+          "821"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 88.0,
+        "mean_angle_deg": 166.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.23809,
+          12.94425
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 195,
+        "n_buses": 82,
+        "n_routes": 11,
+        "top_routes": [
+          "M32653",
+          "613",
+          "4319",
+          "630",
+          "821",
+          "5803"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 50.0,
+        "mean_angle_deg": 168.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.26601,
+          13.06449
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 164,
+        "n_buses": 59,
+        "n_routes": 9,
+        "top_routes": [
+          "232",
+          "104",
+          "M36362",
+          "2570",
+          "116",
+          "268"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 40.0,
+        "mean_angle_deg": 170.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.22674,
+          12.87414
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 154,
+        "n_buses": 84,
+        "n_routes": 14,
+        "top_routes": [
+          "37",
+          "385",
+          "627",
+          "2156",
+          "4351",
+          "3530"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 50.0,
+        "mean_angle_deg": 168.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.250945,
+          12.97563
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 114,
+        "n_buses": 49,
+        "n_routes": 5,
+        "top_routes": [
+          "467",
+          "690",
+          "1015",
+          "6182",
+          "542"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 40.0,
+        "mean_angle_deg": 161.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.07553,
+          12.86711
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 75,
+        "n_buses": 70,
+        "n_routes": 19,
+        "top_routes": [
+          "4104",
+          "627",
+          "821",
+          "116",
+          "1996",
+          "2506"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 169.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.12276,
+          12.93174
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 71,
+        "n_buses": 58,
+        "n_routes": 16,
+        "top_routes": [
+          "3135",
+          "5731",
+          "636",
+          "3062",
+          "5571",
+          "2138"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 110.0,
+        "mean_angle_deg": 167.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.21431,
+          12.95934
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 67,
+        "n_buses": 21,
+        "n_routes": 3,
+        "top_routes": [
+          "690",
+          "1860",
+          "481"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 170.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.07558,
+          12.86704
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 60,
+        "n_buses": 56,
+        "n_routes": 16,
+        "top_routes": [
+          "4104",
+          "116",
+          "627",
+          "M35638",
+          "821",
+          "598"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 159.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.9336,
+          12.95413
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 51,
+        "n_buses": 27,
+        "n_routes": 8,
+        "top_routes": [
+          "3726",
+          "6255",
+          "3744",
+          "c:583",
+          "2506",
+          "c:18A"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 50.0,
+        "mean_angle_deg": 164.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.12268,
+          12.93172
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 51,
+        "n_buses": 43,
+        "n_routes": 11,
+        "top_routes": [
+          "5731",
+          "636",
+          "3135",
+          "505",
+          "5571",
+          "5804"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 160.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.25085,
+          12.97565
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 48,
+        "n_buses": 35,
+        "n_routes": 7,
+        "top_routes": [
+          "467",
+          "1015",
+          "690",
+          "M32653",
+          "2570",
+          "5738"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 63.0,
+        "mean_angle_deg": 166.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.23804,
+          12.944305
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 42,
+        "n_buses": 30,
+        "n_routes": 6,
+        "top_routes": [
+          "M32653",
+          "613",
+          "640",
+          "5803",
+          "542",
+          "415"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 169.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.31273,
+          13.18486
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 41,
+        "n_buses": 32,
+        "n_routes": 9,
+        "top_routes": [
+          "3516",
+          "2713",
+          "2569",
+          "3477",
+          "3482",
+          "3056"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 50.0,
+        "mean_angle_deg": 162.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.258945,
+          13.038635
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 40,
+        "n_buses": 21,
+        "n_routes": 6,
+        "top_routes": [
+          "253",
+          "1558",
+          "2288",
+          "2280",
+          "271",
+          "2296"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 61.0,
+        "mean_angle_deg": 168.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.30341,
+          13.18593
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 35,
+        "n_buses": 28,
+        "n_routes": 9,
+        "top_routes": [
+          "2569",
+          "2713",
+          "2570",
+          "3482",
+          "4782",
+          "3056"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 36.0,
+        "mean_angle_deg": 163.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.226695,
+          12.87419
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 34,
+        "n_buses": 31,
+        "n_routes": 12,
+        "top_routes": [
+          "37",
+          "627",
+          "385",
+          "2156",
+          "9",
+          "543"
+        ],
+        "median_dur_s": 55.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 165.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.31235,
+          13.184845
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 32,
+        "n_buses": 25,
+        "n_routes": 13,
+        "top_routes": [
+          "2569",
+          "3482",
+          "2570",
+          "3516",
+          "2714",
+          "4782"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 30.0,
+        "mean_angle_deg": 162.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.122605,
+          12.931535
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 32,
+        "n_buses": 31,
+        "n_routes": 17,
+        "top_routes": [
+          "5731",
+          "636",
+          "3135",
+          "3062",
+          "3149",
+          "3137"
+        ],
+        "median_dur_s": 45.0,
+        "p90_dur_s": 109.0,
+        "mean_angle_deg": 168.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.31182,
+          13.1849
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 24,
+        "n_buses": 21,
+        "n_routes": 16,
+        "top_routes": [
+          "2570",
+          "3056",
+          "3476",
+          "2844",
+          "4782",
+          "2713"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 167.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.3035,
+          13.18612
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 23,
+        "n_buses": 20,
+        "n_routes": 9,
+        "top_routes": [
+          "2569",
+          "2713",
+          "2570",
+          "3482",
+          "4782",
+          "3476"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 50.0,
+        "mean_angle_deg": 167.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.24143,
+          12.95128
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 23,
+        "n_buses": 14,
+        "n_routes": 1,
+        "top_routes": [
+          "5174"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 160.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.20364,
+          13.00945
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 21,
+        "n_buses": 16,
+        "n_routes": 2,
+        "top_routes": [
+          "1044",
+          "1027"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 30.0,
+        "mean_angle_deg": 165.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.30365,
+          13.18621
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 18,
+        "n_buses": 16,
+        "n_routes": 11,
+        "top_routes": [
+          "2713",
+          "2714",
+          "2569",
+          "c:4",
+          "4782",
+          "3502"
+        ],
+        "median_dur_s": 35.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 168.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.20379,
+          13.00945
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 17,
+        "n_buses": 13,
+        "n_routes": 4,
+        "top_routes": [
+          "1044",
+          "1027",
+          "4000",
+          "5012"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 30.0,
+        "mean_angle_deg": 162.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.26612,
+          13.0645
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 15,
+        "n_buses": 13,
+        "n_routes": 4,
+        "top_routes": [
+          "232",
+          "104",
+          "2570",
+          "M32653"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 46.0,
+        "mean_angle_deg": 161.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.25089,
+          12.97598
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 15,
+        "n_buses": 14,
+        "n_routes": 3,
+        "top_routes": [
+          "467",
+          "690",
+          "1015"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 168.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.93348,
+          12.95415
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 15,
+        "n_buses": 14,
+        "n_routes": 4,
+        "top_routes": [
+          "6255",
+          "3726",
+          "1996",
+          "c:500P"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 40.0,
+        "mean_angle_deg": 170.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.12256,
+          12.93154
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 14,
+        "n_buses": 13,
+        "n_routes": 6,
+        "top_routes": [
+          "5731",
+          "3135",
+          "5571",
+          "3062",
+          "5804",
+          "613"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 87.0,
+        "mean_angle_deg": 169.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.06988,
+          12.89131
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 14,
+        "n_buses": 9,
+        "n_routes": 2,
+        "top_routes": [
+          "M35638",
+          "5731"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 34.0,
+        "mean_angle_deg": 156.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.20313,
+          13.047735
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 14,
+        "n_buses": 9,
+        "n_routes": 2,
+        "top_routes": [
+          "95",
+          "2280"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 74.0,
+        "mean_angle_deg": 165.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.241325,
+          12.89889
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 14,
+        "n_buses": 13,
+        "n_routes": 3,
+        "top_routes": [
+          "60",
+          "558",
+          "624"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 37.0,
+        "mean_angle_deg": 167.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          79.93387,
+          12.95444
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 13,
+        "n_buses": 13,
+        "n_routes": 6,
+        "top_routes": [
+          "3726",
+          "6255",
+          "3744",
+          "3736",
+          "c:500P",
+          "c:53"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 48.0,
+        "mean_angle_deg": 170.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.23849,
+          12.94468
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 13,
+        "n_buses": 13,
+        "n_routes": 2,
+        "top_routes": [
+          "M32653",
+          "613"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 88.0,
+        "mean_angle_deg": 172.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.05638,
+          12.84072
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 12,
+        "n_buses": 12,
+        "n_routes": 4,
+        "top_routes": [
+          "4071",
+          "246",
+          "1991",
+          "640"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 109.0,
+        "mean_angle_deg": 171.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.22682,
+          12.874145
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 12,
+        "n_buses": 10,
+        "n_routes": 4,
+        "top_routes": [
+          "37",
+          "385",
+          "4351",
+          "1956"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 49.0,
+        "mean_angle_deg": 152.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.241405,
+          12.898725
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 12,
+        "n_buses": 12,
+        "n_routes": 2,
+        "top_routes": [
+          "60",
+          "558"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 40.0,
+        "mean_angle_deg": 170.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.15972,
+          12.98054
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 11,
+        "n_buses": 8,
+        "n_routes": 3,
+        "top_routes": [
+          "5174",
+          "5173",
+          "5172"
+        ],
+        "median_dur_s": 69.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 164.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.31234,
+          13.185
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 11,
+        "n_buses": 10,
+        "n_routes": 6,
+        "top_routes": [
+          "2713",
+          "2569",
+          "2714",
+          "2570",
+          "3482",
+          "4782"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 40.0,
+        "mean_angle_deg": 158.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.15432,
+          13.25275
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 11,
+        "n_buses": 11,
+        "n_routes": 6,
+        "top_routes": [
+          "3394",
+          "3120",
+          "3703",
+          "3760",
+          "3880",
+          "1980"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 30.0,
+        "mean_angle_deg": 158.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.22689,
+          12.87473
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 11,
+        "n_buses": 11,
+        "n_routes": 5,
+        "top_routes": [
+          "37",
+          "385",
+          "1956",
+          "2156",
+          "c:49F"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 168.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.22734,
+          12.8917
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 9,
+        "n_buses": 9,
+        "n_routes": 2,
+        "top_routes": [
+          "630",
+          "624"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 62.0,
+        "mean_angle_deg": 165.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.19036,
+          13.18598
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 9,
+        "n_buses": 9,
+        "n_routes": 4,
+        "top_routes": [
+          "3094",
+          "3394",
+          "1980",
+          "M35970"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 50.0,
+        "mean_angle_deg": 161.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.25108,
+          12.97592
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 9,
+        "n_buses": 8,
+        "n_routes": 2,
+        "top_routes": [
+          "467",
+          "690"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 56.0,
+        "mean_angle_deg": 162.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.12119,
+          12.93262
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 9,
+        "n_buses": 9,
+        "n_routes": 3,
+        "top_routes": [
+          "3135",
+          "3727",
+          "505"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 84.0,
+        "mean_angle_deg": 167.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.21429,
+          12.95932
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 3,
+        "top_routes": [
+          "690",
+          "1860",
+          "481"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 176.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.1904,
+          13.18606
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 4,
+        "top_routes": [
+          "3094",
+          "M35970",
+          "c:558C",
+          "3760"
+        ],
+        "median_dur_s": 55.0,
+        "p90_dur_s": 63.0,
+        "mean_angle_deg": 169.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.075335,
+          12.866865
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 5,
+        "top_routes": [
+          "627",
+          "821",
+          "2506",
+          "5725",
+          "598"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 49.0,
+        "mean_angle_deg": 161.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.31265,
+          13.18498
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 3,
+        "top_routes": [
+          "2713",
+          "2706",
+          "3516"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 52.0,
+        "mean_angle_deg": 162.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.24146,
+          12.95127
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "5174"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 169.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.15951,
+          12.98026
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 3,
+        "top_routes": [
+          "5174",
+          "5173",
+          "5172"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 78.0,
+        "mean_angle_deg": 168.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.07576,
+          12.86766
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 6,
+        "top_routes": [
+          "M35638",
+          "821",
+          "4104",
+          "598",
+          "M26880",
+          "1996"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 72.0,
+        "mean_angle_deg": 171.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.25131,
+          12.97671
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 2,
+        "top_routes": [
+          "467",
+          "690"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 74.0,
+        "mean_angle_deg": 161.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.13092,
+          13.03969
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 3,
+        "top_routes": [
+          "140",
+          "3961",
+          "c:A45B"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 76.0,
+        "mean_angle_deg": 173.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.2665,
+          13.06495
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 3,
+        "top_routes": [
+          "232",
+          "104",
+          "M36362"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 58.0,
+        "mean_angle_deg": 163.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.31191,
+          13.18505
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 5,
+        "top_routes": [
+          "3516",
+          "M34144",
+          "3778",
+          "3476",
+          "2713"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 84.0,
+        "mean_angle_deg": 166.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.227275,
+          12.891655
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 5,
+        "top_routes": [
+          "419",
+          "3531",
+          "M35270",
+          "546",
+          "10"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 166.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.154155,
+          13.25274
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 3,
+        "top_routes": [
+          "3394",
+          "3703",
+          "3892"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 30.0,
+        "mean_angle_deg": 157.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.21664,
+          13.075825
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 4,
+        "top_routes": [
+          "485",
+          "2343",
+          "167",
+          "171"
+        ],
+        "median_dur_s": 25.0,
+        "p90_dur_s": 45.0,
+        "mean_angle_deg": 165.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.190305,
+          13.186005
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 5,
+        "top_routes": [
+          "3094",
+          "3880",
+          "3394",
+          "M35970",
+          "3760"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 177.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.120795,
+          12.93236
+        ]
+      },
+      "properties": {
+        "city": "mtc",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 5,
+        "top_routes": [
+          "3135",
+          "5119",
+          "1980",
+          "3727",
+          "5731"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 55.0,
+        "mean_angle_deg": 166.8
+      }
+    }
+  ]
+}

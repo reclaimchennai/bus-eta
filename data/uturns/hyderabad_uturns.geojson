@@ -1,0 +1,4295 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.50183,
+          17.43464
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 77,
+        "n_buses": 57,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 71.0,
+        "p90_dur_s": 110.4,
+        "mean_angle_deg": 158.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39786,
+          17.49562
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 69,
+        "n_buses": 24,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 163.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.4093,
+          17.43021
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 62,
+        "n_buses": 29,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 55.5,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 168.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39742,
+          17.410855
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 62,
+        "n_buses": 19,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 84.5,
+        "mean_angle_deg": 161.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.60791,
+          17.32556
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 61,
+        "n_buses": 36,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 53.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 171.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26,
+          17.53008
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 52,
+        "n_buses": 36,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 175.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.436885,
+          17.3951
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 48,
+        "n_buses": 30,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 171.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.4369,
+          17.394915
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 46,
+        "n_buses": 29,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 110.0,
+        "mean_angle_deg": 170.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26064,
+          17.52996
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 44,
+        "n_buses": 36,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.5,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 174.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.41576,
+          17.45402
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 43,
+        "n_buses": 27,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 169.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48067,
+          17.37519
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 42,
+        "n_buses": 40,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 95.0,
+        "mean_angle_deg": 158.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.60754,
+          17.32581
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 39,
+        "n_buses": 29,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 83.6,
+        "mean_angle_deg": 173.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48156,
+          17.37477
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 37,
+        "n_buses": 36,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 66.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 161.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.36518,
+          17.49649
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 37,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 169.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39254,
+          17.49753
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 34,
+        "n_buses": 25,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 165.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26384,
+          17.52907
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 33,
+        "n_buses": 33,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 100.0,
+        "p90_dur_s": 119.8,
+        "mean_angle_deg": 161.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55782,
+          17.403445
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 32,
+        "n_buses": 22,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 79.2,
+        "mean_angle_deg": 168.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42314,
+          17.5752
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 31,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 159.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43728,
+          17.39512
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 31,
+        "n_buses": 26,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 82.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 168.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.41837,
+          17.42942
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 31,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 164.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.40846,
+          17.41416
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 30,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 69.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 163.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.60795,
+          17.325415
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 30,
+        "n_buses": 17,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 44.5,
+        "p90_dur_s": 82.0,
+        "mean_angle_deg": 167.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.44189,
+          17.39586
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 29,
+        "n_buses": 17,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 86.0,
+        "p90_dur_s": 119.2,
+        "mean_angle_deg": 166.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.521765,
+          17.43366
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 28,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 35.5,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 169.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.37624,
+          17.40614
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 28,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 165.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.44061,
+          17.44328
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 28,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 44.5,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 159.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48557,
+          17.379155
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 26,
+        "n_buses": 24,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 66.5,
+        "p90_dur_s": 105.0,
+        "mean_angle_deg": 167.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.569545,
+          17.4723
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 26,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 72.0,
+        "p90_dur_s": 111.5,
+        "mean_angle_deg": 162.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.56631,
+          17.32469
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 26,
+        "n_buses": 19,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 75.0,
+        "p90_dur_s": 115.0,
+        "mean_angle_deg": 163.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55981,
+          17.39751
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 25,
+        "n_buses": 22,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 70.8,
+        "mean_angle_deg": 173.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.60684,
+          17.32634
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 24,
+        "n_buses": 19,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 174.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.500505,
+          17.435815
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 24,
+        "n_buses": 20,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 91.4,
+        "mean_angle_deg": 168.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.362165,
+          17.4966
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 24,
+        "n_buses": 16,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 77.0,
+        "p90_dur_s": 117.0,
+        "mean_angle_deg": 161.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.57085,
+          17.33771
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 24,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 157.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.361675,
+          17.510945
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 24,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 80.7,
+        "mean_angle_deg": 168.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.36176,
+          17.49665
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 23,
+        "n_buses": 15,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 88.6,
+        "mean_angle_deg": 167.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26391,
+          17.52847
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 23,
+        "n_buses": 21,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 162.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26109,
+          17.52991
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 23,
+        "n_buses": 19,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 104.0,
+        "mean_angle_deg": 172.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43746,
+          17.39485
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 23,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 110.0,
+        "mean_angle_deg": 169.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.50025,
+          17.4361
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 23,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 116.8,
+        "mean_angle_deg": 170.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.391635,
+          17.41638
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 22,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 71.0,
+        "mean_angle_deg": 165.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.570155,
+          17.4724
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 22,
+        "n_buses": 15,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 103.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 164.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42931,
+          17.500905
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 22,
+        "n_buses": 17,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 168.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39264,
+          17.497315
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 22,
+        "n_buses": 19,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 78.5,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 163.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.36708,
+          17.46379
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 21,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 165.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.36539,
+          17.49653
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 21,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 82.0,
+        "mean_angle_deg": 170.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.5601,
+          17.39844
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 21,
+        "n_buses": 17,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 109.0,
+        "mean_angle_deg": 164.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.4819,
+          17.375215
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 20,
+        "n_buses": 19,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 82.0,
+        "p90_dur_s": 108.3,
+        "mean_angle_deg": 158.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.34861,
+          17.41971
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 20,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.5,
+        "p90_dur_s": 91.0,
+        "mean_angle_deg": 173.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.40945,
+          17.430125
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 20,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 60.2,
+        "mean_angle_deg": 171.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48575,
+          17.37914
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 20,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 56.5,
+        "p90_dur_s": 79.1,
+        "mean_angle_deg": 166.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.40621,
+          17.491695
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 20,
+        "n_buses": 16,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 81.0,
+        "mean_angle_deg": 156.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42452,
+          17.474095
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 20,
+        "n_buses": 17,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 91.0,
+        "mean_angle_deg": 163.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.50046,
+          17.43607
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 19,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 73.0,
+        "p90_dur_s": 99.6,
+        "mean_angle_deg": 172.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.60247,
+          17.32755
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 19,
+        "n_buses": 14,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 170.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43851,
+          17.39481
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 19,
+        "n_buses": 16,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 110.4,
+        "mean_angle_deg": 165.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.40595,
+          17.49182
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 19,
+        "n_buses": 11,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 160.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42929,
+          17.5013
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 19,
+        "n_buses": 14,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 84.0,
+        "mean_angle_deg": 164.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39738,
+          17.49586
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 18,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 164.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.485995,
+          17.37865
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 18,
+        "n_buses": 18,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.5,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 157.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.364455,
+          17.540805
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 18,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 158.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.44234,
+          17.395945
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 18,
+        "n_buses": 14,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 111.5,
+        "mean_angle_deg": 166.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.31703,
+          17.49536
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 17,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 158.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.54996,
+          17.34743
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 17,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 104.0,
+        "mean_angle_deg": 158.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39745,
+          17.49558
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 17,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 84.0,
+        "mean_angle_deg": 160.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.28655,
+          17.514055
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 72.5,
+        "p90_dur_s": 93.0,
+        "mean_angle_deg": 165.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.4156,
+          17.45397
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 14,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 164.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55023,
+          17.347185
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 51.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 159.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.418535,
+          17.42968
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 157.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.496195,
+          17.44597
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 14,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 76.0,
+        "p90_dur_s": 110.5,
+        "mean_angle_deg": 163.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39671,
+          17.411365
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 152.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.348215,
+          17.41988
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 11,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 66.0,
+        "mean_angle_deg": 170.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.426615,
+          17.47387
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 15,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 85.0,
+        "mean_angle_deg": 165.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.361715,
+          17.510825
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 79.5,
+        "p90_dur_s": 94.5,
+        "mean_angle_deg": 170.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.56664,
+          17.339165
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 16,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 167.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55844,
+          17.40298
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 117.6,
+        "mean_angle_deg": 166.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48821,
+          17.38505
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 64.0,
+        "p90_dur_s": 88.6,
+        "mean_angle_deg": 159.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42893,
+          17.50135
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 11,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 163.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.31577,
+          17.49457
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 66.0,
+        "mean_angle_deg": 162.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.31553,
+          17.49587
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 11,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 104.0,
+        "mean_angle_deg": 168.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.5045,
+          17.43472
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 11,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 89.0,
+        "p90_dur_s": 116.8,
+        "mean_angle_deg": 162.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42662,
+          17.4733
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 41.0,
+        "p90_dur_s": 82.0,
+        "mean_angle_deg": 161.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43325,
+          17.45777
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 76.4,
+        "mean_angle_deg": 164.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48071,
+          17.37577
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 14,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 112.4,
+        "mean_angle_deg": 153.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.38498,
+          17.49911
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 15,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 169.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.3635,
+          17.46532
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 14,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 55.0,
+        "p90_dur_s": 99.8,
+        "mean_angle_deg": 166.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26387,
+          17.52931
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 14,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 104.9,
+        "mean_angle_deg": 156.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.315795,
+          17.495835
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 14,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 162.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.606205,
+          17.326675
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 14,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 107.0,
+        "mean_angle_deg": 171.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.3154,
+          17.495595
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 14,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 89.0,
+        "mean_angle_deg": 157.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.50123,
+          17.43461
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 13,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 169.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48181,
+          17.37493
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 13,
+        "n_buses": 13,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 83.4,
+        "mean_angle_deg": 161.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.36451,
+          17.49649
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 13,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 78.0,
+        "mean_angle_deg": 166.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55998,
+          17.39802
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 13,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 68.0,
+        "p90_dur_s": 98.0,
+        "mean_angle_deg": 165.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.58031,
+          17.33588
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 13,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 165.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43798,
+          17.3948
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 13,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 98.0,
+        "mean_angle_deg": 170.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.481015,
+          17.374975
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 12,
+        "n_buses": 11,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 65.0,
+        "p90_dur_s": 79.4,
+        "mean_angle_deg": 160.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26431,
+          17.52846
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 12,
+        "n_buses": 12,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 102.7,
+        "mean_angle_deg": 164.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39758,
+          17.41081
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 12,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 108.0,
+        "mean_angle_deg": 161.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.267175,
+          17.52852
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 12,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 55.5,
+        "p90_dur_s": 106.9,
+        "mean_angle_deg": 170.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.385975,
+          17.49896
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 12,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 74.5,
+        "p90_dur_s": 89.7,
+        "mean_angle_deg": 173.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39119,
+          17.416725
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 12,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 65.0,
+        "p90_dur_s": 79.0,
+        "mean_angle_deg": 165.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.3158,
+          17.494815
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 12,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 79.0,
+        "mean_angle_deg": 163.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48215,
+          17.37866
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 11,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 111.0,
+        "mean_angle_deg": 159.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.49883,
+          17.44752
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 11,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 72.0,
+        "p90_dur_s": 97.0,
+        "mean_angle_deg": 149.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42317,
+          17.57495
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 11,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 110.0,
+        "mean_angle_deg": 163.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43794,
+          17.39506
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 11,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 84.0,
+        "mean_angle_deg": 167.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39246,
+          17.49752
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 11,
+        "n_buses": 11,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 88.0,
+        "mean_angle_deg": 171.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.485315,
+          17.37953
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 106.2,
+        "mean_angle_deg": 160.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.40678,
+          17.49136
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 81.0,
+        "mean_angle_deg": 156.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.52143,
+          17.43399
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 53.5,
+        "p90_dur_s": 72.0,
+        "mean_angle_deg": 167.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.498805,
+          17.44792
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 79.5,
+        "p90_dur_s": 103.0,
+        "mean_angle_deg": 151.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.393165,
+          17.497085
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 10,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 75.0,
+        "p90_dur_s": 85.5,
+        "mean_angle_deg": 159.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48144,
+          17.383495
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 89.5,
+        "p90_dur_s": 112.6,
+        "mean_angle_deg": 167.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.4479,
+          17.454435
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.5,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 170.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.408695,
+          17.430505
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 72.0,
+        "mean_angle_deg": 158.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.50744,
+          17.35195
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 61.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 162.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.47877,
+          17.50528
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 59.6,
+        "mean_angle_deg": 173.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.44778,
+          17.45436
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 10,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 100.9,
+        "mean_angle_deg": 172.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.53983,
+          17.36764
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 66.0,
+        "p90_dur_s": 98.0,
+        "mean_angle_deg": 167.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.52217,
+          17.3687
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 94.6,
+        "mean_angle_deg": 170.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.26166,
+          17.52982
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 88.8,
+        "mean_angle_deg": 172.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.49728,
+          17.44729
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 110.0,
+        "mean_angle_deg": 157.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39213,
+          17.41592
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 82.0,
+        "mean_angle_deg": 159.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43845,
+          17.39502
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 162.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.36381,
+          17.46526
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 104.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 176.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55814,
+          17.4032
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 9,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 49.0,
+        "p90_dur_s": 71.0,
+        "mean_angle_deg": 166.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42866,
+          17.46764
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 61.0,
+        "p90_dur_s": 86.4,
+        "mean_angle_deg": 169.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42653,
+          17.2389
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 9,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 158.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.500205,
+          17.43666
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 115.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 174.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.36001,
+          17.512635
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 68.5,
+        "p90_dur_s": 83.0,
+        "mean_angle_deg": 166.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.499305,
+          17.39045
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 93.5,
+        "p90_dur_s": 103.8,
+        "mean_angle_deg": 167.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.498365,
+          17.44806
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 108.5,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 162.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.482605,
+          17.379165
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 67.0,
+        "p90_dur_s": 114.4,
+        "mean_angle_deg": 163.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.426325,
+          17.238445
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 66.5,
+        "mean_angle_deg": 162.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.579715,
+          17.33592
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.5,
+        "p90_dur_s": 63.0,
+        "mean_angle_deg": 169.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.24066,
+          17.53742
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 165.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39198,
+          17.41612
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 76.0,
+        "mean_angle_deg": 154.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.57032,
+          17.47277
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 45.5,
+        "p90_dur_s": 71.8,
+        "mean_angle_deg": 156.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43455,
+          17.395205
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 65.0,
+        "p90_dur_s": 89.0,
+        "mean_angle_deg": 169.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.40875,
+          17.41456
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.5,
+        "p90_dur_s": 75.1,
+        "mean_angle_deg": 158.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.367045,
+          17.46379
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 170.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.427235,
+          17.473425
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 86.0,
+        "mean_angle_deg": 162.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48055,
+          17.37524
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 84.7,
+        "mean_angle_deg": 156.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.571365,
+          17.401605
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 55.0,
+        "p90_dur_s": 73.0,
+        "mean_angle_deg": 164.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.4527,
+          17.4277
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 47.5,
+        "p90_dur_s": 64.8,
+        "mean_angle_deg": 167.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.424735,
+          17.47377
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 105.4,
+        "mean_angle_deg": 162.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.500275,
+          17.435875
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 100.3,
+        "mean_angle_deg": 165.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.54376,
+          17.48324
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 8,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 45.0,
+        "p90_dur_s": 72.0,
+        "mean_angle_deg": 166.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.5008,
+          17.43505
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 82.4,
+        "mean_angle_deg": 174.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.28661,
+          17.5142
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 42.0,
+        "p90_dur_s": 86.6,
+        "mean_angle_deg": 159.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55878,
+          17.4027
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 76.0,
+        "p90_dur_s": 100.4,
+        "mean_angle_deg": 156.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43211,
+          17.2381
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 62.0,
+        "p90_dur_s": 82.8,
+        "mean_angle_deg": 150.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.47625,
+          17.37299
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 79.0,
+        "p90_dur_s": 109.2,
+        "mean_angle_deg": 167.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.60722,
+          17.45663
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 93.6,
+        "mean_angle_deg": 171.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.44145,
+          17.3956
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 110.0,
+        "mean_angle_deg": 164.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.31664,
+          17.49545
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 92.0,
+        "mean_angle_deg": 157.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.52205,
+          17.36855
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 82.0,
+        "p90_dur_s": 104.0,
+        "mean_angle_deg": 165.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.31709,
+          17.49509
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 100.0,
+        "mean_angle_deg": 162.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43311,
+          17.45798
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 84.8,
+        "mean_angle_deg": 162.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.56654,
+          17.32474
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 90.4,
+        "mean_angle_deg": 170.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.41835,
+          17.42955
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 60.4,
+        "mean_angle_deg": 157.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.40526,
+          17.49219
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 84.0,
+        "mean_angle_deg": 163.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.3486,
+          17.41981
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 61.0,
+        "p90_dur_s": 70.8,
+        "mean_angle_deg": 169.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.44235,
+          17.39612
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 80.6,
+        "mean_angle_deg": 165.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.56638,
+          17.32498
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 92.0,
+        "mean_angle_deg": 169.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55183,
+          17.34614
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 74.0,
+        "p90_dur_s": 91.2,
+        "mean_angle_deg": 161.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.4827,
+          17.37941
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 7,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 86.0,
+        "mean_angle_deg": 154.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.266895,
+          17.528585
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 75.0,
+        "p90_dur_s": 105.0,
+        "mean_angle_deg": 166.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48806,
+          17.42867
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 90.0,
+        "mean_angle_deg": 169.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42614,
+          17.472985
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 61.5,
+        "p90_dur_s": 80.5,
+        "mean_angle_deg": 175.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.48213,
+          17.37899
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 68.5,
+        "p90_dur_s": 96.0,
+        "mean_angle_deg": 162.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.485645,
+          17.43297
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 49.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 170.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.580825,
+          17.335825
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 65.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 166.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.47602,
+          17.37312
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 77.5,
+        "p90_dur_s": 93.0,
+        "mean_angle_deg": 169.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.264385,
+          17.528765
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 90.0,
+        "p90_dur_s": 100.5,
+        "mean_angle_deg": 159.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.42552,
+          17.45744
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 33.0,
+        "p90_dur_s": 64.0,
+        "mean_angle_deg": 155.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.50644,
+          17.433185
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 63.5,
+        "p90_dur_s": 79.0,
+        "mean_angle_deg": 162.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.52119,
+          17.36863
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 89.5,
+        "p90_dur_s": 98.5,
+        "mean_angle_deg": 168.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.581285,
+          17.33575
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 70.0,
+        "mean_angle_deg": 162.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.605745,
+          17.326855
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 105.0,
+        "mean_angle_deg": 168.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.38695,
+          17.498815
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 74.5,
+        "p90_dur_s": 85.0,
+        "mean_angle_deg": 164.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.5214,
+          17.36871
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 54.5,
+        "p90_dur_s": 73.0,
+        "mean_angle_deg": 170.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.593955,
+          17.3254
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 89.5,
+        "p90_dur_s": 119.0,
+        "mean_angle_deg": 168.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.550405,
+          17.34694
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 80.0,
+        "mean_angle_deg": 153.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.488635,
+          17.38502
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 80.0,
+        "p90_dur_s": 102.0,
+        "mean_angle_deg": 175.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.561475,
+          17.401425
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 86.0,
+        "p90_dur_s": 110.0,
+        "mean_angle_deg": 163.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.433055,
+          17.4581
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 45.0,
+        "p90_dur_s": 55.0,
+        "mean_angle_deg": 164.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39693,
+          17.411015
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 65.0,
+        "mean_angle_deg": 162.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.39443,
+          17.494995
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 95.0,
+        "p90_dur_s": 120.0,
+        "mean_angle_deg": 161.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.55147,
+          17.346315
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 82.5,
+        "p90_dur_s": 95.0,
+        "mean_angle_deg": 159.5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.521115,
+          17.43424
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 4,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 70.0,
+        "p90_dur_s": 74.0,
+        "mean_angle_deg": 160.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43127,
+          17.4615
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 55.0,
+        "p90_dur_s": 92.0,
+        "mean_angle_deg": 162.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.560185,
+          17.39905
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 5,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 75.0,
+        "p90_dur_s": 105.0,
+        "mean_angle_deg": 158.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.43235,
+          17.55601
+        ]
+      },
+      "properties": {
+        "city": "hyderabad",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 1,
+        "top_routes": [
+          "TGSRTC-City"
+        ],
+        "median_dur_s": 46.0,
+        "p90_dur_s": 63.0,
+        "mean_angle_deg": 174.8
+      }
+    }
+  ]
+}

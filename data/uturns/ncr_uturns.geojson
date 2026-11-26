@@ -1,0 +1,202 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.07692,
+          28.47917
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 15,
+        "n_buses": 13,
+        "n_routes": 7,
+        "top_routes": [
+          "gm-dFPiomuR",
+          "gm-PbviACgX",
+          "gm-AtkATcea",
+          "gm-lvBMkxUG",
+          "gm-haAJPjKI",
+          "gm-lzaTpkZl"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 66.0,
+        "mean_angle_deg": 171.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.06539,
+          28.4768
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 11,
+        "n_buses": 11,
+        "n_routes": 5,
+        "top_routes": [
+          "gm-sEigueyQ",
+          "gm-LwbPHRWv",
+          "gm-lzaTpkZl",
+          "gm-rQCyUCPf",
+          "gm-aODeuqrD"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 60.0,
+        "mean_angle_deg": 168.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.07693,
+          28.47934
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 7,
+        "n_buses": 7,
+        "n_routes": 4,
+        "top_routes": [
+          "gm-dFPiomuR",
+          "gm-lzaTpkZl",
+          "gm-FsnlhHvp",
+          "gm-PbviACgX"
+        ],
+        "median_dur_s": 49.0,
+        "p90_dur_s": 63.2,
+        "mean_angle_deg": 166.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.077145,
+          28.47909
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 4,
+        "top_routes": [
+          "gm-lzaTpkZl",
+          "gm-lvBMkxUG",
+          "gm-FsnlhHvp",
+          "gm-uWzOMahr"
+        ],
+        "median_dur_s": 30.0,
+        "p90_dur_s": 50.0,
+        "mean_angle_deg": 166.6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.07551,
+          28.478915
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 6,
+        "n_buses": 6,
+        "n_routes": 4,
+        "top_routes": [
+          "gm-PbviACgX",
+          "gm-AtkATcea",
+          "gm-lzaTpkZl",
+          "gm-lvBMkxUG"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 81.5,
+        "mean_angle_deg": 169.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.03996,
+          28.41827
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 4,
+        "n_buses": 4,
+        "n_routes": 3,
+        "top_routes": [
+          "gm-QxKkISbB",
+          "gm-UsxYGDNv",
+          "gm-TZyVjgJg"
+        ],
+        "median_dur_s": 60.0,
+        "p90_dur_s": 84.0,
+        "mean_angle_deg": 157.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.07348,
+          28.46452
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 3,
+        "n_buses": 3,
+        "n_routes": 1,
+        "top_routes": [
+          "gm-gsYcqBgA"
+        ],
+        "median_dur_s": 40.0,
+        "p90_dur_s": 86.4,
+        "mean_angle_deg": 178.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.07346,
+          28.46447
+        ]
+      },
+      "properties": {
+        "city": "ncr",
+        "n_uturns": 3,
+        "n_buses": 3,
+        "n_routes": 2,
+        "top_routes": [
+          "gm-QxKkISbB",
+          "gm-gsYcqBgA"
+        ],
+        "median_dur_s": 50.0,
+        "p90_dur_s": 58.0,
+        "mean_angle_deg": 176.0
+      }
+    }
+  ]
+}

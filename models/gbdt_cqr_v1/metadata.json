@@ -1,0 +1,287 @@
+{
+  "global_v": 6.376268777938439,
+  "city_map": {
+    "bmtc": 0,
+    "mtc": 1,
+    "mumbai": 2,
+    "ncr": 3
+  },
+  "class_map": {
+    "": 0,
+    "a": 1,
+    "l": 2,
+    "d": 3,
+    "del": 4,
+    "ael": 5,
+    "u": 6,
+    "S": 7,
+    "aK": 8,
+    "o": 9,
+    "aV": 10,
+    "B": 11,
+    "ax": 12,
+    "aKo": 13,
+    "g": 14,
+    "x": 15,
+    "h": 16,
+    "el": 17,
+    "Su": 18,
+    "al": 19,
+    "sx": 20,
+    "lh": 21,
+    "F": 22,
+    "X": 23,
+    "n": 24,
+    "Z": 25,
+    "m": 26,
+    "lm": 27,
+    "lx": 28,
+    "So": 29,
+    "lu": 30,
+    "delh": 31,
+    "dh": 32,
+    "ln": 33,
+    "aelm": 34,
+    "delm": 35,
+    "aVo": 36,
+    "aelh": 37,
+    "adel": 38,
+    "aVu": 39,
+    "dm": 40,
+    "uo": 41,
+    "du": 42,
+    "aelx": 43,
+    "delu": 44,
+    "dn": 45,
+    "lo": 46,
+    "dx": 47,
+    "ad": 48,
+    "Xo": 49,
+    "aelu": 50,
+    "ae": 51,
+    "w": 52,
+    "Bu": 53,
+    "lom": 54,
+    "deln": 55,
+    "delx": 56,
+    "om": 57,
+    "alu": 58,
+    "aeln": 59,
+    "Zo": 60,
+    "do": 61,
+    "dom": 62,
+    "Fu": 63
+  },
+  "feature_cols": [
+    "city_idx",
+    "bus_class_idx",
+    "stop_seq",
+    "route_num_stops",
+    "stop_progress",
+    "full_seg_len_m",
+    "seg_dist_m",
+    "sinuosity",
+    "mid_lat",
+    "mid_lon",
+    "hour_ist",
+    "min_of_day",
+    "dow",
+    "is_weekend",
+    "sin_tod",
+    "cos_tod",
+    "sin_dow",
+    "cos_dow",
+    "prior_seg_hw",
+    "prior_corr_hw",
+    "prior_city_hw",
+    "prior_v",
+    "offpeak_pothole_v",
+    "veh_hist_pace",
+    "veh_pace_ewma",
+    "trip_elapsed_s",
+    "trip_dist_m",
+    "veh_recent_v",
+    "raw_k",
+    "seg_live_v_15m",
+    "seg_live_n_15m",
+    "corr_live_v_5m",
+    "corr_live_v_15m",
+    "corr_live_v_30m",
+    "corr_live_n_15m",
+    "corr_speed_cv_30m",
+    "corr_stopgo_30m",
+    "up_live_v_15m",
+    "dn_live_v_15m",
+    "city_live_v_15m",
+    "corr_live_ratio",
+    "seg_live_ratio",
+    "lead_headway_s",
+    "corr_lead_headway_s",
+    "temp_c",
+    "humidity",
+    "precip_mm",
+    "precip_3h_mm",
+    "precip_6h_mm",
+    "precip_24h_mm",
+    "is_raining",
+    "is_heavy_rain",
+    "wind_kph",
+    "gust_kph",
+    "cloud_cover",
+    "vis_km",
+    "pm25",
+    "aqi",
+    "local_precip_mm",
+    "local_rain_accum_mm"
+  ],
+  "q_cqr": 0.015023169386443658,
+  "results": {
+    "split_meta": {
+      "mtc": {
+        "train_days": 36,
+        "val_day": "2026-11-23",
+        "test_day": "2026-11-24"
+      },
+      "bmtc": {
+        "train_days": 6,
+        "val_day": "2026-11-23",
+        "test_day": "2026-11-24"
+      },
+      "mumbai": {
+        "train_days": 15,
+        "val_day": "2026-11-17",
+        "test_day": "2026-11-18"
+      },
+      "ncr": {
+        "train_days": 4,
+        "val_day": "2026-11-17",
+        "test_day": "2026-11-18"
+      }
+    },
+    "q_cqr": 0.015023169386443658,
+    "cities": {
+      "bmtc": {
+        "n": 164321,
+        "prior_mae_s": 9.13,
+        "lgb_mae_s": 7.57,
+        "lift_pct": 17.05,
+        "lgb_med_s": 3.79,
+        "cqr_cov80_pct": 75.42
+      },
+      "mtc": {
+        "n": 562663,
+        "prior_mae_s": 12.94,
+        "lgb_mae_s": 10.53,
+        "lift_pct": 18.63,
+        "lgb_med_s": 5.45,
+        "cqr_cov80_pct": 79.31
+      },
+      "mumbai": {
+        "n": 104170,
+        "prior_mae_s": 19.71,
+        "lgb_mae_s": 13.47,
+        "lift_pct": 31.64,
+        "lgb_med_s": 5.18,
+        "cqr_cov80_pct": 80.82
+      },
+      "ncr": {
+        "n": 31214,
+        "prior_mae_s": 17.44,
+        "lgb_mae_s": 14.77,
+        "lift_pct": 15.3,
+        "lgb_med_s": 8.82,
+        "cqr_cov80_pct": 65.08
+      },
+      "ALL": {
+        "n": 862368,
+        "prior_mae_s": 13.19,
+        "lgb_mae_s": 10.48,
+        "lift_pct": 20.61,
+        "lgb_med_s": 5.15,
+        "cqr_cov80_pct": 78.24
+      }
+    },
+    "top_features": [
+      {
+        "name": "up_live_v_15m",
+        "gain": 1210056.9
+      },
+      {
+        "name": "seg_dist_m",
+        "gain": 1034314.9
+      },
+      {
+        "name": "prior_seg_hw",
+        "gain": 600995.7
+      },
+      {
+        "name": "prior_corr_hw",
+        "gain": 351871.9
+      },
+      {
+        "name": "veh_recent_v",
+        "gain": 274690.6
+      },
+      {
+        "name": "seg_live_v_15m",
+        "gain": 189624.0
+      },
+      {
+        "name": "corr_speed_cv_30m",
+        "gain": 163178.0
+      },
+      {
+        "name": "veh_hist_pace",
+        "gain": 125278.0
+      },
+      {
+        "name": "bus_class_idx",
+        "gain": 113659.6
+      },
+      {
+        "name": "prior_city_hw",
+        "gain": 107342.6
+      },
+      {
+        "name": "full_seg_len_m",
+        "gain": 98492.3
+      },
+      {
+        "name": "prior_v",
+        "gain": 95241.8
+      },
+      {
+        "name": "corr_live_v_5m",
+        "gain": 93521.2
+      },
+      {
+        "name": "city_idx",
+        "gain": 85449.7
+      },
+      {
+        "name": "seg_live_n_15m",
+        "gain": 84966.0
+      },
+      {
+        "name": "corr_live_v_15m",
+        "gain": 82738.1
+      },
+      {
+        "name": "corr_live_ratio",
+        "gain": 72830.0
+      },
+      {
+        "name": "lead_headway_s",
+        "gain": 62055.9
+      },
+      {
+        "name": "mid_lon",
+        "gain": 61099.0
+      },
+      {
+        "name": "veh_pace_ewma",
+        "gain": 59440.9
+      }
+    ]
+  }
+}

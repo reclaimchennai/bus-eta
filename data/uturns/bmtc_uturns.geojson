@@ -1,0 +1,109 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.47864,
+          12.90917
+        ]
+      },
+      "properties": {
+        "city": "bmtc",
+        "n_uturns": 31,
+        "n_buses": 28,
+        "n_routes": 9,
+        "top_routes": [
+          "BMTC:e0c7829c0795",
+          "BMTC:8b7778e3b9e9",
+          "BMTC:3de7e539b01b~1",
+          "BMTC:9fa61afce27a~1",
+          "BMTC:c8f458889eaa",
+          "BMTC:3de7e539b01b"
+        ],
+        "median_dur_s": 21.0,
+        "p90_dur_s": 41.0,
+        "mean_angle_deg": 156.7
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.56548,
+          13.01422
+        ]
+      },
+      "properties": {
+        "city": "bmtc",
+        "n_uturns": 23,
+        "n_buses": 19,
+        "n_routes": 4,
+        "top_routes": [
+          "BMTC:63b4f91cf8f3",
+          "BMTC:8b7778e3b9e9~1",
+          "BMTC:83e5d69fdb44",
+          "BMTC:8b7778e3b9e9"
+        ],
+        "median_dur_s": 25.0,
+        "p90_dur_s": 34.4,
+        "mean_angle_deg": 169.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.67476,
+          12.84747
+        ]
+      },
+      "properties": {
+        "city": "bmtc",
+        "n_uturns": 13,
+        "n_buses": 12,
+        "n_routes": 4,
+        "top_routes": [
+          "BMTC:77a9ec856618",
+          "BMTC:597d69a7214a~1",
+          "BMTC:15313d791ee0~1",
+          "BMTC:753815c4ffe6"
+        ],
+        "median_dur_s": 24.0,
+        "p90_dur_s": 30.0,
+        "mean_angle_deg": 165.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.69633,
+          13.193405
+        ]
+      },
+      "properties": {
+        "city": "bmtc",
+        "n_uturns": 8,
+        "n_buses": 8,
+        "n_routes": 7,
+        "top_routes": [
+          "BMTC:879cdad2403a",
+          "BMTC:184dd147af84~1",
+          "BMTC:1a77e31153e6",
+          "BMTC:cb327d399cc2",
+          "BMTC:cb327d399cc2~1",
+          "BMTC:597d69a7214a~1"
+        ],
+        "median_dur_s": 20.0,
+        "p90_dur_s": 63.6,
+        "mean_angle_deg": 172.3
+      }
+    }
+  ]
+}

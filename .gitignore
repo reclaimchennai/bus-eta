@@ -1,28 +1,30 @@
-# Raw data & large archives (copied from raw / SVR)
+# Large data lives in the GitHub Release (data/MANIFEST.json, scripts/fetch_data.sh), not in git
 data/raw/
 data/processed/
-*.jsonl
-*.jsonl.gz
-*.parquet
-*.db
-*.sqlite
-*.zip
+data/rtc_src/
+data/v3_cache/
+data/meta/
+data/audit/
+data/shadow/
+data/shadow_rtc/
+data/btp/
+data/.download/
+**/.fetched
 
-# Models & checkpoints
-models/
-*.pt
-*.pth
-*.onnx
-*.lgb
-*.cbm
-*.pkl
-
-# Python / OS
+# Python / OS / tools
 __pycache__/
 *.pyc
 .venv/
 .DS_Store
 *.log
+catboost_info/
 video/.venv/
 video/media/
 video/frames/
+
+# never publish
+*.env
+.env*
+secrets/
+scratch_audit/
+data/rtc_cache/
