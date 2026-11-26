@@ -24,11 +24,11 @@ from pathlib import Path
 
 import numpy as np
 
-BASE = Path("~/projects")
-sys.path.insert(0, str(BASE / "ETA-wt-baseline" / "src"))
-sys.path.insert(0, str(BASE / "ETA-wt-features" / "src"))
-sys.path.insert(0, str(BASE / "ETA-wt-models" / "src"))
-sys.path.insert(0, str(BASE / "ETA" / "reference" / "mumbai"))
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "reference" / "mumbai"))
 
 import lightgbm as lgb  # noqa: E402
 import xgboost as xgb  # noqa: E402
@@ -41,8 +41,8 @@ import train_v3_ensemble_agaci as v3  # type: ignore  # noqa: E402
 import train_v4_cached_ensemble as v4  # type: ignore  # noqa: E402
 import travel_model as tm  # type: ignore  # noqa: E402
 
-DATA = BASE / "ETA" / "data"
-MODELS = BASE / "ETA" / "models" / "v4_clean_ensemble"
+DATA = ROOT / "data"
+MODELS = ROOT / "models" / "v4_clean_ensemble"
 CITIES = ["mtc", "bmtc", "mumbai", "ncr", "delhi"]  # city_idx order used in training
 CLASS_VOCAB = ["", "u", "a", "n", "k", "dn", "ln", "dc", "lc", "ev", "ac", "e", "o", "s", "d"]
 # the production travel_model flags per city (systemd units on raw)
@@ -91,7 +91,7 @@ def honest_model_json(city: str, day: str, out_dir: Path) -> Path | None:
     until = (dt.date.fromisoformat(day) - dt.timedelta(days=1)).isoformat()
     out = out_dir / f"model_{city}_until_{until}.json"
     if not out.exists():
-        cmd = [sys.executable, str(BASE / "ETA" / "reference" / "mumbai" / "travel_model.py"),
+        cmd = [sys.executable, str(ROOT / "reference" / "mumbai" / "travel_model.py"),
                "--stops", str(meta / "route_stops.json"), "--stop-dist", str(meta / "stop_dist.json"),
                "--archive", str(DATA / "raw" / city), "--out", str(out), "--days", "7", "--until", until] + TM_ARGS[city]
         t0 = time.time()
@@ -117,7 +117,7 @@ def main():
     ap.add_argument("--stride", type=int, default=3)
     ap.add_argument("--max-q", type=int, default=1_500_000)
     ap.add_argument("--leaky", action="store_true", help="use meta/<city>/model.json (as published) instead")
-    ap.add_argument("--out", default=str(BASE / "ETA" / "data" / "audit"))
+    ap.add_argument("--out", default=str(ROOT / "data" / "audit"))
     a = ap.parse_args()
     out_dir = Path(a.out); out_dir.mkdir(parents=True, exist_ok=True)
     city, day = a.city, a.day

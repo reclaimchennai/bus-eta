@@ -56,6 +56,7 @@ from pathlib import Path
 
 import numpy as np
 import polars as pl
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
 K = 111320.0
@@ -533,7 +534,7 @@ def extract_city(
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--city", required=True, choices=["delhi", "mtc", "bmtc", "mumbai", "ncr"])
-    ap.add_argument("--data-root", default="~/projects/ETA/data")
+    ap.add_argument("--data-root", default=str(ROOT / "data"))
     ap.add_argument("--max-gap", type=int, default=0, help="0 = auto per city (180 for dense, 600 for sparse Chalo)")
     ap.add_argument("--max-days", type=int, default=0)
     a = ap.parse_args()

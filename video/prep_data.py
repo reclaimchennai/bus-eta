@@ -2,9 +2,11 @@
 AgACI calibration trace run on that day's predictions in time order. Writes video_data.json."""
 import json
 import numpy as np
-z = np.load('~/projects/ETA/data/audit/q_mtc_2026-11-23_causal.npz')
+from pathlib import Path
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+z = np.load(ROOT / "data/audit/q_mtc_2026-11-23_causal.npz")
 y, b, p, lo, hi = z['y'], z['b'], z['p'], z['lo'], z['hi']
-rep = json.load(open('~/projects/ETA/models/v4_clean_ensemble/v4_report.json'))
+rep = json.load(open(ROOT / "models/v4_clean_ensemble/v4_report.json"))
 cqr = np.array([rep['cqr_by_bucket'][str(k)] for k in range(5)])
 rng = np.random.default_rng(7)
 idx = rng.choice(len(y), 400, replace=False)

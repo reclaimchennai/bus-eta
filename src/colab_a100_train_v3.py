@@ -3,7 +3,7 @@
 trained on the exact same v3 multi-city Indian bus queries (Delhi, MTC, BMTC, Mumbai, NCR).
 
 Run autonomously via:
-    colab run --gpu A100 -s eta-a100 ~/projects/ETA-wt-models/src/colab_a100_train_v3.py
+    colab run --gpu A100 -s eta-a100 src/colab_a100_train_v3.py
 
 Reads v3_train_1.5m.npz and v3_val.npz from Google Drive (/content/drive/MyDrive/ETA/v3_queries),
 trains a 6-block Pre-Norm SiLU Residual MLP with Fourier numeric embeddings + city/bus_class embeddings

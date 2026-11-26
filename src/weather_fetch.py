@@ -25,6 +25,7 @@ from pathlib import Path
 import numpy as np
 import polars as pl
 import requests
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 POL_BASE = "https://pol.reclaimchennai.city/api"
 POL_METRICS = [
@@ -304,7 +305,7 @@ def build_unified_weather(out_dir: Path, start_date: str, end_date: str, pol_df:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out-dir", default="~/projects/ETA/data/weather")
+    ap.add_argument("--out-dir", default=str(ROOT / "data/weather"))
     ap.add_argument("--start", default="2026-10-18")
     ap.add_argument("--end", default="2026-11-24")
     ap.add_argument("--pol-hours", type=int, default=960)

@@ -22,8 +22,8 @@ from pathlib import Path
 
 import numpy as np
 
-BASE = Path("~/projects")
-sys.path.insert(0, str(BASE / "ETA-wt-baseline" / "src"))
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+sys.path.insert(0, str(ROOT / "src"))
 import eval_eta  # type: ignore  # noqa: E402
 import travel_model as tm  # type: ignore  # noqa: E402
 

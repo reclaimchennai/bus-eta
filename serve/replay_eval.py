@@ -22,16 +22,16 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-BASE = Path("~/projects")
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 sys.path.insert(0, str(HERE))
-sys.path.insert(1, str(BASE / "ETA-wt-baseline" / "src"))
-sys.path.insert(2, str(BASE / "ETA-wt-models" / "src"))
+sys.path.insert(1, str(ROOT / "src"))
+sys.path.insert(2, str(ROOT / "src"))
 import eta_engine as E  # noqa: E402
 import eval_eta  # type: ignore  # noqa: E402
 import train_v2_deepreta_cqr as v2  # type: ignore  # noqa: E402
 import travel_model as tm  # type: ignore  # noqa: E402
 
-DATA = BASE / "ETA" / "data"
+DATA = ROOT / "data"
 
 
 def main():
@@ -41,7 +41,7 @@ def main():
     ap.add_argument("--sample", type=float, default=0.35)
     ap.add_argument("--every", type=int, default=3, help="score a sampled bus at every Nth fix")
     ap.add_argument("--order", choices=["file", "time"], default="file")
-    ap.add_argument("--models", default=str(BASE / "ETA" / "models" / "v4_clean_ensemble"))
+    ap.add_argument("--models", default=str(ROOT / "models" / "v4_clean_ensemble"))
     ap.add_argument("--use", default="lgb,xgb,cat")
     ap.add_argument("--no-weather", action="store_true")
     ap.add_argument("--agaci", action="store_true", help="adapt the 80%% band online from observed arrivals")

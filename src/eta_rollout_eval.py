@@ -25,10 +25,10 @@ import numpy as np
 import polars as pl
 
 # Import shared helpers from sibling worktrees
-BASE_DIR = Path("~/projects")
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-baseline" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-features" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA" / "reference" / "mumbai"))
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "reference" / "mumbai"))
 
 import eval_eta  # type: ignore
 import extract_dataset as ed  # type: ignore
@@ -307,8 +307,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--city", required=True, choices=["delhi", "mtc", "bmtc", "mumbai", "ncr"])
     ap.add_argument("--day", required=True)
-    ap.add_argument("--data-root", default="~/projects/ETA/data")
-    ap.add_argument("--model-dir", default="~/projects/ETA/models/gbdt_cqr_v1")
+    ap.add_argument("--data-root", default=str(ROOT / "data"))
+    ap.add_argument("--model-dir", default=str(ROOT / "models/gbdt_cqr_v1"))
     ap.add_argument("--sample", type=float, default=0.35)
     ap.add_argument("--out-json", default="")
     a = ap.parse_args()

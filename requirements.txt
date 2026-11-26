@@ -1,0 +1,13 @@
+# Python 3.12 (xgboost 3.4.1, which saved the v4 models, needs >= 3.12)
+numpy>=2.0
+pandas>=2.2
+pyarrow>=15
+scipy>=1.11
+scikit-learn>=1.4
+lightgbm==4.7.0
+xgboost==3.4.1
+catboost==1.2.10
+shapely>=2.0
+requests>=2.31
+matplotlib>=3.8
+# optional: torch (deep baselines in src/train_v2_deepreta_cqr.py, colab notebook), manim (video/)

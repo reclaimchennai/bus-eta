@@ -23,9 +23,9 @@ import numpy as np
 import xgboost as xgb
 from catboost import CatBoostRegressor
 
-BASE_DIR = Path("~/projects")
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-baseline" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-models" / "src"))
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
 
 import eval_eta  # type: ignore
 import train_v2_deepreta_cqr as v2  # type: ignore
@@ -46,9 +46,9 @@ def load_cached(cache_dir: Path, city: str, day: str, sr: float, stride: int, ma
 
 def main():
     t0 = time.time()
-    data_root = Path("~/projects/ETA/data")
+    data_root = (ROOT / "data")
     cache_dir = data_root / "v3_cache"
-    model_dir = Path("~/projects/ETA/models/v4_clean_ensemble")
+    model_dir = (ROOT / "models/v4_clean_ensemble")
     model_dir.mkdir(parents=True, exist_ok=True)
 
     day_plan = {

@@ -21,6 +21,7 @@ from pathlib import Path
 
 import lightgbm as lgb
 import numpy as np
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
 
@@ -89,9 +90,9 @@ class MLNowcastPredictor:
 if __name__ == "__main__":
     # Quick latency & sanity self-test on CPU
     pred = MLNowcastPredictor(
-        "~/projects/ETA/models/v2_deepreta_cqr",
+        str(ROOT / "models/v2_deepreta_cqr"),
         city="mtc",
-        holidays_path="~/projects/ETA/data/holidays_india_2025_2026.json",
+        holidays_path=str(ROOT / "data/holidays_india_2025_2026.json"),
     )
     rng = np.random.default_rng(0)
     X_dummy = rng.normal(size=(1000, 59)).astype(np.float32)

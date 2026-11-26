@@ -242,7 +242,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--city", required=True, choices=["delhi", "mtc", "bmtc", "mumbai", "ncr"])
     ap.add_argument("--day", required=True, help="YYYY-MM-DD held-out test day")
-    ap.add_argument("--data-root", default="~/projects/ETA/data")
+    ap.add_argument("--data-root", default=str(ROOT / "data"))
     ap.add_argument("--sample", type=float, default=0.25)
     ap.add_argument("--out-json", default="")
     a = ap.parse_args()

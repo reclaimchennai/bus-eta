@@ -32,17 +32,17 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-BASE = Path("~/projects")
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 sys.path.insert(0, str(HERE))
-sys.path.insert(1, str(BASE / "ETA-wt-baseline" / "src"))
-sys.path.insert(2, str(BASE / "ETA-wt-features" / "src"))
+sys.path.insert(1, str(ROOT / "src"))
+sys.path.insert(2, str(ROOT / "src"))
 import eta_engine as E  # noqa: E402
 import eval_eta  # type: ignore  # noqa: E402
 import travel_model as tm  # type: ignore  # noqa: E402
 
-DATA = BASE / "ETA" / "data"
-MODELS = BASE / "ETA" / "models" / "v4_clean_ensemble"
-TRAVEL_MODEL = BASE / "ETA" / "reference" / "mumbai" / "travel_model.py"
+DATA = ROOT / "data"
+MODELS = ROOT / "models" / "v4_clean_ensemble"
+TRAVEL_MODEL = ROOT / "reference" / "mumbai" / "travel_model.py"
 
 # centre (weather), bbox s,w,n,e (OSM), max fix gap read as one movement
 SYSTEMS = {

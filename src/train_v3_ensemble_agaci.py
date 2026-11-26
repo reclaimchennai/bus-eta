@@ -23,11 +23,11 @@ import polars as pl
 import xgboost as xgb
 from catboost import CatBoostRegressor
 
-BASE_DIR = Path("~/projects")
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-baseline" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-features" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-models" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA" / "reference" / "mumbai"))
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "reference" / "mumbai"))
 
 import eval_eta  # type: ignore
 import extract_dataset as ed  # type: ignore
@@ -673,10 +673,10 @@ def run_v3(data_root: Path, model_dir: Path, cities: list[str], gdrive_out: Path
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-root", default="~/projects/ETA/data")
-    ap.add_argument("--model-dir", default="~/projects/ETA/models/v3_ensemble_agaci")
+    ap.add_argument("--data-root", default=str(ROOT / "data"))
+    ap.add_argument("--model-dir", default=str(ROOT / "models/v3_ensemble_agaci"))
     ap.add_argument("--cities", default="mtc,bmtc,mumbai,ncr,delhi")
-    ap.add_argument("--gdrive-out", default="$GDRIVE/ETA/v3_queries")
+    ap.add_argument("--gdrive-out", default=None)
     a = ap.parse_args()
     run_v3(Path(a.data_root), Path(a.model_dir), [c.strip() for c in a.cities.split(",")], Path(a.gdrive_out) if a.gdrive_out else None)
 

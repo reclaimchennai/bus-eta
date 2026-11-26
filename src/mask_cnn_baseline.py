@@ -22,6 +22,7 @@ import polars as pl
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 
 class MaskedConv2d(nn.Conv2d):
@@ -217,7 +218,7 @@ def benchmark_route(
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--parquet", default="~/projects/ETA/data/processed/mtc_segments.parquet")
+    ap.add_argument("--parquet", default=str(ROOT / "data/processed/mtc_segments.parquet"))
     ap.add_argument("--top-routes", type=int, default=5)
     ap.add_argument("--epochs", type=int, default=25)
     a = ap.parse_args()

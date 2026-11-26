@@ -21,6 +21,7 @@ from pathlib import Path
 import numpy as np
 import requests
 from scipy.spatial import cKDTree
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 OVERPASS_URLS = [
     "https://overpass-api.de/api/interpreter",
@@ -149,7 +150,7 @@ class CityOSMIndex:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out-dir", default="~/projects/ETA/data/osm")
+    ap.add_argument("--out-dir", default=str(ROOT / "data/osm"))
     ap.add_argument("--cities", default="mtc,bmtc,mumbai,delhi,ncr")
     ap.add_argument("--force", action="store_true")
     a = ap.parse_args()

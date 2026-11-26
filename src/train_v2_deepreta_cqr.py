@@ -32,10 +32,10 @@ import lightgbm as lgb
 import numpy as np
 import polars as pl
 
-BASE_DIR = Path("~/projects")
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-baseline" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-features" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA" / "reference" / "mumbai"))
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "reference" / "mumbai"))
 
 import eval_eta  # type: ignore
 import extract_dataset as ed  # type: ignore
@@ -525,8 +525,8 @@ def run_v2(data_root: Path, model_dir: Path, cities: list[str]):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-root", default="~/projects/ETA/data")
-    ap.add_argument("--model-dir", default="~/projects/ETA/models/v2_deepreta_cqr")
+    ap.add_argument("--data-root", default=str(ROOT / "data"))
+    ap.add_argument("--model-dir", default=str(ROOT / "models/v2_deepreta_cqr"))
     ap.add_argument("--cities", default="mtc,bmtc,mumbai,ncr,delhi")
     a = ap.parse_args()
     run_v2(Path(a.data_root), Path(a.model_dir), [c.strip() for c in a.cities.split(",")])

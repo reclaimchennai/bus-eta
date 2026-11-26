@@ -19,10 +19,10 @@ import numpy as np
 import xgboost as xgb
 from catboost import CatBoostRegressor
 
-BASE_DIR = Path("~/projects")
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-baseline" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-features" / "src"))
-sys.path.insert(0, str(BASE_DIR / "ETA-wt-models" / "src"))
+ROOT = Path(__file__).resolve().parents[1]  # repo root
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
+sys.path.insert(0, str(ROOT / "src"))
 
 import btp_features as btp  # type: ignore
 import eval_eta  # type: ignore
@@ -31,10 +31,10 @@ import train_v2_deepreta_cqr as v2  # type: ignore
 import train_v3_ensemble_agaci as v3  # type: ignore
 from train_v4_cached_ensemble import KEEP_IDX, V4_FEATURES  # type: ignore
 
-DATA = BASE_DIR / "ETA" / "data"
+DATA = ROOT / "data"
 CACHE = DATA / "v3_cache"
 PROFILE = DATA / "btp" / "stop_congestion_how.json"
-OUT = BASE_DIR / "ETA" / "models" / "v4_btp_ab"
+OUT = ROOT / "models" / "v4_btp_ab"
 
 DAY_PLAN = {
     "mtc":    (["2026-11-14", "2026-11-15", "2026-11-16", "2026-11-17", "2026-11-18", "2026-11-19", "2026-11-20", "2026-11-21"], "2026-11-22", "2026-11-23", 0.16, 0.35),

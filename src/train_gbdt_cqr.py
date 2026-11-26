@@ -23,6 +23,7 @@ from pathlib import Path
 import lightgbm as lgb
 import numpy as np
 import polars as pl
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 FEATURE_COLS = [
     # Spatial & road geometry
@@ -395,8 +396,8 @@ def train_and_evaluate(processed_dir: Path, model_dir: Path, cities: list[str]):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--processed-dir", default="~/projects/ETA/data/processed")
-    ap.add_argument("--model-dir", default="~/projects/ETA/models/gbdt_cqr_v1")
+    ap.add_argument("--processed-dir", default=str(ROOT / "data/processed"))
+    ap.add_argument("--model-dir", default=str(ROOT / "models/gbdt_cqr_v1"))
     ap.add_argument("--cities", default="delhi,mtc,bmtc,mumbai,ncr")
     a = ap.parse_args()
     train_and_evaluate(Path(a.processed_dir), Path(a.model_dir), [c.strip() for c in a.cities.split(",")])

@@ -24,6 +24,7 @@ from pathlib import Path
 from typing import Any
 
 import requests
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 SYSTEM_PROMPT = """You are an Indian urban transit traffic analyst.
 Extract structured bus-delay risk from a traffic/weather advisory.
@@ -114,7 +115,7 @@ def extract_disruption(text: str, use_ollama: bool = True, model: str = "qwen2.5
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--input-jsonl", help="Path to alerts JSONL (e.g. dtp_closures items or X feed)")
-    ap.add_argument("--out-json", default="~/projects/ETA/data/processed/disruptions_live.json")
+    ap.add_argument("--out-json", default=str(ROOT / "data/processed/disruptions_live.json"))
     ap.add_argument("--model", default="qwen2.5:7b")
     ap.add_argument("--no-ollama", action="store_true")
     a = ap.parse_args()

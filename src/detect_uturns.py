@@ -31,6 +31,7 @@ from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 import numpy as np
+ROOT = Path(__file__).resolve().parents[1]  # repo root
 
 K = 111320.0
 
@@ -378,7 +379,7 @@ Object.entries(CENTERS).forEach(([c, [la, lo, z]]) => {{
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data-root", default="~/projects/ETA/data")
+    ap.add_argument("--data-root", default=str(ROOT / "data"))
     ap.add_argument("--cities", default="mtc,bmtc,mumbai,delhi,ncr")
     ap.add_argument("--max-days", type=int, default=4)
     a = ap.parse_args()
