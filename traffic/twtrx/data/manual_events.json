@@ -1,0 +1,223 @@
+[
+ {
+  "id": "hydtp_x:2125488578939773296",
+  "patch": true,
+  "why": "RTC bus breakdown at Golnaka Circle. HYDTP posted at 12:45 IST; our TGSRTC GPS has bus TS01Z0129 (route 115, Uppal depot) standing idle at 17.3904, 78.5060 from about 12:08 to 12:23, moving again by 12:27; a photo at that spot is stamped 12:12:53. Start and end come from the GPS.",
+  "t_start_ist": "2026-11-25 12:06",
+  "t_end_ist": "2026-11-25 12:25",
+  "point": [
+   17.3904,
+   78.506
+  ],
+  "vehicles": [
+   "TS01Z0129"
+  ],
+  "operator": "TGSRTC",
+  "time_precision": "gps"
+ },
+ {
+  "id": "hydtp_x:2125476688545108457",
+  "patch": true,
+  "why": "Ranigunj Junction RUB renovation: restrictions and diversions, slow both ways Patny X Road - City Light Hotel - Bible House. Ongoing; the start date is not known, so t_start stays empty (post time is kept as post_time).",
+  "type": "works",
+  "kind": "standing",
+  "t_start_ist": null,
+  "t_end_ist": null,
+  "direction": "both directions: Patny X Road -> City Light Hotel -> Bible House",
+  "time_precision": "start unknown"
+ },
+ {
+  "id": "manual:hydtp-kbr-one-way-2026",
+  "source": "manual",
+  "region": "hyd",
+  "src": "https://x.com/HYDTP/status/2089532702794055929",
+  "posted_ist": "2026-08-18 07:29",
+  "text": "KBR Park one-way traffic system (H-CITI steel flyover and underpass works), continuous from 18.08.2026, no end date. Covers the KBR ring: Road No. 2, Road No. 45, Jubilee Hills Check Post, NTR Bhavan, Cancer Hospital, Agrasen Island, Omega Hospital, Taj Mahal, BVB / Journalist Colony. Exits E1-E13 and lane changers LC1-LC10 are on the HYDTP route map.",
+  "type": "diversion",
+  "kind": "standing",
+  "t_start_ist": "2026-08-18 07:29",
+  "t_end_ist": null,
+  "ring": [
+   "Jubilee Hills Checkpost",
+   "NTR Bhavan",
+   "Cancer Hospital",
+   "Omega Hospital",
+   "BVB",
+   "Journalist Colony",
+   "Road No 45"
+  ],
+  "loop": true,
+  "point": [
+   17.4189,
+   78.4204
+  ],
+  "place": "KBR Park",
+  "direction": "one-way ring around KBR Park (exits E1-E13, lane changers LC1-LC10: see the HYDTP route map)",
+  "time_precision": "start from the 'now live' post; no end"
+ },
+ {
+  "id": "blr_manual:palace-grounds-2026-11-26",
+  "region": "blr",
+  "source": "btp_x",
+  "src": "https://x.com/ssnagartrfps/status/2125529731013714400",
+  "why": "BTP advisory (@ssnagartrfps, 25 Nov 15:29): the windows and roads are only in its images (advisory text and map); the post itself was built as a 45-min 'other' alert.",
+  "posted_ist": "2026-11-25 15:29",
+  "text": "Traffic advisory: events at the main Palace Grounds (26 Nov, 8 am to 3 pm). Heavy traffic expected on Ballari Road, C.V. Raman Road and Jayamahal Road. Airport-bound vehicles diverted via Old High Grounds, Cantonment Railway Station, Tannery Road and Nagavara; city-bound via Queen's Road or Dr Rajkumar Road. Heavy goods vehicles restricted on Ballari Road and C.V. Raman Road. No parking on Palace, Ballari, Jayamahal, Nandidurga, C.V. Raman and Guttahalli roads.",
+  "type": "event",
+  "kind": "scheduled",
+  "t_start_ist": "2026-11-26 08:00",
+  "t_end_ist": "2026-11-26 15:00",
+  "point": [
+   12.998848,
+   77.591766
+  ],
+  "paths": [
+   [
+    [
+     13.013,
+     77.58395
+    ],
+    [
+     12.9994,
+     77.58426
+    ]
+   ],
+   [
+    [
+     13.0135,
+     77.587
+    ],
+    [
+     13.00615,
+     77.59307
+    ],
+    [
+     12.99493,
+     77.59615
+    ]
+   ],
+   [
+    [
+     13.01449,
+     77.58538
+    ],
+    [
+     13.01475,
+     77.57849
+    ]
+   ]
+  ],
+  "place": "Palace Grounds",
+  "time_precision": "advisory"
+ },
+ {
+  "id": "blr_manual:palace-grounds-2026-11-27",
+  "region": "blr",
+  "source": "btp_x",
+  "src": "https://x.com/ssnagartrfps/status/2125529731013714400",
+  "why": "BTP advisory (@ssnagartrfps, 25 Nov 15:29): the windows and roads are only in its images (advisory text and map); the post itself was built as a 45-min 'other' alert.",
+  "posted_ist": "2026-11-25 15:29",
+  "text": "Traffic advisory: events at the main Palace Grounds (27 Nov, 2 pm to 11 pm). Heavy traffic expected on Ballari Road, C.V. Raman Road and Jayamahal Road. Airport-bound vehicles diverted via Old High Grounds, Cantonment Railway Station, Tannery Road and Nagavara; city-bound via Queen's Road or Dr Rajkumar Road. Heavy goods vehicles restricted on Ballari Road and C.V. Raman Road. No parking on Palace, Ballari, Jayamahal, Nandidurga, C.V. Raman and Guttahalli roads.",
+  "type": "event",
+  "kind": "scheduled",
+  "t_start_ist": "2026-11-27 14:00",
+  "t_end_ist": "2026-11-27 23:00",
+  "point": [
+   12.998848,
+   77.591766
+  ],
+  "paths": [
+   [
+    [
+     13.013,
+     77.58395
+    ],
+    [
+     12.9994,
+     77.58426
+    ]
+   ],
+   [
+    [
+     13.0135,
+     77.587
+    ],
+    [
+     13.00615,
+     77.59307
+    ],
+    [
+     12.99493,
+     77.59615
+    ]
+   ],
+   [
+    [
+     13.01449,
+     77.58538
+    ],
+    [
+     13.01475,
+     77.57849
+    ]
+   ]
+  ],
+  "place": "Palace Grounds",
+  "time_precision": "advisory"
+ },
+ {
+  "id": "blr_manual:palace-grounds-2026-11-29",
+  "region": "blr",
+  "source": "btp_x",
+  "src": "https://x.com/ssnagartrfps/status/2125529731013714400",
+  "why": "BTP advisory (@ssnagartrfps, 25 Nov 15:29): the windows and roads are only in its images (advisory text and map); the post itself was built as a 45-min 'other' alert.",
+  "posted_ist": "2026-11-25 15:29",
+  "text": "Traffic advisory: events at the main Palace Grounds (29 Nov, 9 am to 5 pm). Heavy traffic expected on Ballari Road, C.V. Raman Road and Jayamahal Road. Airport-bound vehicles diverted via Old High Grounds, Cantonment Railway Station, Tannery Road and Nagavara; city-bound via Queen's Road or Dr Rajkumar Road. Heavy goods vehicles restricted on Ballari Road and C.V. Raman Road. No parking on Palace, Ballari, Jayamahal, Nandidurga, C.V. Raman and Guttahalli roads.",
+  "type": "event",
+  "kind": "scheduled",
+  "t_start_ist": "2026-11-29 09:00",
+  "t_end_ist": "2026-11-29 17:00",
+  "point": [
+   12.998848,
+   77.591766
+  ],
+  "paths": [
+   [
+    [
+     13.013,
+     77.58395
+    ],
+    [
+     12.9994,
+     77.58426
+    ]
+   ],
+   [
+    [
+     13.0135,
+     77.587
+    ],
+    [
+     13.00615,
+     77.59307
+    ],
+    [
+     12.99493,
+     77.59615
+    ]
+   ],
+   [
+    [
+     13.01449,
+     77.58538
+    ],
+    [
+     13.01475,
+     77.57849
+    ]
+   ]
+  ],
+  "place": "Palace Grounds",
+  "time_precision": "advisory"
+ }
+]

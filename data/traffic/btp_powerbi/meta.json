@@ -1,0 +1,32 @@
+{
+ "model_id": 3093947,
+ "dataset": "13bca6d6-bac3-4031-8911-c45c75ec0583",
+ "report": "7d7652cb-7fba-4fad-a412-25daf061814d",
+ "name": "Congestion Maps",
+ "last_refresh_utc": "2026-10-07T02:58:03.883",
+ "source": "https://btp.karnataka.gov.in/188/congestion-map/kn",
+ "cluster": "https://wabi-india-central-a-primary-api.analysis.windows.net",
+ "dumped": "2026-11-25T15:20:31Z",
+ "tables": {
+  "corridors": {
+   "file": "corridors.csv",
+   "rows": 23,
+   "entity": "Corridor LU"
+  },
+  "police_stations": {
+   "file": "police_stations.csv",
+   "rows": 52,
+   "entity": "Final_MasterPS_LU"
+  },
+  "congestion_alerts": {
+   "file": "congestion_alerts.csv.gz",
+   "rows": 299932,
+   "entity": "Congestion Alerts"
+  },
+  "travel_time": {
+   "file": "travel_time.csv.gz",
+   "rows": 163358,
+   "entity": "Travel Time"
+  }
+ }
+}

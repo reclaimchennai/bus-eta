@@ -1,0 +1,24 @@
+SI.No,City,Corridor Name,Corridor Code,Corridor Length,Column2,Start Point,End Point
+1,Bengaluru,Old Madras Road,,9.523,Old Madras Road,Anil Kumble circle,New light junction
+2,Bengaluru,Old Airport Road,,6.7455,Old Airport Road,Domlur Bridge,Marathalli Bridge
+3,Bengaluru,Varthur Road,,4.664,Varthur Road,Marathalli Bridge,Varthu Kodi
+4,Bengaluru,ORR East 1,,10.816500000000001,ORR East 1,Silk Board,Marathalli Bridge
+5,Bengaluru,ORR East 2,,7.396,ORR East 2,Marathalli Bridge,Lowry Junction
+6,Bengaluru,Hosur Road,,13.0815,Hosur Road,Shoolay Circle,Hosa Road Junction
+7,Bengaluru,Bellary Road 1,,8.826,Bellary Road 1,Basaveshwara circle,Kodigehalli
+8,Bengaluru,Mysore Road,,18.7985,Mysore Road,Richmond Circle,NICE Road Junction
+9,Bengaluru,Tumkur Road,,7.771,Tumkur Road,CMTI Junction,8th Mile Circle (Below Flyover)
+10,Bengaluru,Bannerghata Road,,9.205,Bannerghata Road,Diary circle,Gottigere junction
+11,Bengaluru,CBD 1,,1.707,CBD 1,Davis Road junction,Queens circle
+12,Bengaluru,CBD 2,,2.8354999999999997,CBD 2,Balekundri Circle,Siddalingaiah Circle
+13,Bengaluru,ORR West 1,,9.6574999999999989,ORR West 1,Vega City Mall,Nayandhalli
+14,Bengaluru,ORR North 1,,6.5920000000000005,ORR North 1,Hebbal Flyover,Benniganahalli
+15,Bengaluru,ORR North 2,,12.8505,ORR North 2,CMTI Junction,Hebbal Flyover
+16,Bengaluru,Magadi Road,,8.6774999999999984,Magadi Road,KSR Railway station,Byadarahalli Police Station
+17,Bengaluru,West of Chord Road,,8.2595,West of Chord Road,BHEL Circle,Sandal Soap Factroy
+18,Bengaluru,IRR(Thanisandra road),,7.769,IRR(Thanisandra road),100 FT. ROAD JUNCTION,Koramangala Water Tank
+19,Bengaluru,Hennur Main Road,,14.245000000000001,Hennur Main Road,Nagawara Junction,Bagalur Junction
+20,Bengaluru,Airport New South Road,,4.7925,Airport New South Road,Davis Road junction,Horamavu Junction
+21,Bengaluru,Non-Corridor,,0,,,
+22,Bengaluru,Bellary Road 2,,17.352,Bellary Road 2,Kodigehalli,Sadahalli Gate
+23,Bengaluru,Bellary Road,,8.826,Bellary Road 1,Basaveshwara circle,Kodigehalli

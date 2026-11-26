@@ -1,0 +1,272 @@
+{
+ "Adugodi": {
+  "alerts": 4416,
+  "lat": 12.93331,
+  "lon": 77.61889
+ },
+ "Ashok Nagar": {
+  "alerts": 10485,
+  "lat": 12.9645,
+  "lon": 77.60662
+ },
+ "Banashankari": {
+  "alerts": 2767,
+  "lat": 12.92557,
+  "lon": 77.55409
+ },
+ "Banaswadi": {
+  "alerts": 17879,
+  "lat": 12.99997,
+  "lon": 77.65151
+ },
+ "Basavanagudi": {
+  "alerts": 1174,
+  "lat": 12.9436,
+  "lon": 77.57082
+ },
+ "Bellandur": {
+  "alerts": 13814,
+  "lat": 12.91428,
+  "lon": 77.68013
+ },
+ "Byatarayanapura": {
+  "alerts": 3279,
+  "lat": 12.95317,
+  "lon": 77.53701
+ },
+ "Chamarajpet": {
+  "alerts": 2697,
+  "lat": 12.97057,
+  "lon": 77.57035
+ },
+ "Chikkabanavara": {
+  "alerts": 1110,
+  "lat": 13.04735,
+  "lon": 77.50795
+ },
+ "Chikkajala": {
+  "alerts": 3427,
+  "lat": 13.18352,
+  "lon": 77.65429
+ },
+ "City Market": {
+  "alerts": 1502,
+  "lat": 12.95936,
+  "lon": 77.57773
+ },
+ "Cubbon Park": {
+  "alerts": 9613,
+  "lat": 12.97822,
+  "lon": 77.60087
+ },
+ "Devanahalli Airport": {
+  "alerts": 1802,
+  "lat": 13.24447,
+  "lon": 77.71262
+ },
+ "Electronic City": {
+  "alerts": 11816,
+  "lat": 12.85742,
+  "lon": 77.6597
+ },
+ "HAL Old Airport": {
+  "alerts": 21427,
+  "lat": 12.95221,
+  "lon": 77.69901
+ },
+ "HSR Layout": {
+  "alerts": 5611,
+  "lat": 12.90855,
+  "lon": 77.64189
+ },
+ "Halasur": {
+  "alerts": 2359,
+  "lat": 12.97278,
+  "lon": 77.61958
+ },
+ "Halasuru Gate": {
+  "alerts": 2646,
+  "lat": 12.96572,
+  "lon": 77.58726
+ },
+ "Hebbala": {
+  "alerts": 2528,
+  "lat": 13.04362,
+  "lon": 77.60398
+ },
+ "Hennuru": {
+  "alerts": 9757,
+  "lat": 13.0468,
+  "lon": 77.63511
+ },
+ "High ground": {
+  "alerts": 4290,
+  "lat": 12.9901,
+  "lon": 77.5858
+ },
+ "Hulimavu": {
+  "alerts": 2154,
+  "lat": 12.87397,
+  "lon": 77.6164
+ },
+ "J.P. Nagar": {
+  "alerts": 5499,
+  "lat": 12.90642,
+  "lon": 77.57705
+ },
+ "Jalahalli": {
+  "alerts": 5950,
+  "lat": 13.04287,
+  "lon": 77.54546
+ },
+ "Jayanagara": {
+  "alerts": 4296,
+  "lat": 12.91842,
+  "lon": 77.58254
+ },
+ "Jeevanbheemanagar": {
+  "alerts": 14249,
+  "lat": 12.96517,
+  "lon": 77.64541
+ },
+ "Jnanabharathi": {
+  "alerts": 2770,
+  "lat": 12.95886,
+  "lon": 77.5084
+ },
+ "K.G. Halli": {
+  "alerts": 2396,
+  "lat": 13.02589,
+  "lon": 77.61979
+ },
+ "K.R. Pura": {
+  "alerts": 10195,
+  "lat": 13.02021,
+  "lon": 77.71081
+ },
+ "K.S. Layout": {
+  "alerts": 3216,
+  "lat": 12.90945,
+  "lon": 77.57125
+ },
+ "Kamakshipalya": {
+  "alerts": 1759,
+  "lat": 12.98888,
+  "lon": 77.50516
+ },
+ "Kengeri": {
+  "alerts": 3048,
+  "lat": 12.91206,
+  "lon": 77.48527
+ },
+ "Kodigehalli": {
+  "alerts": 4113,
+  "lat": 13.04304,
+  "lon": 77.58851
+ },
+ "Madiwala": {
+  "alerts": 8340,
+  "lat": 12.92189,
+  "lon": 77.62091
+ },
+ "Magadi Road": {
+  "alerts": 1198,
+  "lat": 12.97446,
+  "lon": 77.55456
+ },
+ "Mahadevapura": {
+  "alerts": 17764,
+  "lat": 12.98943,
+  "lon": 77.72232
+ },
+ "Malleshwaram": {
+  "alerts": 1269,
+  "lat": 13.0008,
+  "lon": 77.56949
+ },
+ "Mico Layout": {
+  "alerts": 3358,
+  "lat": 12.91499,
+  "lon": 77.6149
+ },
+ "Peenya": {
+  "alerts": 2026,
+  "lat": 13.02819,
+  "lon": 77.51027
+ },
+ "Pulikeshinagar(F.Town)": {
+  "alerts": 3358,
+  "lat": 12.9939,
+  "lon": 77.61829
+ },
+ "R.T. Nagar": {
+  "alerts": 3792,
+  "lat": 13.01439,
+  "lon": 77.58554
+ },
+ "Rajajinagar": {
+  "alerts": 430,
+  "lat": 13.00812,
+  "lon": 77.53945
+ },
+ "Sadashivanagar": {
+  "alerts": 5799,
+  "lat": 13.01485,
+  "lon": 77.5743
+ },
+ "Sanjay Nagara": {
+  "alerts": 166,
+  "lat": 13.04304,
+  "lon": 77.58866
+ },
+ "Sheshadripuram": {
+  "alerts": 1660,
+  "lat": 12.98658,
+  "lon": 77.57246
+ },
+ "Shivajinagar": {
+  "alerts": 3551,
+  "lat": 12.9806,
+  "lon": 77.60563
+ },
+ "Thalagattapura": {
+  "alerts": 3008,
+  "lat": 12.87466,
+  "lon": 77.57318
+ },
+ "Upparpet": {
+  "alerts": 2100,
+  "lat": 12.97734,
+  "lon": 77.57567
+ },
+ "V.V.Puram (C.Pet)": {
+  "alerts": 945,
+  "lat": 12.9625,
+  "lon": 77.57211
+ },
+ "Vijayanagara": {
+  "alerts": 646,
+  "lat": 12.97366,
+  "lon": 77.53975
+ },
+ "Whitefield": {
+  "alerts": 23103,
+  "lat": 12.94631,
+  "lon": 77.73489
+ },
+ "Wilson Garden": {
+  "alerts": 2119,
+  "lat": 12.94493,
+  "lon": 77.59653
+ },
+ "Yelahanka": {
+  "alerts": 8332,
+  "lat": 13.09755,
+  "lon": 77.59567
+ },
+ "Yeshwanthpura": {
+  "alerts": 12924,
+  "lat": 13.03062,
+  "lon": 77.54031
+ }
+}

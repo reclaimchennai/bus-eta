@@ -1,0 +1,7 @@
+# twtrx on mss (lines appended to the collector user's crontab by scripts/mss_cutover.sh; Nitter's poll.py runs every 2 min above them)
+# live: watches ~/nitter/out/latest.json for 55 s each minute, ingests a new post within seconds, pushes the TGSRTC layer to SVR
+* * * * * cd $HOME/twtrx && flock -n out/.cron.lock .venv/bin/python -u -m pipeline.collect --watch 55 --publish >> out/collect.log 2>&1
+# TGSRTC and MTC stop/route data from the live sites into ref/ (kept if a download fails its check)
+17 4 * * * cd $HOME/twtrx && .venv/bin/python -m pipeline.refdata >> out/refdata.log 2>&1
+# keep one old week of the log
+30 4 * * 0 cd $HOME/twtrx && mv -f out/collect.log out/collect.log.1

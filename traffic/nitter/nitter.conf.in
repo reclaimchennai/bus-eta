@@ -1,0 +1,35 @@
+[Server]
+hostname = "127.0.0.1:8095"
+title = "nitter"
+address = "127.0.0.1"
+port = 8095
+https = false
+httpMaxConnections = 20
+staticDir = "./public"
+
+[Cache]
+listMinutes = 240
+rssMinutes = 1
+redisHost = "127.0.0.1"
+redisPort = 6390
+redisPassword = ""
+redisConnections = 5
+redisMaxConnections = 10
+
+[Config]
+hmacKey = "@HMAC@"
+base64Media = false
+enableRSS = true
+enableDebug = false
+proxy = ""
+proxyAuth = ""
+tokenCount = 2
+
+[Preferences]
+theme = "Nitter"
+replaceTwitter = ""
+replaceYouTube = ""
+replaceReddit = ""
+proxyVideos = false
+hlsPlayback = false
+infiniteScroll = false

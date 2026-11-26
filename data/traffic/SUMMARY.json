@@ -1,0 +1,215 @@
+{
+ "built_utc": "2026-11-26T04:09:59Z",
+ "posts": 4272,
+ "by_account": {
+  "CYBTRAFFIC": {
+   "n": 1894,
+   "first": "2020-01-18",
+   "last": "2026-11-25"
+  },
+  "HYDTP": {
+   "n": 1417,
+   "first": "2024-09-17",
+   "last": "2026-11-25"
+  },
+  "wftrps": {
+   "n": 154,
+   "first": "2026-10-27",
+   "last": "2026-11-25"
+  },
+  "dtptraffic": {
+   "n": 144,
+   "first": "2026-10-26",
+   "last": "2026-11-25"
+  },
+  "KRPURATRAFFIC": {
+   "n": 140,
+   "first": "2026-10-26",
+   "last": "2026-11-25"
+  },
+  "blrcitytraffic": {
+   "n": 70,
+   "first": "2026-10-26",
+   "last": "2026-11-25"
+  },
+  "mahadevapuratrf": {
+   "n": 51,
+   "first": "2026-10-27",
+   "last": "2026-11-25"
+  },
+  "ftowntrfps": {
+   "n": 46,
+   "first": "2026-10-27",
+   "last": "2026-11-25"
+  },
+  "halairporttrfps": {
+   "n": 45,
+   "first": "2026-10-26",
+   "last": "2026-11-25"
+  },
+  "ChennaiTraffic": {
+   "n": 43,
+   "first": "2026-07-18",
+   "last": "2026-11-25"
+  },
+  "jbnagartrfps": {
+   "n": 34,
+   "first": "2026-11-07",
+   "last": "2026-11-23"
+  },
+  "acpeasttraffic": {
+   "n": 33,
+   "first": "2026-10-16",
+   "last": "2026-11-25"
+  },
+  "hsrltrafficps": {
+   "n": 33,
+   "first": "2026-11-07",
+   "last": "2026-11-23"
+  },
+  "kghallitrfps": {
+   "n": 22,
+   "first": "2026-10-27",
+   "last": "2026-11-25"
+  },
+  "bellandurutrfps": {
+   "n": 21,
+   "first": "2026-10-13",
+   "last": "2026-11-24"
+  },
+  "halasoortrfps": {
+   "n": 14,
+   "first": "2026-10-27",
+   "last": "2026-11-21"
+  },
+  "acpwfieldtrf": {
+   "n": 12,
+   "first": "2026-09-14",
+   "last": "2026-11-24"
+  },
+  "DCPTrWestBCP": {
+   "n": 10,
+   "first": "2026-10-16",
+   "last": "2026-11-25"
+  },
+  "basvanguditrfps": {
+   "n": 10,
+   "first": "2026-10-17",
+   "last": "2026-11-25"
+  },
+  "rtnagartraffic": {
+   "n": 8,
+   "first": "2026-10-28",
+   "last": "2026-11-20"
+  },
+  "DCPSouthTrBCP": {
+   "n": 7,
+   "first": "2026-11-04",
+   "last": "2026-11-24"
+  },
+  "acphsrtrps": {
+   "n": 7,
+   "first": "2026-11-05",
+   "last": "2026-11-22"
+  },
+  "wgardentrfps": {
+   "n": 7,
+   "first": "2026-11-13",
+   "last": "2026-11-25"
+  },
+  "ssnagartrfps": {
+   "n": 6,
+   "first": "2026-11-02",
+   "last": "2026-11-25"
+  },
+  "Hgatetrps": {
+   "n": 4,
+   "first": "2026-10-31",
+   "last": "2026-11-21"
+  },
+  "bwaditrafficps": {
+   "n": 4,
+   "first": "2026-10-18",
+   "last": "2026-11-18"
+  },
+  "hulimavutrfps": {
+   "n": 4,
+   "first": "2026-11-08",
+   "last": "2026-11-25"
+  },
+  "magadiroadtrfps": {
+   "n": 4,
+   "first": "2026-10-31",
+   "last": "2026-10-31"
+  },
+  "yprtrps": {
+   "n": 4,
+   "first": "2026-10-31",
+   "last": "2026-11-21"
+  },
+  "DCPTrNorthBCP": {
+   "n": 3,
+   "first": "2026-10-30",
+   "last": "2026-11-21"
+  },
+  "JalahalliP65260": {
+   "n": 3,
+   "first": "2026-11-21",
+   "last": "2026-11-23"
+  },
+  "acpnortheasttr": {
+   "n": 3,
+   "first": "2026-10-05",
+   "last": "2026-11-01"
+  },
+  "acpsetraffic": {
+   "n": 3,
+   "first": "2026-09-19",
+   "last": "2026-11-01"
+  },
+  "adugoditrfps": {
+   "n": 3,
+   "first": "2026-09-21",
+   "last": "2026-11-23"
+  },
+  "Acpvnagartrfbcp": {
+   "n": 2,
+   "first": "2026-10-02",
+   "last": "2026-11-18"
+  },
+  "peenyatrfps": {
+   "n": 2,
+   "first": "2026-10-29",
+   "last": "2026-11-21"
+  },
+  "JbharathiTrPs24": {
+   "n": 1,
+   "first": "2026-11-22",
+   "last": "2026-11-22"
+  },
+  "JnagarTr": {
+   "n": 1,
+   "first": "2026-11-22",
+   "last": "2026-11-22"
+  },
+  "hebbaltrafficps": {
+   "n": 1,
+   "first": "2026-11-24",
+   "last": "2026-11-24"
+  },
+  "micolyttrfps": {
+   "n": 1,
+   "first": "2026-11-01",
+   "last": "2026-11-01"
+  },
+  "rajajinagartrps": {
+   "n": 1,
+   "first": "2026-11-07",
+   "last": "2026-11-07"
+  }
+ },
+ "dropped_non_official_or_retweet": {
+  "retweet": 9,
+  "sanjayanagara78": 9
+ }
+}

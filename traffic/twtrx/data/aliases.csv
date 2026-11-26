@@ -1,0 +1,50 @@
+alias,target,lat,lon,note,region
+y junction,Kukatpally Y junction,,,Cyberabad posts mean Kukatpally Y junction,
+kukatpally y junction,Kukatpally Y junction,,,,
+shilpa flyover,Shilpa Layout Flyover,,,,
+shilpa layout,Shilpa Layout Flyover,,,,
+rob,Hitech City,,,Hitech City MMTS road over bridge (Cyber Towers - JNTU),
+rob flyover,Hitech City,,,,
+hitech city rob,Hitech City,,,,
+rta office,Kondapur RTA Office,,,Cyberabad posts refer to Kondapur RTA,
+rto office,Kondapur RTA Office,,,,
+rto office kondapur,Kondapur RTA Office,,,,
+rta office kondapur,Kondapur RTA Office,,,,
+hcu depot,HCU Bus Depot,,,,
+doyens colony,Alind / Doyens Colony,,,,
+amb mall,AMB Cinemas,,,,
+radisson hotel,Radisson,,,Radisson Hitec City (Gachibowli),
+tgpa,Telangana State Police Academy,,,,
+tgpa rotary,Telangana State Police Academy,,,,
+gullmohar junction,Gulmohar Park Colony,,,,
+gulmohar junction,Gulmohar Park Colony,,,,
+orr,-,,,ambiguous: the whole ring road,
+outer ring road,-,,,ambiguous,
+carriageway,-,,,,
+mallareddy hospital,Malla Reddy Health City (MRHC),,,Suraram (Jeedimetla PS),
+malla reddy hospital,Malla Reddy Health City (MRHC),,,,
+ntr bhavan,,17.42357,78.42605,"NTR Trust Bhavan, Road No. 2 Banjara Hills (Nominatim)",hyd
+ntr trust bhavan,,17.42357,78.42605,,hyd
+cancer hospital,,17.41733,78.43011,"Basavatarakam Indo American Cancer Hospital, KBR ring (Nominatim)",hyd
+basavatarakam cancer hospital,,17.41733,78.43011,,hyd
+journalist colony,,17.42153,78.40874,"Journalist Colony, Jubilee Hills (Nominatim)",hyd
+bvb,,17.41885,78.41067,"Bharatiya Vidya Bhavan, Jubilee Hills (Nominatim)",hyd
+bvb junction,,17.41885,78.41067,,hyd
+bharatiya vidya bhavan,,17.41885,78.41067,,hyd
+taj mahal hotel,-,,,"two hotels (Abids and one on the KBR/Jubilee Hills ring): ambiguous, do not geocode",hyd
+eflu,,17.42380,78.52443,English and Foreign Languages University (Nominatim),hyd
+seethaphalmandi,,17.42493,78.51598,(Nominatim),hyd
+seetaphalmandi,,17.42493,78.51598,,hyd
+golnaka circle,Golnaka,,,,
+golnaka flyover,Golnaka,,,,
+kbr park,KBR Park,,,,
+kbr,KBR Park,,,HTP posts: KBR = KBR Park,hyd
+greenlands,Greenlands Junction,,,"Begumpet/Panjagutta, not the western Greenlands POI",hyd
+ayodhya junction,-,,,Khairatabad area; OSM/stops only know Ayodhya X Roads (Kompally): do not geocode,hyd
+decathlon,-,,,several stores; KBR-ring one not in OSM,hyd
+asian hospital,-,,,ambiguous,hyd
+6 no amberpet,Amberpet T Jn,,,,hyd
+6 no junction,Amberpet T Jn,,,"6 Number junction, Amberpet",hyd
+jubilee check post,Jubilee Hills Checkpost,,,,
+ncc junction,-,,,"OU NCC junction (Vidyanagar); OSM only has an NCC office 7 km north: do not geocode",hyd
+ncc,-,,,same,hyd

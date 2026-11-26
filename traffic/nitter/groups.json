@@ -1,0 +1,10 @@
+{
+ "BLR1": "(from:Jointcptraffic OR from:DCPTrCentralBCP OR from:DCPTrNorthBCP OR from:DCPSouthTrBCP OR from:DCPTrWestBCP OR from:acpeasttraffic OR from:acphsrtrps) -filter:replies -filter:nativeretweets",
+ "BLR2": "(from:acpnortheasttr OR from:acpsetraffic OR from:Acpvnagartrfbcp OR from:acpwesttrf OR from:acpwfieldtrf OR from:adugoditrfps OR from:ashoknagartrfps) -filter:replies -filter:nativeretweets",
+ "BLR3": "(from:bsktrfps OR from:bwaditrafficps OR from:basvanguditrfps OR from:bellandurutrfps OR from:chickpetetrfps OR from:chikkajalatrfps OR from:citymarkettrps) -filter:replies -filter:nativeretweets",
+ "BLR4": "(from:cparktrafficps OR from:ecitytrfps OR from:halairporttrfps OR from:hsrltrafficps OR from:halasoortrfps OR from:hgatetrafficps OR from:Hgatetrps) -filter:replies -filter:nativeretweets",
+ "BLR5": "(from:hebbaltrafficps OR from:highgroundtrfps OR from:hulimavutrfps OR from:JalahalliP65260 OR from:JnagarTr OR from:jbnagartrfps OR from:JbharathiTrPs24) -filter:replies -filter:nativeretweets",
+ "BLR6": "(from:kghallitrfps OR from:KRPURATRAFFIC OR from:kslayoutrfps OR from:kmpalyatrfps OR from:kengeritrfps OR from:madivalatrfps OR from:magadiroadtrfps) -filter:replies -filter:nativeretweets",
+ "BLR7": "(from:mahadevapuratrf OR from:Mvmtraffic OR from:micolyttrfps OR from:peenyatrfps OR from:ftowntrfps OR from:rtnagartraffic OR from:rajajinagartrps) -filter:replies -filter:nativeretweets",
+ "BLR8": "(from:ssnagartrfps OR from:sanjayanagara78 OR from:upparpetetrfps OR from:vvpuramtrfps OR from:wftrps OR from:wgardentrfps OR from:yprtrps) -filter:replies -filter:nativeretweets"
+}
