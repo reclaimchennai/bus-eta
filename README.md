@@ -22,7 +22,7 @@ and improve it:
 ## Contents
 
 1. [Results](#1-results)
-2. [How the estimator works](#2-how-the-estimator-works)
+2. [How the estimator works](#2-how-the-estimator-works) (v4; v5 adds the features in §1.0)
 3. [Checking it honestly](#3-checking-it-honestly)
 4. [Live traffic alerts: do they help?](#4-live-traffic-alerts-do-they-help)
 5. [What is in this repository](#5-what-is-in-this-repository)
@@ -39,7 +39,30 @@ and improve it:
 **Metric:** mean absolute error (MAE) of the predicted arrival time, in seconds, over every stop 1–30 minutes ahead of
 every bus. The truth is when the bus actually crossed the stop, interpolated between its GPS fixes.
 
-### 1.1 Held-out days, scored causally
+### 1.0 v5 (27 Nov 2026): one model for all systems, better than v4 and v4r everywhere
+
+v5 ([`docs/V5_RESULTS.md`](docs/V5_RESULTS.md), weights in [`models/v5_ensemble/`](models/v5_ensemble/)) adds 24
+live features to v4's 74. The main one is **last-pass segment times**: each stretch of road timed by the buses that
+last drove it, up to an hour ago. The others are the bus ahead's travel time, this bus's state, and a decayed
+today-vs-history ratio. It is a LightGBM (0.4) + XGBoost (0.6) blend trained on leak-free caches, where no day ever
+sees its own history model. One model serves every system. Same rows, same held-out days as the v4 / v4r audits;
+95% intervals are bootstraps over whole buses.
+
+| System | Held-out day | Production | **v5** | Change | 80% band width |
+|---|---|---|---|---|---|
+| Chennai MTC | 23 / 24 Nov | 92.6 / 85.7 s (v4) | **81.8 / 75.0 s** | −12% | −9 to −12% |
+| Bengaluru BMTC | 23 / 24 Nov | 98.4 / 91.0 s (v4) | **86.0 / 85.4 s** | −12% / −6% | −8 to −16% |
+| Delhi | 23 / 24 Nov | 110.1 / 103.0 s (v4) | **94.6 / 84.7 s** | −14% / −18% | −17 to −22% |
+| Mumbai | 17 Nov | 83.2 s (v4) | **73.7 s** | −12% | −15% |
+| Tricity | 24 Nov | 118.9 s (v4r) | **110.6 s** | −7% | −9% |
+| TGSRTC | 24 Nov | 94.4 s (v4r) | **85.4 s** | −10% | −10% |
+| APSRTC | 24 Nov | 102.9 s (v4r) | **86.3 s** | −16% | −10% |
+| Gurugram (NCR) | 17 Nov | 111.4 s (v4) | 110.9 s | not significant (48 buses) | −10% |
+
+Band coverage stays at 80% with the live AgACI calibration. v4's habit of running ~30 s late is gone: v5's median
+bias is within ±11 s everywhere. The v4 tables below are kept as the earlier baseline.
+
+### 1.1 Held-out days, scored causally (v4)
 
 The historical speed model is rebuilt from the 7 days *before* the scored day only (`src/audit_v4.py`; see
 [§3](#3-checking-it-honestly) for why).
@@ -178,7 +201,8 @@ Each version lives in `src/` and was scored the same way:
 | v2 | [`src/train_v2_deepreta_cqr.py`](src/train_v2_deepreta_cqr.py) | the DeeprETA-style residual target; Mondrian CQR per horizon |
 | v3 | [`src/train_v3_ensemble_agaci.py`](src/train_v3_ensemble_agaci.py) | the LGB+XGB+CatBoost stack, route geometry, online AgACI |
 | v4r | [`src/train_v4_rtc.py`](src/train_v4_rtc.py) | v4 retrained with Tricity, TGSRTC and APSRTC; serves the RTC maps |
-| **v4** | [`src/train_v4_cached_ensemble.py`](src/train_v4_cached_ensemble.py) | v3 with leaky columns removed, OSM infrastructure, holidays; cached features |
+| v4 | [`src/train_v4_cached_ensemble.py`](src/train_v4_cached_ensemble.py) | v3 with leaky columns removed, OSM infrastructure, holidays; cached features |
+| **v5** | [`src/v5_build.py`](src/v5_build.py), [`src/train_v5.py`](src/train_v5.py), [`serve/eta_engine_v5.py`](serve/eta_engine_v5.py) | 24 live features on top of v4 (last-pass segment times, leader travel time, bus state, today vs history), leak-free caches, one model for all systems ([`docs/V5_RESULTS.md`](docs/V5_RESULTS.md)) |
 | tried | [`src/mask_cnn_baseline.py`](src/mask_cnn_baseline.py), [`src/colab_a100_train_v3.py`](src/colab_a100_train_v3.py), [`notebooks/`](notebooks/), [`src/llm_disruption_sidecar.py`](src/llm_disruption_sidecar.py) | a Mask-CNN paper reproduction (worse, §9); a deep residual net for a Colab A100 and an LLM that reads disruption text, both written but never benchmarked |
 
 ---
@@ -354,8 +378,12 @@ scripts/fetch_data.sh raw-mtc meta audit v3_cache
 - **If the service stops, the collectors fall back** to their own times within 2 minutes.
 - **The RTC systems** (`rtc_feed.py`, `rtc_adapt.py`) feed a second instance from each map's public
   `vehicles.json`.
-- **Traffic alerts:** `incident_penalty.py` can add a delay for incidents ahead. It runs on TGSRTC with uncalibrated
-  priors; see §4 before relying on it.
+- **Traffic alerts:** `incident_penalty.py` can add a delay for incidents ahead. It was switched off on TGSRTC
+  after §4 showed it makes ETAs worse; the incident layer stays on the map.
+- **v4 or v5, per city:** `"engine": "v5"` on a city in the service config scores it with v5
+  (`--models-v5 DIR`; `--use-v5 lgb` for LightGBM only, 0.3–1.5 s less accurate, less memory). Remove it and
+  restart to go back to v4. Each model set loads only if some city uses it; `docs/V5_RESULTS.md` has the memory of
+  each mix and a replay showing the live path matches the offline numbers (median 0.26 s).
 
 The deploy scripts in `serve/deploy/` take hosts from environment variables (`RAWH`, `SVRH`, `PROJECTS`).
 
@@ -372,6 +400,10 @@ The deploy scripts in `serve/deploy/` take hosts from environment variables (`RA
 | Mask-CNN (Charul & Biyani 2019), reproduced | segment MAE 19.8 s vs 7.6 s for our v1 LightGBM on BMTC; 45.8 vs 13.5 s on Mumbai |
 | Deep residual net on a Colab A100, LLM disruption sidecar | written (`src/colab_a100_train_v3.py`, `src/llm_disruption_sidecar.py`) but **not benchmarked**: open for anyone to try |
 | Mumbai's published −31% | mostly a leak: −6% once its history model used 7 real days |
+| v5: headway / bunching features, history-coverage feature | no measurable effect (kept; they cost little) |
+| v5: post-hoc online residual correction on recent arrivals | 0–1.3 s once the v5 features are in; not worth a second live state |
+| v5: separate models for the RTC systems and the cities | within ±2 s of one pooled model |
+| v5: CatBoost in the blend | weight 0 on the validation days |
 
 ---
 
