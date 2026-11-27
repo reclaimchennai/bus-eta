@@ -31,6 +31,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import statistics
 import time
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from pathlib import Path
@@ -205,11 +206,17 @@ def build_day(system, day, force=False):
                         U.append(draw[reg]); G.append(gvocab.index(groups.get(code, "other")))
         batch.clear()
 
+    # The feed clock is the median time of the last 301 records, not the newest time seen: the archives hold
+    # a few records dated hours or days ahead (APSRTC 23/24 Nov open with one), and a clock that jumps to them
+    # makes every gc() drop the whole live state. The service itself runs on wall time.
     clock = last_flush = 0.0
+    recent = collections.deque(maxlen=301)
     n = 0
     for r in tm.lines(str(raw_file(system, day))):
         S.ingest(r)
-        clock = max(clock, float(r.get("t") or 0))
+        recent.append(float(r.get("t") or 0))
+        if n % 50 == 0:
+            clock = max(clock, statistics.median(recent))
         for reg in S.take_dirty():
             if reg in picked:
                 nfix[reg] += 1

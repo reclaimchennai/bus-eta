@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import argparse
 import calendar
+import collections
+import statistics
 import json
 import resource
 import time
@@ -52,6 +54,7 @@ def main():
     n_fix = n_rows = n_cyc = 0
     cyc = []
     dirty = set()
+    recent = collections.deque(maxlen=301)
     orig_predict = ens.predict
 
     def timed_predict(X, b, margins=None):
@@ -67,7 +70,9 @@ def main():
         S.ingest(r)
         t_ing += time.perf_counter() - t0
         n_fix += 1
-        clock = max(clock, float(r.get("t") or 0))
+        recent.append(float(r.get("t") or 0))
+        if n_fix % 50 == 0:
+            clock = max(clock, statistics.median(recent))      # robust feed clock, as v5_build
         if clock >= t_until:
             break
         if clock - last >= 10:

@@ -32,11 +32,13 @@ def main():
     ap.add_argument("--out", default=str(L.ROOT / "models" / "v5_ensemble"))
     ap.add_argument("--cap", type=int, default=300_000)
     ap.add_argument("--skip", nargs="*", default=[])
+    ap.add_argument("--clip", type=float, default=2.5, help="label clip of log(true/nowcast); v4 used 1.5")
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     D = X5.Data(a.cap)
     Xtr, Xva = D.tr["X"], D.va["X"]
-    r_tr, r_va = L.ratio(D.tr["y"], D.tr["b"]), L.ratio(D.va["y"], D.va["b"])
+    r_tr = np.clip(np.log(D.tr["y"] / D.tr["b"]), -a.clip, a.clip).astype(np.float32)
+    r_va = np.clip(np.log(D.va["y"] / D.va["b"]), -a.clip, a.clip).astype(np.float32)
     b_va, y_va, sys_va = D.va["b"], D.va["y"], D.va["sys_idx"]
     w_b = np.clip(D.tr["b"], 30.0, 3600.0)
     files, p_va, info = {}, {}, {}
@@ -46,7 +48,7 @@ def main():
         return float(np.mean([ae[sys_va == c].mean() / ae0[sys_va == c].mean() for c in np.unique(sys_va) if (sys_va == c).sum() > 1000]))
 
     t0 = time.time()
-    m, _ = X5.train_lgb(D, dict(feats="v5", obj="l1", weight="b"), params={"learning_rate": 0.06}, rounds=1000)
+    m, _ = X5.train_lgb(D, dict(feats="v5", obj="l1", weight="b", clip=a.clip), params={"learning_rate": 0.06}, rounds=1000)
     m.save_model(str(out / "v5_lgb_l1.txt"), num_iteration=m.best_iteration)
     files["lgb"], p_va["lgb"] = "v5_lgb_l1.txt", m.predict(Xva, num_iteration=m.best_iteration, num_threads=NJ)
     info["lgb"] = {"iters": m.best_iteration, "rel_mae_val": rel_mae(p_va["lgb"]), "s": round(time.time() - t0)}
@@ -58,8 +60,8 @@ def main():
                               max_depth=9, min_child_weight=80, subsample=0.8, colsample_bytree=0.8, tree_method="hist",
                               n_jobs=NJ, early_stopping_rounds=40, eval_metric="mae")
         mx.fit(Xtr, r_tr, eval_set=[(Xva, r_va)], verbose=200)
-        mx.save_model(str(out / "v5_xgb_huber.json"))
-        files["xgb"], p_va["xgb"] = "v5_xgb_huber.json", mx.predict(Xva)
+        mx.save_model(str(out / "v5_xgb_huber.ubj"))
+        files["xgb"], p_va["xgb"] = "v5_xgb_huber.ubj", mx.predict(Xva)
         info["xgb"] = {"iters": int(mx.best_iteration), "rel_mae_val": rel_mae(p_va["xgb"]), "s": round(time.time() - t0)}
         print("[v5] xgb", info["xgb"], flush=True)
 
@@ -101,7 +103,8 @@ def main():
     hb = np.digitize(b_va, [180.0, 300.0, 600.0, 900.0])
     score = np.maximum(q_va[0.10] - r_va, r_va - q_va[0.90])
     cqr = {str(k): float(np.quantile(score[hb == k], 0.80)) for k in range(5)}
-    rep = {"features": L.F5, "weights": weights, "files": files, "cqr_by_bucket": cqr, "models": info, "cap": a.cap,
+    files = {k: v for k, v in files.items() if weights.get(k, 1) > 0}      # a model with weight 0 is not shipped
+    rep = {"features": L.F5, "weights": weights, "files": files, "cqr_by_bucket": cqr, "models": info, "cap": a.cap, "label_clip": a.clip,
            "plan": {s: {"train": PLAN[s]["train"], "val": PLAN[s]["val"], "test": PLAN[s]["test"], "city_idx": PLAN[s]["ci"]} for s in PLAN},
            "rel_mae_val_blend": best[0]}
     (out / "v5_report.json").write_text(json.dumps(rep, indent=1))

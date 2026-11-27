@@ -14,7 +14,12 @@ cards and the GTFS-RT trip_updates):
 A sample of buses (--log-share) is logged with the nowcast alongside, for the live accuracy check
 (<archive>/eta_ml-<IST date>.jsonl.gz).
 
-Usage: eta_ml_service.py --config cities.json [--models DIR] [--use lgb,xgb,cat] [--tick 10]
+A city with "engine": "v5" in the config is scored by the v5 models (--models-v5 DIR) on the v5 live state
+(eta_engine_v5.V5Stream: last-pass segment times, leader travel time, bus state, today-vs-history ratios);
+every other city stays on v4/v4r (--models). Each model set is loaded only if a city uses it, so a system
+goes to v5, or back, by changing its "engine" and restarting. docs/V5_RESULTS.md has the memory of each mix.
+
+Usage: eta_ml_service.py --config cities.json [--models DIR] [--use lgb,xgb,cat] [--models-v5 DIR] [--use-v5 lgb,xgb] [--tick 10]
 """
 from __future__ import annotations
 
@@ -35,6 +40,7 @@ import zlib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import eta_engine as E  # noqa: E402
+import eta_engine_v5 as E5  # noqa: E402
 
 IST = dt.timezone(dt.timedelta(hours=5, minutes=30))
 UA = "reclaim-bus-maps-eta/1.0"
@@ -275,13 +281,15 @@ class Pipe:
 
 
 class City:
-    def __init__(self, cfg, hol, weather, ens_cqr):
+    def __init__(self, cfg, hol, weather, ens, tail=None):
         self.cfg, self.name = cfg, cfg["city"]
+        self.engine, self.ens = engine_of(cfg), ens
         t0 = time.time()
         R = E.Routes(cfg["route_stops"], cfg["stop_dist"], cfg.get("osm"))
-        self.S = E.CityStream(self.name, R, cfg.get("model_json"), hol, weather, cfg.get("max_gap"), cfg.get("city_idx"))
-        self.S.cal = E.AgACI(cfg.get("cqr") or ens_cqr)
-        self.tail = Tail(cfg["archive"]) if not cfg.get("source_cmd") else Pipe(cfg["source_cmd"], cfg.get("tee"))
+        stream = E5.V5Stream if self.engine == "v5" else E.CityStream
+        self.S = stream(self.name, R, cfg.get("model_json"), hol, weather, cfg.get("max_gap"), cfg.get("city_idx"))
+        self.S.cal = E.AgACI(cfg.get("cqr_v5" if self.engine == "v5" else "cqr") or ens.cqr)
+        self.tail = tail or (Tail(cfg["archive"]) if not cfg.get("source_cmd") else Pipe(cfg["source_cmd"], cfg.get("tee")))
         self.out = cfg["out"]
         os.makedirs(os.path.dirname(self.out), exist_ok=True)
         self.vurl, self.vlast, self.shown_seen = cfg.get("vehicles_url"), 0.0, {}
@@ -317,7 +325,8 @@ class City:
             self.logf.write(json.dumps(r, separators=(",", ":")) + "\n")
         self.logf.flush()
 
-    def step(self, ens, now):
+    def step(self, now):
+        ens = self.ens
         for r in self.tail.read():
             self.S.ingest(r)
             self.stats["lines"] += 1
@@ -369,7 +378,7 @@ class City:
         self.cur = keep
         tmp = self.out + ".tmp"
         with open(tmp, "w") as fh:
-            json.dump({"t": int(now), "v": "v4", "b": keep}, fh, separators=(",", ":"))
+            json.dump({"t": int(now), "v": self.engine, "b": keep}, fh, separators=(",", ":"))
         os.replace(tmp, self.out)
 
     def maintain(self, now):
@@ -390,11 +399,20 @@ class City:
                 log(f"[{self.name}] routes reload failed: {e}")
 
 
+def engine_of(cfg):
+    e = cfg.get("engine", "v4")
+    if e not in ("v4", "v5"):
+        raise ValueError(f"{cfg.get('city')}: engine must be v4 or v5, not {e!r}")
+    return e
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True)
     ap.add_argument("--models", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "models"))
     ap.add_argument("--use", default="lgb,xgb,cat")
+    ap.add_argument("--models-v5", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "models-v5"))
+    ap.add_argument("--use-v5", default="", help="e.g. lgb: LightGBM only (least memory); default: the blend of v5_report.json")
     ap.add_argument("--tick", type=float, default=10.0)
     ap.add_argument("--threads", type=int, default=2)
     ap.add_argument("--holidays", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "holidays_india_2025_2026.json"))
@@ -406,15 +424,22 @@ def main():
         if c.get("coords"):                       # systems beyond the trained five: where to ask Open-Meteo
             COORDS[c["city"]] = tuple(c["coords"])
     weather = Weather(names)
-    ens = E.Ensemble(a.models, threads=a.threads, use=tuple(a.use.split(",")))
-    log(f"models {sorted(ens.m)} weights {ens.w}")
+    on = [c for c in cfg["cities"] if c.get("enabled", True) is not False]
+    ens = {}
+    if any(engine_of(c) == "v4" for c in on):
+        ens["v4"] = E.Ensemble(a.models, threads=a.threads, use=tuple(a.use.split(",")))
+        log(f"v4 models {sorted(ens['v4'].m)} weights {ens['v4'].w}")
+    if any(engine_of(c) == "v5" for c in on):
+        ens["v5"] = E5.EnsembleV5(a.models_v5, threads=a.threads, use=tuple(a.use_v5.split(",")) if a.use_v5 else None)
+        log(f"v5 models {[(n, round(w, 2)) for n, w, _ in ens['v5'].m]} for {[c['city'] for c in on if engine_of(c) == 'v5']}")
+    trim()
     cities = []
     for c in cfg["cities"]:
         if c.get("enabled", True) is False:
             log(f"[{c['city']}] disabled in config")
             continue
         try:
-            cities.append(City(c, hol, weather, ens.cqr))
+            cities.append(City(c, hol, weather, ens[engine_of(c)]))
         except Exception as e:  # noqa: BLE001
             log(f"[{c['city']}] not started: {e}")
     stop = []
@@ -424,7 +449,7 @@ def main():
         t0 = time.time()
         for c in cities:
             try:
-                c.step(ens, t0)
+                c.step(t0)
                 c.write(t0)
             except Exception:  # noqa: BLE001
                 log(f"[{c.name}] {traceback.format_exc()}")
@@ -434,7 +459,7 @@ def main():
             trim()
             last_maint = t0
         if t0 - last_stat > 60:
-            log(" | ".join(f"{c.name}: {c.stats['lines']} fixes, {c.stats['scored']} scored, {len(c.cur)} buses, "
+            log(" | ".join(f"{c.name} {c.engine}: {c.stats['lines']} fixes, {c.stats['scored']} scored, {len(c.cur)} buses, "
                            f"80% band miss {sum(c.S.cal.miss)}/{sum(c.S.cal.n)} margins {[round(m, 3) for m in c.S.cal.margins()]}" for c in cities)
                 + f" | {time.time()-t0:.1f}s")
             for c in cities:

@@ -36,6 +36,7 @@ V5_FEATURES = E.V4_FEATURES + V5_EXTRA
 TAU = 1800.0            # decay of the "today vs history" ratios
 LASTPASS_S = 3600.0     # a segment traversal counts for an hour
 ROUTE_ACTIVE_S = 1800.0
+NO_CITY_V = [-1] * 24
 
 
 class Decayed:
@@ -66,17 +67,16 @@ class V5Stream(E.CityStream):
         self.seg_trav = {}                                  # "stopA|stopB" -> deque of (t, seconds stop to stop)
         self.r_today = collections.defaultdict(Decayed)
         self.c_today = Decayed()
-        self._seg = self.M.m.get("seg") or {}
-        self._cityv = (self.M.m.get("city") or {}).get("v") or [-1] * 24
 
     def vh(self, sk, hour):
         """The history model's speed for a segment at this hour (as eta_engine.features), and whether it has a row."""
-        row = self._seg.get(sk)
+        m = self.M.m                                        # read each time: the service reloads model.json
+        row = (m.get("seg") or {}).get(sk)
         v = -1.0
         if row:
             v = row[2][hour] if row[2][hour] > 0 else row[1]
         if not v or v <= 0:
-            cv = self._cityv[hour]
+            cv = ((m.get("city") or {}).get("v") or NO_CITY_V)[hour]
             v = cv if cv and cv > 0 else 4.2
         return min(22.0, max(1.0, v)), bool(row)
 
@@ -267,7 +267,7 @@ class EnsembleV5:
             if path.endswith(".txt"):
                 bst = lgb.Booster(model_file=path)
                 fn = lambda X, bst=bst: bst.predict(X, num_threads=self.threads)
-            elif path.endswith(".json"):
+            elif path.endswith((".json", ".ubj")):
                 import xgboost as xgb
                 bst = xgb.Booster(); bst.load_model(path); bst.set_param({"nthread": threads})
                 fn = lambda X, bst=bst, xgb=xgb: bst.predict(xgb.DMatrix(X, nthread=self.threads))

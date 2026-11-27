@@ -13,9 +13,9 @@ from pathlib import Path
 
 import numpy as np
 
-import eta_engine as E
-import eta_engine_v5 as E5
 import v5_lib as L
+import eta_engine as E  # noqa: E402  (v5_lib puts serve/ on the path)
+import eta_engine_v5 as E5  # noqa: E402
 from v5_build import OUT, PLAN
 
 

@@ -45,6 +45,7 @@ EXPS = {
     "b2_base_lastpass":  dict(feats="v5", obj="l1", weight="b", base="base_eta_lastpass_s"),
     "b3_base_corr":      dict(feats="v5", obj="l1", weight="b", base="base_eta_corr_s"),
     "c1_clip25":         dict(feats="v5", obj="l1", weight="b", clip=2.5),
+    "c2_clip35":         dict(feats="v5", obj="l1", weight="b", clip=3.5),
     **{f"d_drop_{g}": dict(feats=f"v5-{g}", obj="l1", weight="b") for g in GROUPS},
     **{f"e_add_{g}": dict(feats=f"v4+{g}", obj="l1", weight="b") for g in GROUPS},
 }
@@ -164,10 +165,11 @@ def main():
     ap.add_argument("--fast", action="store_true")
     ap.add_argument("--list", action="store_true")
     ap.add_argument("--tag", default="")
+    ap.add_argument("--systems", default="", help="train and score only these (comma separated): pooled-vs-own-model question")
     a = ap.parse_args()
     if a.list:
         print("\n".join(EXPS)); return
-    D = Data(a.cap)
+    D = Data(a.cap, systems=a.systems.split(",") if a.systems else None)
     out = OUT / "exp"
     out.mkdir(parents=True, exist_ok=True)
     for name in a.names:

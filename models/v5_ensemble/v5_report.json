@@ -1,0 +1,254 @@
+{
+ "features": [
+  "city_idx",
+  "bus_class_idx",
+  "dist_ahead_m",
+  "n_stops_ahead",
+  "base_eta_nowcast_s",
+  "base_eta_hist_s",
+  "base_eta_corr_s",
+  "live_vs_hist_ratio",
+  "stop_seq_now",
+  "stop_seq_target",
+  "route_num_stops",
+  "progress_now",
+  "progress_target",
+  "path_mean_sinuosity",
+  "lat_now",
+  "lon_now",
+  "hour_ist",
+  "min_of_day",
+  "dow",
+  "is_weekend",
+  "sin_tod",
+  "cos_tod",
+  "sin_dow",
+  "cos_dow",
+  "nc_pace",
+  "veh_pace_ewma",
+  "veh_recent_v",
+  "trip_elapsed_s",
+  "trip_dist_m",
+  "cur_seg_live_v_15m",
+  "cur_corr_live_v_5m",
+  "cur_corr_live_v_15m",
+  "cur_corr_live_v_30m",
+  "cur_corr_n_15m",
+  "cur_corr_cv_30m",
+  "cur_corr_stopgo_30m",
+  "up_live_v_15m",
+  "dn_live_v_15m",
+  "path_live_corr_v",
+  "path_live_cov_frac",
+  "city_live_v_15m",
+  "lead_headway_s",
+  "corr_lead_headway_s",
+  "temp_c",
+  "humidity",
+  "precip_mm",
+  "precip_3h_mm",
+  "precip_6h_mm",
+  "precip_24h_mm",
+  "is_raining",
+  "is_heavy_rain",
+  "wind_kph",
+  "gust_kph",
+  "cloud_cover",
+  "vis_km",
+  "pm25",
+  "aqi",
+  "pol_precip_mean",
+  "pol_rain_accum_mean",
+  "path_stops_per_km",
+  "path_max_sinuosity",
+  "path_turn_rad_sum",
+  "path_turn_rad_per_km",
+  "path_osm_signals",
+  "path_osm_flyovers",
+  "path_osm_rail_crossings",
+  "path_osm_roundabouts",
+  "path_osm_signals_per_km",
+  "path_osm_flyovers_per_km",
+  "is_major_holiday",
+  "is_festival_or_procession",
+  "rain_x_peak",
+  "decayed_pace_effect",
+  "live_ratio_x_horizon",
+  "stopped_s",
+  "fix_gap_s",
+  "veh_v_180s",
+  "veh_v_300s",
+  "trip_vs_hist_ratio",
+  "dist_to_next_stop_m",
+  "dist_from_prev_stop_m",
+  "route_today_ratio",
+  "route_today_evidence_s",
+  "city_today_ratio",
+  "lead_gap_m",
+  "lead_fix_age_s",
+  "lead_v",
+  "follow_gap_m",
+  "route_active_buses",
+  "leader_tt_ratio",
+  "leader_tt_age_s",
+  "leader_vs_nowcast",
+  "leader2_tt_ratio",
+  "base_eta_lastpass_s",
+  "lastpass_vs_nowcast",
+  "lastpass_cov_frac",
+  "lastpass_age_s",
+  "path_hist_cov_frac"
+ ],
+ "weights": {
+  "lgb": 0.4,
+  "xgb": 0.6
+ },
+ "files": {
+  "lgb": "v5_lgb_l1.txt",
+  "xgb": "v5_xgb_huber.ubj",
+  "q10": "v5_lgb_q10.txt",
+  "q90": "v5_lgb_q90.txt"
+ },
+ "cqr_by_bucket": {
+  "0": 0.0038727349103295245,
+  "1": 0.00419326875441256,
+  "2": 0.003953976319417925,
+  "3": 0.004565360455004196,
+  "4": 0.00500632249569801
+ },
+ "models": {
+  "lgb": {
+   "iters": 999,
+   "rel_mae_val": 0.5067691970567901,
+   "s": 1403
+  },
+  "xgb": {
+   "iters": 1199,
+   "rel_mae_val": 0.5034853692887278,
+   "s": 522
+  }
+ },
+ "cap": 300000,
+ "label_clip": 2.5,
+ "plan": {
+  "mtc": {
+   "train": [
+    "2026-11-14",
+    "2026-11-15",
+    "2026-11-16",
+    "2026-11-17",
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21"
+   ],
+   "val": "2026-11-22",
+   "test": [
+    "2026-11-23",
+    "2026-11-24"
+   ],
+   "city_idx": 0
+  },
+  "bmtc": {
+   "train": [
+    "2026-11-17",
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21"
+   ],
+   "val": "2026-11-22",
+   "test": [
+    "2026-11-23",
+    "2026-11-24"
+   ],
+   "city_idx": 1
+  },
+  "mumbai": {
+   "train": [
+    "2026-11-08",
+    "2026-11-09",
+    "2026-11-10",
+    "2026-11-11",
+    "2026-11-12",
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "val": "2026-11-16",
+   "test": [
+    "2026-11-17"
+   ],
+   "city_idx": 2
+  },
+  "ncr": {
+   "train": [
+    "2026-11-13",
+    "2026-11-14",
+    "2026-11-15"
+   ],
+   "val": "2026-11-16",
+   "test": [
+    "2026-11-17"
+   ],
+   "city_idx": 3
+  },
+  "delhi": {
+   "train": [
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21"
+   ],
+   "val": "2026-11-22",
+   "test": [
+    "2026-11-23",
+    "2026-11-24"
+   ],
+   "city_idx": 4
+  },
+  "tricity": {
+   "train": [
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21",
+    "2026-11-22"
+   ],
+   "val": "2026-11-23",
+   "test": [
+    "2026-11-24"
+   ],
+   "city_idx": 5
+  },
+  "tgsrtc": {
+   "train": [
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21",
+    "2026-11-22"
+   ],
+   "val": "2026-11-23",
+   "test": [
+    "2026-11-24"
+   ],
+   "city_idx": 6
+  },
+  "apsrtc2": {
+   "train": [
+    "2026-11-18",
+    "2026-11-19",
+    "2026-11-20",
+    "2026-11-21",
+    "2026-11-22"
+   ],
+   "val": "2026-11-23",
+   "test": [
+    "2026-11-24"
+   ],
+   "city_idx": 7
+  }
+ },
+ "rel_mae_val_blend": 0.502069727446531
+}
