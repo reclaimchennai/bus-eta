@@ -14,14 +14,16 @@ FILES = {"tgsrtc": {"stops.json": "https://maps.reclaim.city/tgsrtc/data/stops.j
                     "services.json": "https://maps.reclaim.city/tgsrtc/data/services.json"},
          "mtc": {"route_stops.json": "https://mtc.reclaimchennai.city/data/route_stops.json",
                  "bus_stops.geojson": "https://mtc.reclaimchennai.city/data/bus_stops.geojson"},
+         "tricity": {"stops.json": "https://maps.reclaim.city/tricity/data/stops.json",
+                     "services.json": "https://maps.reclaim.city/tricity/data/services.json"},
          "bmtc": {"route_stops.json": "https://maps.reclaimchennai.city/bengaluru/data/route_stops.json",
                   "bus_stops.geojson": "https://maps.reclaimchennai.city/bengaluru/data/bus_stops.geojson"}}
 
 def check(name, d):
     if name == "stops.json":
-        sid, (n, la, lo) = next(iter(d.items())); assert 17 < la < 18.5 and len(d) > 1000
+        sid, (n, la, lo) = next(iter(d.items())); assert (17 < la < 18.5 and len(d) > 1000) or (30 < la < 31 and len(d) > 300)
     elif name == "services.json":
-        s = next(iter(d["services"].values())); assert isinstance(s[6], list) and len(d["services"]) > 100
+        s = next(iter(d["services"].values())); assert isinstance(s[6], list) and len(d["services"]) > 100   # TGSRTC, tricity
     elif name == "route_stops.json":
         r = next(iter(d.values())); sid, n, la, lo = r["d"][0]["s"][0]; assert r["sn"] and 12 < la < 14 and len(d) > 500   # Chennai and Bengaluru
     elif name == "bus_stops.geojson":

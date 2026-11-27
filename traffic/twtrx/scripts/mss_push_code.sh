@@ -10,6 +10,8 @@ rsync -azR -e "ssh -o BatchMode=yes -o ConnectTimeout=15 ${NITTER_SSH_OPTS:-}" -
   pipeline/ scripts/mss.crontab scripts/mss_cutover.sh scripts/mss_push_code.sh \
   data/aliases.csv data/chn/aliases.csv data/manual_events.json README.md \
   data/blr/aliases.csv data/blr/btp_accounts.csv data/blr/btp_accounts.md data/blr/nitter_groups.json \
-  data/blr/osm_points.geojsonseq data/blr/osm_lines.geojsonseq data/blr/osm_polys.geojsonseq ${NITTER_HOST:?user@nitter-host}:twtrx/
+  data/blr/osm_points.geojsonseq data/blr/osm_lines.geojsonseq data/blr/osm_polys.geojsonseq \
+  data/chd/aliases.csv data/chd/osm_points.geojsonseq data/chd/osm_lines.geojsonseq data/chd/osm_polys.geojsonseq \
+  ${NITTER_HOST:?user@nitter-host}:twtrx/
 # not pushed: data/blr/powerbi/, junctions.csv, station_areas.json (mss rebuilds them: weekly btp_powerbi + btp_congestion)
 echo "pushed code to mss:~/twtrx"

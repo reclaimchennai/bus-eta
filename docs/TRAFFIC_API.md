@@ -17,7 +17,7 @@ different amounts of each:
 | Delhi `delhi` | Delhi Traffic Police: advisories site and @dtptraffic | DTC and cluster buses | — |
 | Mumbai region `mumbai` | — | BEST, TMT, KDMT, VVMT buses | — |
 | Andhra Pradesh `andhra-pradesh` | — | APSRTC buses (state-wide) | — |
-| Chandigarh tricity `chandigarh` | — | CTU buses | — |
+| Chandigarh tricity `chandigarh` | Chandigarh Traffic Police (@trafficchd): diversions for processions, events and marathons; read twice a day; history since 10 Nov 2026 | CTU buses | — |
 | Ahmedabad `ahmedabad` | — | AMTS and Janmarg BRTS buses | — |
 
 Everything is GeoJSON or JSON with `[longitude, latitude]` coordinates. Times are Unix seconds; hours of the day

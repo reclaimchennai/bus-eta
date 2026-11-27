@@ -1,5 +1,5 @@
 """Live collector: X via Nitter (Hyderabad, Cyberabad; Delhi, Chennai and Bengaluru forwarded), the HTP e-challan alert/news,
-Chennai incidents for the MTC map, Bengaluru incidents for the BMTC map, the WhatsApp channel (Mac only), then the TGSRTC live layer to SVR.
+Chennai incidents for the MTC map, Bengaluru incidents for the BMTC map, Chandigarh incidents for the tricity map, the WhatsApp channel (Mac only), then the TGSRTC live layer to SVR.
 
   python -m pipeline.collect --watch 55 --publish     # mss cron, every minute (scripts/mss.crontab)
   python -m pipeline.collect                          # one pass, no push to SVR (the old Mac launchd job)
@@ -59,6 +59,7 @@ def main():
         x_if_new(force=nitter_mtime() is None)
         run("pipeline.chennai")
         run("pipeline.bengaluru")
+        run("pipeline.chandigarh")
         run("pipeline.publish_history")      # alert history for the traffic API, hourly at most
         try: age = time.time() - LIVE.stat().st_mtime
         except OSError: age = 1e9

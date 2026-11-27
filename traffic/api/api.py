@@ -77,6 +77,9 @@ CITIES = {
     },
     "chandigarh": {
         "name": "Chandigarh tricity", "state": "Chandigarh, Punjab, Haryana", "bbox": [76.60, 30.60, 76.95, 30.85],
+        "alerts": {"url": MAPS + "tricity/live/incidents.json", "fmt": "incidents", "agencies": ["Chandigarh Traffic Police"],
+                   "from": "@trafficchd on X (read twice a day: it posts advisories a few times a week)",
+                   "history": MAPS + "traffic/history/chandigarh.json", "history_from": "advisories since 10 Nov 2026"},
         "speeds": {"url": MAPS + "tricity/rt/speeds.json", "geo": MAPS + "tricity/data/segs.json", "geo_fmt": "segs",
                    "stops": MAPS + "tricity/data/stops.json", "stops_fmt": "rtc", "fleet": "CTU buses"},
     },

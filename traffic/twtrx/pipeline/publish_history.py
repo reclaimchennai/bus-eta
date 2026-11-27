@@ -3,7 +3,7 @@
   python -m pipeline.publish_history          # run by pipeline.collect in its slow pass; pushes at most hourly, only on change
 
 Reads the full-history GeoJSON the builds already write (out/map/incidents_all.geojson for Hyderabad + Cyberabad,
-out/chennai/ and out/bengaluru/incidents_all.geojson), drops the view counts, and pushes each city's file to
+out/chennai/, out/bengaluru/ and out/chandigarh/incidents_all.geojson), drops the view counts, and pushes each city's file to
 <map server>:projects/maps-site/traffic/history/<city>.json (tmp file, then mv), served at
 maps.reclaim.city/traffic/history/<city>.json and read by traffic-api (api.reclaim.city/traffic/v1/<city>/alerts/history).
 """
@@ -13,7 +13,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 FILES = {"hyderabad": ROOT / "out/map/incidents_all.geojson",
          "chennai": ROOT / "out/chennai/incidents_all.geojson",
-         "bengaluru": ROOT / "out/bengaluru/incidents_all.geojson"}
+         "bengaluru": ROOT / "out/bengaluru/incidents_all.geojson",
+         "chandigarh": ROOT / "out/chandigarh/incidents_all.geojson"}
 STATE = ROOT / "out/.history_pushed.json"
 HOST, DEST = os.environ.get("MAP_SERVER", "user@map-server"), "projects/maps-site/traffic/history"   # ssh target that serves the bus maps
 EVERY = 3600

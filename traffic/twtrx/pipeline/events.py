@@ -7,7 +7,7 @@ from .classify import classify, scrub, IST
 from .gazetteer import Gazetteer, hav
 from . import route
 
-from .gazetteer import TGSRTC_DATA as SITE, MTC_DATA as MTC, BMTC_DATA as BMTC   # map stop ids: ref/ copies (mss) or the Mac checkouts
+from .gazetteer import TGSRTC_DATA as SITE, MTC_DATA as MTC, BMTC_DATA as BMTC, TRICITY_DATA as TRICITY   # map stop ids: ref/ copies (mss) or the Mac checkouts
 STOP_R = 75   # metres, per the TGSRTC map session
 
 class StopIndex:
@@ -20,9 +20,10 @@ class StopIndex:
                     for sid, name, la, lo in d["s"]:
                         self.stops[sid] = (name, la, lo); self.routes.setdefault(sid, set()).add(r["sn"])
             self._grid(); return
-        self.stops = json.load(open(SITE / "stops.json"))
+        site = TRICITY if city == "chd" else SITE         # RTC maps: stops.json + services.json (route no., ..., stop ids)
+        self.stops = json.load(open(site / "stops.json"))
         self.routes = {}
-        sv = json.load(open(SITE / "services.json"))["services"]
+        sv = json.load(open(site / "services.json"))["services"]
         for s in sv.values():
             for sid in s[6]:
                 self.routes.setdefault(sid, set()).add(s[0])
@@ -56,7 +57,8 @@ def densify(line, step=40):
 class Builder:
     def __init__(self, web=True, city="hyd"):
         """web: True (always look up unknown places online), False, or a set of normalized phrases allowed.
-        city: "hyd" (Cyberabad + Hyderabad, TGSRTC stops), "chn" (Greater Chennai, MTC stops) or "blr" (Bengaluru, BMTC stops)."""
+        city: "hyd" (Cyberabad + Hyderabad, TGSRTC stops), "chn" (Greater Chennai, MTC stops), "blr" (Bengaluru, BMTC stops)
+        or "chd" (Chandigarh tricity, CTU stops)."""
         self.gaz = Gazetteer(city); self.stops = StopIndex(city); self.web = web
         self.unresolved = {}
 
@@ -67,7 +69,7 @@ class Builder:
         region = region or region_of(source)
         text = scrub(text)
         c = classify(text, posted)
-        ex = extract(text, arrows=region in ("chn", "blr"))
+        ex = extract(text, arrows=region in ("chn", "blr", "chd"))
         if ex["traffic_ps"]:
             h = self.gaz.resolve(ex["traffic_ps"].split("&")[0].split("/")[0], allow_web=False, region=region)
             hint = (h["lat"], h["lon"]) if h else hint
@@ -156,11 +158,11 @@ class Builder:
         self.gaz.save(); route.save()
 
 AGENCY = {"cyb": "Cyberabad Traffic Police", "hyd": "Hyderabad Traffic Police", "chn": "Greater Chennai Traffic Police",
-          "blr": "Bengaluru Traffic Police"}
+          "blr": "Bengaluru Traffic Police", "chd": "Chandigarh Traffic Police"}
 
 def region_of(source):
     return ("hyd" if source.startswith("hydtp") else "chn" if source.startswith("chennai")
-            else "blr" if source.startswith("btp") else "cyb")
+            else "blr" if source.startswith("btp") else "chd" if source.startswith("chd") else "cyb")
 
 def norm_text(t):
     return re.sub(r"\W+", " ", t.lower()).strip()

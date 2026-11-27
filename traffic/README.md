@@ -44,7 +44,8 @@ cannot give, is in [`../docs/TRAFFIC_SOURCES.md`](../docs/TRAFFIC_SOURCES.md).
 | `pipeline/btp_powerbi.py` | Bengaluru Traffic Police's public Power BI congestion report, dumped through the same calls the embedded page makes. Needs `BTP_POWERBI_KEY` (the public embed key on the page). |
 | `pipeline/btp_congestion.py` | Hour-of-week congestion profile per BTP grid cell, per BMTC stop (200 m), per corridor. |
 | `pipeline/collect.py`, `publish.py`, `refdata.py`, `make_map.py` | The live loop (cron every minute), atomic publishing of the live layer, daily reference data, the history map. |
-| `pipeline/publish_history.py` | Every placed alert per city (Hyderabad, Chennai, Bengaluru) for the traffic API's `alerts/history`, pushed at most hourly when it changed. |
+| `pipeline/publish_history.py` | Every placed alert per city (Hyderabad, Chennai, Bengaluru, Chandigarh) for the traffic API's `alerts/history`, pushed at most hourly when it changed. |
+| `pipeline/chandigarh.py`, `scripts/chd_aliases.py` | @trafficchd (read twice a day by the poller's `SCHEDULED`) to the tricity map and the API. The police write junctions by sector ("Sec-33/34 Lp"); `chd_aliases.py` generates those light points, four-sector corners and sector markets from OSM's sector outlines into `data/chd/aliases.csv`, and a route "from A to B via C, D" becomes a path through every point. |
 | `scripts/blr_accounts.py`, `nitter_*.py` | Finding and probing the Bengaluru police accounts, paging a Nitter search for history. |
 | `scripts/mss.crontab`, `mss_push_code.sh`, `publish_live.sh` | How it was deployed (cron on a small Linux box next to Nitter). |
 | `data/` | Hand-made reference only: aliases, curated events, the 67 Bengaluru police accounts, BTP junctions/station areas, Power BI lookups. OSM cuts and caches are rebuilt (`ogr2ogr -spat … -where "name IS NOT NULL"` from the India PBF). |

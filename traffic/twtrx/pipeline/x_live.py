@@ -23,7 +23,15 @@ SSH = ["ssh", "-o", "ConnectTimeout=15", "-o", "BatchMode=yes", "-o", "ServerAli
 SOURCE = {"HYDTP": "hydtp_x", "CYBTRAFFIC": "twitter"}
 # other cities: archived as JSON lines and forwarded, not geocoded here
 FORWARD = {"dtptraffic": ROOT / "out/delhi/dtptraffic.jsonl",          # -> raw:projects/delhi-live/x/posts.jsonl
-           "ChennaiTraffic": ROOT / "out/chennai/chennaitraffic.jsonl"}
+           "ChennaiTraffic": ROOT / "out/chennai/chennaitraffic.jsonl",
+           "trafficchd": ROOT / "out/chandigarh/trafficchd.jsonl"}      # read twice a day by the poller (SCHEDULED)
+# Chandigarh: advisories carry #TrafficAdvisory / #TrafficAlert; most other posts are awareness drives
+CHD_UPDATE = re.compile(r"#?traffic ?(advisory|alerts?)\b|divert|diversion|restrict|road (closed|closure|blocked)|closed for|"
+    r"procession|yatra|nagar kirtan|shobha yatra|marathon|cyclothon|rally|vip movement|waterlogg|breakdown|accident|"
+    r"tree (fall|fell|uproot)|signal (out of order|not working)|congestion is expected|avoid the (route|road|stretch)", re.I)
+CHD_NOT = re.compile(r"awareness|road[- ]safety (week|month|stall|team|drive|class|lecture)|helmet|seat ?belt|drunk|challan|"
+    r"special drive|does traffic congestion bother you|#drivebetter|#drivesafe|lost (and|&) found|felicitat|congratulat|wishes", re.I)
+def chd_update(text): return bool(CHD_UPDATE.search(text)) and not CHD_NOT.search(text)
 CHENNAI_NOT = re.compile(r"action taken|awareness|helmet|seat ?belt|drunk|wrong side|triple riding|stop line|sentenced|mobile phone|tail ?lights?|zebra|number plate|hsrp|overspeed|மது அருந்தி|தலைக்கவசம்", re.I)
 DELHI_HOST, DELHI_DIR = os.environ.get("MAP_SERVER", "user@map-server"), "projects/delhi-live/x"
 # Chennai posts that are about the roads today (the account is mostly road-safety awareness)
@@ -91,6 +99,8 @@ def main():
                     rec = {"id": p["id"], "url": p.get("url"), "t": p["t"], "text": p["text"]}
                     if acct == "ChennaiTraffic":
                         rec["update"] = bool(CHENNAI_UPDATE.search(p["text"])) and not CHENNAI_NOT.search(p["text"])
+                    elif acct == "trafficchd":
+                        rec["update"] = chd_update(p["text"])
                     f.write(json.dumps(rec, ensure_ascii=False) + "\n")
             notes.append(f"{acct} {len(new)} new" + ("" if v.get("ok") else " (NOT OK)"))
             if acct == "dtptraffic" and new: pushed = True

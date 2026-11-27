@@ -20,7 +20,7 @@ TYPES = [
     ("tree_fall",    r"tree (fell|fall|fallen|uproot)|uprooted|fallen tree|branch",              "other",              0.55, 90, 0.55),
     ("spillage",     r"spill",                                                                  "other",              0.55, 60, 0.55),
     ("breakdown",    r"break[\s-]?down|broke(n)?[\s-]?down|stalled|tyre burst|puncture",                 "breakdown_accident", 0.5, 45, 0.60),
-    ("event",        r"rally|procession|vip|v\.i\.p|dignitar|convoy|concert|match|festival|ganesh|immersion|nimajjanam|marathon|\b(5|10|21)k\b|\brun\b|bandobast|celebration|sabha|public meeting|bonalu|bathukamma|new year", "rally_procession", 0.6, 240, 0.55),
+    ("event",        r"rally|procession|vip|v\.i\.p|dignitar|convoy|concert|match|festival|ganesh|immersion|nimajjanam|marathon|\b(5|10|21)k\b|\brun\b|bandobast|celebration|sabha|public meeting|bonalu|bathukamma|new year|yatra|kirtan|carnival|chhath|mela", "rally_procession", 0.6, 240, 0.55),
     ("works",        r"works?\b|construction|repair|pipeline|widening|metro|road laying|digging|excavat|maintenance", "construction", 0.5, 480, 0.65),
     ("congestion",   r"traffic movement is slow|movement is slow|traffic is slow|slow[- ]moving|congestion|heavy (vehicular|traffic)|traffic jam|high traffic volume", "other", 0.4, 45, 0.60),
 ]

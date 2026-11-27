@@ -22,6 +22,7 @@ def _ref(name, mac):
 TGSRTC_DATA = _ref("tgsrtc", "Desktop/projects/maps-site/tgsrtc/data")
 MTC_DATA = _ref("mtc", "Desktop/projects/mtc-bus-map/web/data")
 BMTC_DATA = _ref("bmtc", "Desktop/projects/maps-site/bengaluru/data")
+TRICITY_DATA = _ref("tricity", "Desktop/projects/maps-site/tricity/data")
 STOPS = TGSRTC_DATA / "stops.json"
 BBOX = (17.00, 78.05, 17.75, 78.80)  # Cyberabad incl. Shadnagar/Shamshabad; OSM extract covers 17.15-17.70           # lat0, lon0, lat1, lon1
 CENTER = (17.445, 78.375)                     # Cyberabad (HITEC City) centroid
@@ -30,7 +31,8 @@ CENTER = (17.445, 78.375)                     # Cyberabad (HITEC City) centroid
 #   hyd: Hyderabad Traffic Police (core city, Secunderabad, Amberpet/Uppal side up to ~78.60)
 REGIONS = {"cyb": {"center": CENTER, "lon_max": 78.53}, "hyd": {"center": (17.400, 78.475), "lon_max": 78.60},
            "chn": {"center": (13.050, 80.235), "lon_max": 80.40},   # Greater Chennai Traffic Police
-           "blr": {"center": (12.972, 77.594), "lon_max": 77.90}}   # Bengaluru Traffic Police
+           "blr": {"center": (12.972, 77.594), "lon_max": 77.90},   # Bengaluru Traffic Police
+           "chd": {"center": (30.735, 76.780), "lon_max": 76.95}}   # Chandigarh Traffic Police (UT)
 # One gazetteer per city: its own OSM cut, aliases, Nominatim cache, bus stops and search box.
 CITIES = {
     "hyd": {"data": DATA, "bbox": BBOX, "suffix": ", Hyderabad, Telangana", "stops": ("tgsrtc", STOPS)},
@@ -38,6 +40,8 @@ CITIES = {
             "stops": ("mtc", MTC_DATA / "bus_stops.geojson")},
     "blr": {"data": DATA / "blr", "bbox": (12.70, 77.30, 13.30, 77.90), "suffix": ", Bengaluru, Karnataka",
             "stops": ("bmtc", BMTC_DATA / "bus_stops.geojson")},
+    "chd": {"data": DATA / "chd", "bbox": (30.60, 76.60, 30.85, 76.95), "suffix": ", Chandigarh",
+            "stops": ("tricity", TRICITY_DATA / "stops.json")},
 }
 
 ABBR = [
@@ -152,7 +156,7 @@ class Gazetteer:
             return
         for sid, (name, lat, lon) in json.load(open(path)).items():
             base = re.split(r"\s+(?:twd|twds|towards)\b", name, flags=re.I)[0]
-            self.add(base, lat, lon, 2, "tgsrtc_stop", "tgsrtc")
+            self.add(base, lat, lon, 2, f"{kind}_stop", kind)          # RTC maps' stops.json: id -> [name, lat, lon]
 
     def _pick(self, cands, hint, region="cyb"):
         """Choose one candidate, or None when it would be a guess."""
@@ -198,8 +202,11 @@ class Gazetteer:
         if n in self.full:
             r = hit(self.full[n], 100)
             if r: return r
-        # looser matches must land on a place/junction/stop/road/landmark, never a shop
-        good = lambda cs: [c for c in cs if c["prio"] <= 4]
+        # looser matches must land on a place/junction/stop/road/landmark, never a shop. In Chandigarh, where places are
+        # named by sector, a looser match must also carry the same numbers ("Market Sector 19" is not "Market sector 2")
+        digits = set(re.findall(r"\d+", phrase)) if self.city == "chd" else None
+        same_no = lambda c: not digits or set(re.findall(r"\d+", c["name"])) == digits
+        good = lambda cs: [c for c in cs if c["prio"] <= 4 and same_no(c)]
         if k and good(self.core.get(k, [])):
             r = hit(good(self.core[k]), 95)
             if r: return r

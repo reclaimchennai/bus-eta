@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Newest posts of the traffic police accounts (Hyderabad, Cyberabad, Delhi, Chennai, Bengaluru), from the local Nitter's RSS (127.0.0.1:8095), into ~/nitter/out/latest.json.
+"""Newest posts of the traffic police accounts (Hyderabad, Cyberabad, Delhi, Chennai, Bengaluru, Chandigarh), from the local Nitter's RSS (127.0.0.1:8095), into ~/nitter/out/latest.json.
 
     {"t": epoch, "accounts": {"HYDTP": {"ok": true, "t": epoch, "posts": [{"id", "url", "t", "text"}, ...]}, ...}}
 
@@ -29,6 +29,10 @@ SEARCH = {'dtptraffic': 'from:dtptraffic -filter:replies -filter:nativeretweets'
 OUT = os.path.expanduser('~/nitter/out/latest.json')
 GROUPS = os.path.expanduser('~/nitter/groups.json')
 GROUPS_PER_RUN = 2
+# Quiet accounts read only at set IST hours (the first run in that hour whose last good read is over 3 h old), to keep
+# load on the one X session low: Chandigarh Traffic Police posts a few times a day, mostly awareness.
+SCHEDULED = {'trafficchd': (9, 18)}
+IST = 19800
 
 
 def text_of(desc):
@@ -72,6 +76,21 @@ def main():
         except Exception as e:
             prev = old.get('accounts', {}).get(a, {})
             out['accounts'][a] = {'ok': False, 't': prev.get('t', 0), 'error': type(e).__name__, 'posts': prev.get('posts', [])}
+    hour = time.gmtime(out['t'] + IST).tm_hour
+    for a, hours in SCHEDULED.items():
+        prev = old.get('accounts', {}).get(a)
+        due = hour in hours and (not prev or not prev.get('ok') or out['t'] - prev.get('t', 0) > 3 * 3600)
+        if not due and prev:
+            out['accounts'][a] = prev
+            continue
+        if not due:
+            continue
+        try:
+            out['accounts'][a] = {'ok': True, 't': out['t'], 'scheduled': True, 'posts': fetch(a)}
+        except Exception as e:
+            prev = prev or {}
+            out['accounts'][a] = {'ok': False, 't': prev.get('t', 0), 'scheduled': True, 'error': type(e).__name__,
+                                  'posts': prev.get('posts', [])}
     try:
         groups = json.load(open(GROUPS))
     except (OSError, ValueError):
@@ -96,7 +115,8 @@ def main():
         json.dump(out, f, ensure_ascii=False)
     os.replace(tmp, OUT)
     print(time.strftime('%F %T'), ' '.join(f"{a}:{'ok' if v['ok'] else v.get('error')}:{len(v['posts'])}" for a, v in out['accounts'].items()
-                                           if not v.get('group') or a in now), flush=True)
+                                           if not (v.get('group') or v.get('scheduled')) or a in now
+                                           or (v.get('scheduled') and v.get('t') == out['t'])), flush=True)
 
 
 if __name__ == '__main__':
